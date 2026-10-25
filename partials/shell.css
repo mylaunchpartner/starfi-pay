@@ -88,3 +88,7 @@
 .ai-shell .sf-pay{color:var(--indigo);margin-left:.22em}
 .ai-shell .footer-brand .sf-wordmark{color:var(--white);font-size:20px}
 .ai-shell .footer-brand .sf-star,.ai-shell .footer-brand .sf-pay{fill:#A9A4FF;color:#A9A4FF}
+
+.ai-shell .sf-logo{display:block;height:30px;width:auto}
+.ai-shell .footer-brand .sf-logo{height:30px}
+@media (max-width:640px){.ai-shell .sf-logo{height:26px}}
