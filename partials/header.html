@@ -1,0 +1,54 @@
+<div class="ai-shell ai-shell-header">
+<header class="site-header">
+  <div class="container header-inner">
+    <a href="/" class="logo" aria-label="StarFi Pay home">
+      <span class="sf-wordmark" role="img" aria-label="StarFi Pay">StarF<span class="sf-i">&#305;<svg class="sf-star" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1.5l3.1 6.6 7.2.9-5.3 5 1.4 7.1L12 17.6l-6.4 3.5 1.4-7.1-5.3-5 7.2-.9z"/></svg></span> <span class="sf-pay">Pay</span></span>
+    </a>
+    <nav class="service-tabs" aria-label="Main">
+      <a href="/#payments" class="service-tab tab-pay">Payments</a>
+      <a href="/#payroll" class="service-tab tab-pr">Payroll</a>
+      <a href="/#insurance" class="service-tab tab-ins">Insurance</a>
+      <div class="tab-dropdown" id="aiSpecDropdown">
+        <button class="tab-dropdown-btn" aria-haspopup="true" aria-expanded="false" id="aiSpecDropdownBtn">
+          Specialty Processing
+          <svg class="arr" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 4l4 4 4-4"/></svg>
+        </button>
+        <div class="tab-dropdown-menu" role="menu">
+          <a href="/specialty-peptide-payment-processing" class="tab-dropdown-item" role="menuitem"><span class="item-dot"></span>Peptides</a>
+        </div>
+      </div>
+      <div class="tab-dropdown tab-more" id="aiMoreDropdown">
+        <button class="tab-dropdown-btn" aria-haspopup="true" aria-expanded="false" id="aiMoreDropdownBtn">
+          More
+          <svg class="arr" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 4l4 4 4-4"/></svg>
+        </button>
+        <div class="tab-dropdown-menu" role="menu">
+          <a href="/about" class="tab-dropdown-item" role="menuitem" data-path="/about"><span class="item-dot"></span>About</a>
+          <a href="/blog" class="tab-dropdown-item" role="menuitem" data-path="/blog"><span class="item-dot"></span>Blog</a>
+          <a href="/contact-us" class="tab-dropdown-item" role="menuitem" data-path="/contact-us"><span class="item-dot"></span>Contact</a>
+        </div>
+      </div>
+    </nav>
+    <div class="header-actions">
+      <a href="[[MERCHANT_LOGIN_URL]]" class="header-cta" target="_blank" rel="noopener">Merchant Login</a>
+      <button class="nav-toggle" id="aiNavToggle" aria-label="Open menu" aria-expanded="false"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="2" y1="5" x2="16" y2="5"/><line x1="2" y1="9" x2="16" y2="9"/><line x1="2" y1="13" x2="16" y2="13"/></svg></button>
+    </div>
+  </div>
+</header>
+<div class="mobile-menu" id="aiMobileMenu">
+  <div class="mobile-panel">
+    <button class="mob-x" id="aiMobileClose" aria-label="Close menu"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M1 1l12 12M13 1L1 13"/></svg></button>
+    <nav class="mob-nav" aria-label="Mobile">
+      <a href="/#payments">Payments</a>
+      <a href="/#payroll">Payroll</a>
+      <a href="/#insurance">Insurance</a>
+      <a href="/specialty-peptide-payment-processing" data-path="/specialty-peptide-payment-processing">Peptide Processing</a>
+      <div class="mob-hr"></div>
+      <a href="/about" data-path="/about">About</a>
+      <a href="/blog" data-path="/blog">Blog</a>
+      <a href="/contact-us" data-path="/contact-us">Contact</a>
+    </nav>
+    <a href="[[MERCHANT_LOGIN_URL]]" class="mob-cta" target="_blank" rel="noopener">Merchant Login</a>
+  </div>
+</div>
+</div>

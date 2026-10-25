@@ -1,0 +1,352 @@
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --indigo:#4F46FF;--indigo-mid:#3730D9;--indigo-dark:#161335;--indigo-tint:#EEF0FF;
+  --ink:#0F1222;--body-c:#4A4F63;--muted:#868C9F;
+  --border:#E7E8F2;--border-strong:#D6D8EC;--white:#FFFFFF;--paper:#FAFAFE;
+  --pr:#12B76A;--pr-dark:#0A8F53;--pr-tint:#E3FBEF;--pr-deep:#064E3B;
+  --ins:#1B3A6B;--ins-tint:#EBF0F8;
+  --i-soft:rgba(255,255,255,.74);--i-muted:rgba(255,255,255,.44);
+  --r-lg:20px;--r-md:14px;--r-sm:10px;
+  --sh-sm:0 1px 3px rgba(15,18,34,.06);--sh-md:0 8px 24px rgba(15,18,34,.08);--sh-lg:0 24px 64px rgba(22,19,53,.14);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Inter',sans-serif;background:var(--white);color:var(--ink);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:var(--indigo-mid);text-decoration:none}
+a:hover{text-decoration:underline}
+button{font-family:inherit;cursor:pointer;border:none;background:none}
+:focus-visible{outline:2px solid var(--indigo);outline-offset:3px}
+.container{max-width:1180px;margin:0 auto;padding:0 32px}
+
+/* Header */
+.site-header{position:fixed;top:0;left:0;right:0;z-index:100;padding:13px 0;background:rgba(255,255,255,.92);backdrop-filter:blur(16px);border-bottom:1px solid var(--border)}
+.header-inner{display:flex;align-items:center;justify-content:space-between;gap:14px}
+.logo{display:flex;align-items:center;gap:10px;flex-shrink:0;text-decoration:none}
+.logo-mark{width:68px;height:27px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.logo-mark svg{width:100%;height:100%}
+.logo-text{font-family:'Space Grotesk',sans-serif;font-size:15px;font-weight:600;letter-spacing:-.01em;color:var(--ink)}
+.header-actions{display:flex;align-items:center;gap:12px;flex-shrink:0}
+.header-phone{display:none;font-size:13.5px;font-weight:500;color:var(--body-c);text-decoration:none}
+.header-cta{display:inline-flex;align-items:center;gap:8px;background:var(--ink);color:var(--white);font-size:13px;font-weight:600;padding:10px 20px;border-radius:999px;transition:background .2s;text-decoration:none}
+.header-cta:hover{background:var(--indigo);text-decoration:none}
+.header-nav{display:flex;align-items:center;gap:20px}
+.header-nav a{font-size:13px;font-weight:500;color:var(--body-c);text-decoration:none;transition:color .2s}
+.header-nav a:hover{color:var(--ink);text-decoration:none}
+@media(min-width:900px){.header-phone{display:flex}}
+@media(max-width:640px){.header-nav{display:none}}
+/* Mobile hamburger */
+.nav-toggle{display:none;width:40px;height:40px;align-items:center;justify-content:center;border-radius:10px;background:transparent;border:1px solid var(--border);cursor:pointer;transition:background .2s;flex-shrink:0;padding:0}
+.nav-toggle:hover{background:var(--paper)}
+.mobile-menu{display:none;position:fixed;inset:0;z-index:300;background:rgba(15,18,34,.55);backdrop-filter:blur(4px)}
+.mobile-menu.open{display:flex;align-items:flex-start;justify-content:flex-end}
+.mobile-panel{width:min(300px,88vw);height:100vh;background:var(--white);overflow-y:auto;padding:18px 22px 40px;display:flex;flex-direction:column;box-shadow:-24px 0 64px rgba(15,18,34,.14)}
+.mobile-panel-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:24px}
+.mobile-logo{display:flex;align-items:center;gap:9px;text-decoration:none}
+.mobile-logo-text{font-family:'Space Grotesk',sans-serif;font-size:14px;font-weight:600;color:var(--ink)}
+.mobile-close{width:34px;height:34px;display:flex;align-items:center;justify-content:center;border-radius:8px;border:1px solid var(--border);background:transparent;cursor:pointer;flex-shrink:0;padding:0}
+.mobile-close:hover{background:var(--paper)}
+.mobile-nav{display:flex;flex-direction:column;gap:2px;flex:1}
+.mobile-nav a{font-size:15px;font-weight:600;color:var(--ink);padding:11px 14px;border-radius:10px;transition:background .2s;display:block;text-decoration:none}
+.mobile-nav a:hover{background:var(--paper);text-decoration:none}
+.mobile-nav a.mob-active{background:var(--indigo-tint);color:var(--indigo-mid)}
+.mobile-divider{height:1px;background:var(--border);margin:10px 0}
+.mobile-login-btn{display:flex;align-items:center;justify-content:center;background:var(--ink);color:var(--white);font-size:14px;font-weight:600;padding:13px 20px;border-radius:999px;text-decoration:none;margin-top:16px;transition:background .2s}
+.mobile-login-btn:hover{background:var(--indigo);text-decoration:none}
+@media(max-width:640px){.header-cta{display:none}.nav-toggle{display:flex}}
+
+/* Legal hero */
+.legal-hero{padding:110px 0 56px;background:var(--indigo-dark);position:relative;overflow:hidden}
+.legal-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(600px 400px at 15% 0%,rgba(79,70,255,.4),transparent 60%);pointer-events:none}
+.legal-hero-inner{position:relative;z-index:1}
+.legal-tag{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:600;padding:5px 12px;border-radius:999px;background:rgba(255,255,255,.09);color:rgba(255,255,255,.7);margin-bottom:16px;letter-spacing:.02em}
+.legal-hero h1{font-family:'Space Grotesk',sans-serif;font-size:clamp(26px,3.5vw,42px);font-weight:700;color:var(--white);line-height:1.14;letter-spacing:-.015em;margin-bottom:12px}
+.legal-hero p{font-size:15px;color:rgba(255,255,255,.52)}
+
+/* Legal content */
+.legal-wrap{max-width:780px;margin:0 auto;padding:64px 32px 100px}
+.legal-toc{background:var(--paper);border:1px solid var(--border);border-radius:var(--r-lg);padding:24px 28px;margin-bottom:56px}
+.legal-toc h3{font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:700;color:var(--muted);letter-spacing:.05em;text-transform:uppercase;margin-bottom:14px}
+.toc-list{list-style:none;display:flex;flex-direction:column;gap:6px;columns:2;column-gap:24px}
+.toc-list li a{font-size:13.5px;color:var(--indigo-mid);text-decoration:none;line-height:1.5;display:block}
+.toc-list li a:hover{text-decoration:underline}
+
+.legal-section{margin-bottom:52px}
+.legal-section:last-child{margin-bottom:0}
+.legal-section h2{font-family:'Space Grotesk',sans-serif;font-size:20px;font-weight:700;color:var(--ink);margin-bottom:16px;padding-top:16px;border-top:1px solid var(--border)}
+.legal-section h3{font-family:'Space Grotesk',sans-serif;font-size:16px;font-weight:600;color:var(--ink);margin:22px 0 10px}
+.legal-section p{font-size:15px;color:var(--body-c);line-height:1.75;margin-bottom:14px}
+.legal-section p:last-child{margin-bottom:0}
+.legal-section ul,.legal-section ol{margin:0 0 14px 20px;display:flex;flex-direction:column;gap:8px}
+.legal-section li{font-size:15px;color:var(--body-c);line-height:1.7}
+.legal-section strong{color:var(--ink);font-weight:600}
+.notice-box{background:var(--indigo-tint);border:1px solid rgba(79,70,255,.2);border-radius:var(--r-md);padding:18px 22px;margin-bottom:24px}
+.notice-box p{font-size:14.5px;color:var(--indigo-dark);line-height:1.7;margin-bottom:0}
+
+/* Footer */
+footer{background:var(--ink);padding:52px 0 28px}
+.footer-top{display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:44px;margin-bottom:36px}
+.footer-brand p{font-size:13px;color:rgba(255,255,255,.35);line-height:1.7;max-width:240px;margin-top:12px}
+.footer-brand .logo-text-w{font-family:'Space Grotesk',sans-serif;font-size:14.5px;font-weight:600;color:var(--white)}
+.footer-col h5{font-family:'Space Grotesk',sans-serif;font-size:12px;font-weight:600;letter-spacing:.02em;color:rgba(175,172,255,.85);margin-bottom:14px}
+.footer-col ul{list-style:none;display:flex;flex-direction:column;gap:8px}
+.footer-col ul li a{font-size:13px;color:rgba(255,255,255,.34);transition:color .2s;text-decoration:none}
+.footer-col ul li a:hover{color:rgba(175,172,255,1)}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.08);padding-top:20px;display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap}
+.footer-bottom p{font-size:12px;color:rgba(255,255,255,.26)}
+.footer-links{display:flex;gap:16px}
+.footer-links a{font-size:12px;color:rgba(255,255,255,.26);transition:color .2s;text-decoration:none}
+.footer-links a:hover{color:rgba(255,255,255,.7)}
+
+@media(max-width:960px){.footer-top{grid-template-columns:1fr 1fr}}
+@media(max-width:640px){
+  .container{padding:0 20px}
+  .legal-wrap{padding:48px 20px 80px}
+  .toc-list{columns:1}
+  .footer-top{grid-template-columns:1fr;gap:28px}
+  .footer-bottom{flex-direction:column;align-items:flex-start}
+}
+</style>
+
+
+
+<!--ai:header-->
+
+<!-- HERO -->
+<section class="legal-hero">
+  <div class="container">
+    <div class="legal-hero-inner">
+      <div class="legal-tag">Legal</div>
+      <h1>Terms of Service</h1>
+      <p>Last updated: August 27, 2026 &nbsp;·&nbsp; Effective: August 27, 2026</p>
+    </div>
+  </div>
+</section>
+
+<!-- CONTENT -->
+<div class="container">
+  <div class="legal-wrap">
+
+    <div class="notice-box">
+      <p><strong>Please read these Terms carefully.</strong> By accessing or using any StarFi Pay service — including payment processing, payroll, or commercial insurance — you agree to be bound by these Terms of Service. If you do not agree, do not use our services.</p>
+    </div>
+
+    <!-- TOC -->
+    <div class="legal-toc">
+      <h3>Contents</h3>
+      <ul class="toc-list">
+        <li><a href="#agreement">1. Agreement to Terms</a></li>
+        <li><a href="#services">2. Description of Services</a></li>
+        <li><a href="#eligibility">3. Eligibility</a></li>
+        <li><a href="#accounts">4. Account Registration</a></li>
+        <li><a href="#processing">5. Payment Processing</a></li>
+        <li><a href="#payroll">6. Payroll Services</a></li>
+        <li><a href="#insurance">7. Insurance Services</a></li>
+        <li><a href="#fees">8. Fees and Payment</a></li>
+        <li><a href="#prohibited">9. Prohibited Activities</a></li>
+        <li><a href="#ip">10. Intellectual Property</a></li>
+        <li><a href="#confidentiality">11. Confidentiality</a></li>
+        <li><a href="#disclaimers">12. Disclaimers</a></li>
+        <li><a href="#liability">13. Limitation of Liability</a></li>
+        <li><a href="#indemnification">14. Indemnification</a></li>
+        <li><a href="#termination">15. Term and Termination</a></li>
+        <li><a href="#disputes">16. Dispute Resolution</a></li>
+        <li><a href="#governing-law">17. Governing Law</a></li>
+        <li><a href="#changes">18. Changes to Terms</a></li>
+        <li><a href="#contact">19. Contact</a></li>
+      </ul>
+    </div>
+
+    <div class="legal-section" id="agreement">
+      <h2>1. Agreement to Terms</h2>
+      <p>These Terms of Service ("Terms") constitute a legally binding agreement between you ("Merchant," "Client," or "you") and StarFi Pay ("Company," "we," "us," or "our") governing your access to and use of our payment processing, payroll, commercial insurance, and related financial services.</p>
+      <p>By submitting an application, signing a merchant agreement, accessing our online portals, or otherwise using any of our services, you represent that you have read, understood, and agree to be bound by these Terms, including any additional terms, policies, and agreements incorporated by reference herein.</p>
+      <p>If you are entering into these Terms on behalf of a business entity, you represent and warrant that you have the authority to bind that entity to these Terms.</p>
+    </div>
+
+    <div class="legal-section" id="services">
+      <h2>2. Description of Services</h2>
+      <p>StarFi Pay provides the following categories of services:</p>
+      <h3>Payment Processing</h3>
+      <p>We facilitate the acceptance of credit card, debit card, and other electronic payment methods for merchants. Services include merchant account setup, gateway integration, fraud prevention, chargeback management, and settlement of funds. Processing services are subject to applicable card network rules (Visa, Mastercard, American Express, Discover) and banking regulations.</p>
+      <h3>Payroll Services</h3>
+      <p>We provide payroll processing, tax filing, direct deposit, and related employer services. Payroll services are subject to federal and applicable state employment tax regulations.</p>
+      <h3>Commercial Insurance</h3>
+      <p>We offer commercial insurance products through licensed insurance carriers and, where applicable, act as an insurance broker or agent. Insurance products are subject to the terms and conditions of the specific policy issued by the underwriting carrier.</p>
+      <h3>Specialty Processing</h3>
+      <p>We provide specialized payment processing for merchants in industries requiring dedicated underwriting, including Research Use Only (RUO) peptide eCommerce and other specialty verticals. All specialty processing is subject to the same card network rules and applicable regulations as standard payment processing.</p>
+    </div>
+
+    <div class="legal-section" id="eligibility">
+      <h2>3. Eligibility</h2>
+      <p>To use our services, you must:</p>
+      <ul>
+        <li>Be at least 18 years of age and legally able to enter into contracts</li>
+        <li>Operate a legitimate business that complies with all applicable federal, state, and local laws</li>
+        <li>Have the legal right to sell the products or services you intend to process payments for</li>
+        <li>Not be located in, organized under, or controlled by a person or entity in a sanctioned country or on any government sanctions list</li>
+        <li>Not have been previously terminated by a card network or acquiring bank for cause</li>
+      </ul>
+      <p>We reserve the right to deny service to any applicant or terminate service for any existing client who does not meet our eligibility requirements or who we determine, in our sole discretion, poses an unacceptable risk.</p>
+    </div>
+
+    <div class="legal-section" id="accounts">
+      <h2>4. Account Registration</h2>
+      <p>To access our services, you must complete an application and provide accurate, current, and complete information about your business, including but not limited to: business legal name, ownership structure, Federal Employer Identification Number (FEIN), business type, product or service descriptions, expected monthly volume, and principal owner information.</p>
+      <p>You agree to promptly update your account information if it changes. You are responsible for maintaining the confidentiality of your account credentials and for all activities that occur under your account. Notify us immediately via our <a href="/contact-us">contact page</a> if you suspect unauthorized access to your account.</p>
+      <p>We may verify your identity and business information through third-party sources, credit bureaus, and government databases as part of our underwriting and ongoing compliance processes.</p>
+    </div>
+
+    <div class="legal-section" id="processing">
+      <h2>5. Payment Processing Terms</h2>
+      <h3>Merchant Agreement</h3>
+      <p>Payment processing services are governed by a separate Merchant Processing Agreement signed at the time of account approval. These Terms are incorporated into and supplement that agreement. In the event of a conflict, the Merchant Processing Agreement controls for payment processing matters.</p>
+      <h3>Card Network Rules</h3>
+      <p>You agree to comply at all times with all applicable card network rules, regulations, and operating guidelines, including those of Visa, Mastercard, American Express, and Discover, as amended from time to time. Card network rules take precedence over these Terms to the extent of any conflict.</p>
+      <h3>Chargebacks and Disputes</h3>
+      <p>You are liable for all chargebacks, reversals, and disputes arising from transactions processed through your account. We may debit your settlement account or any reserve account for amounts owed due to chargebacks. We will provide chargeback management assistance as part of your service agreement; however, the ultimate financial liability for invalid transactions remains yours.</p>
+      <h3>Reserves</h3>
+      <p>We reserve the right to establish, maintain, or increase a reserve against your settlement account if we determine, in our reasonable judgment, that your account presents elevated risk, including excessive chargeback rates, unusual transaction patterns, or changes in your business model. We will provide notice of any reserve requirement where practicable.</p>
+      <h3>Settlement</h3>
+      <p>Settlement of processed transactions is subject to the funding schedule specified in your Merchant Processing Agreement. We are not responsible for delays caused by your financial institution, card networks, or circumstances outside our reasonable control.</p>
+      <h3>Prohibited Products and Services</h3>
+      <p>You may only process transactions for products and services that were disclosed and approved during underwriting. Processing for unapproved product categories without prior written authorization is grounds for immediate termination and may result in financial liability for associated chargebacks and fines.</p>
+    </div>
+
+    <div class="legal-section" id="payroll">
+      <h2>6. Payroll Services Terms</h2>
+      <p>Payroll services are provided pursuant to a separate Payroll Services Agreement. You are responsible for providing accurate payroll data, including employee information, hours worked, compensation rates, and deductions, by the deadlines specified in your service agreement.</p>
+      <p>You remain solely responsible for the accuracy of payroll information you provide. We will process payroll based on the information you submit; errors resulting from inaccurate data you provide are your responsibility. You are responsible for all payroll tax obligations and for ensuring that sufficient funds are available in your designated payroll funding account on required processing dates.</p>
+    </div>
+
+    <div class="legal-section" id="insurance">
+      <h2>7. Insurance Services Terms</h2>
+      <p>Insurance products are underwritten by third-party insurance carriers. We act as an agent or broker and do not assume the underwriting risk. Coverage is governed solely by the terms, conditions, exclusions, and limits of the applicable insurance policy issued by the carrier.</p>
+      <p>You are responsible for reviewing all policy documents, disclosures, and terms provided by the insurance carrier. We do not guarantee that any particular coverage will be available or that applications will be approved. Insurance premiums and coverage terms are subject to change at renewal.</p>
+    </div>
+
+    <div class="legal-section" id="fees">
+      <h2>8. Fees and Payment</h2>
+      <p>Fees for our services are set forth in your applicable service agreement. Payment processing fees are typically deducted from your settlement funds. Payroll and insurance fees are billed according to the billing schedule in your service agreement.</p>
+      <p>We reserve the right to adjust fees with advance written notice as required by your service agreement or applicable law. Continued use of our services after a fee change takes effect constitutes acceptance of the new fees.</p>
+      <p>You are responsible for all taxes, levies, and duties imposed on your use of our services, excluding taxes based on our net income. Overdue amounts may accrue interest at the maximum rate permitted by applicable law.</p>
+    </div>
+
+    <div class="legal-section" id="prohibited">
+      <h2>9. Prohibited Activities</h2>
+      <p>You agree not to use our services in connection with:</p>
+      <ul>
+        <li>Any illegal products, services, or activities under applicable federal, state, or local law</li>
+        <li>Products or services not disclosed and approved during underwriting</li>
+        <li>Fraudulent, deceptive, or misleading transactions or business practices</li>
+        <li>Money laundering, terrorist financing, or structuring transactions to evade reporting requirements</li>
+        <li>Processing transactions on behalf of third parties without our express written authorization</li>
+        <li>Activities that violate card network rules, including factoring or laundering transactions</li>
+        <li>Sale of counterfeit goods or unauthorized use of intellectual property</li>
+        <li>Activities that create excessive chargebacks, fraud, or reputational risk to us or our banking partners</li>
+      </ul>
+      <p>Violation of this section may result in immediate termination of services, withholding of funds pending investigation, and referral to law enforcement.</p>
+    </div>
+
+    <div class="legal-section" id="ip">
+      <h2>10. Intellectual Property</h2>
+      <p>All content, trademarks, service marks, logos, software, and materials provided by StarFi Pay are owned by or licensed to us and are protected by applicable intellectual property laws. You are granted a limited, non-exclusive, non-transferable license to access and use our services and materials solely for your internal business purposes in connection with your authorized use of our services.</p>
+      <p>You may not reproduce, distribute, modify, create derivative works of, publicly display, or otherwise exploit any of our intellectual property without our express prior written consent.</p>
+    </div>
+
+    <div class="legal-section" id="confidentiality">
+      <h2>11. Confidentiality</h2>
+      <p>Each party agrees to keep confidential any non-public information of the other party that is disclosed in connection with the services ("Confidential Information"), and to use such information only for the purposes of performing obligations under these Terms. This obligation does not apply to information that is or becomes publicly known through no breach of this agreement, is independently developed, or is required to be disclosed by law or court order.</p>
+      <p>You agree to protect cardholder data in accordance with the Payment Card Industry Data Security Standard (PCI DSS) and applicable law. You may not store sensitive authentication data after authorization.</p>
+    </div>
+
+    <div class="legal-section" id="disclaimers">
+      <h2>12. Disclaimers</h2>
+      <p>OUR SERVICES ARE PROVIDED "AS IS" AND "AS AVAILABLE" WITHOUT WARRANTIES OF ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, TITLE, OR NON-INFRINGEMENT.</p>
+      <p>We do not warrant that our services will be uninterrupted, error-free, or secure. We do not warrant that any particular transaction will be approved or that funds will be available within any specific timeframe. Approval of a merchant application does not guarantee continued service.</p>
+      <p>Nothing in these Terms constitutes legal, tax, financial, or investment advice. You should consult your own advisors for advice specific to your circumstances.</p>
+    </div>
+
+    <div class="legal-section" id="liability">
+      <h2>13. Limitation of Liability</h2>
+      <p>TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, IN NO EVENT SHALL STARFI PAY, ITS OFFICERS, DIRECTORS, EMPLOYEES, AGENTS, OR BANKING PARTNERS BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, PUNITIVE, OR EXEMPLARY DAMAGES, INCLUDING LOST PROFITS, LOST REVENUE, LOSS OF DATA, OR LOSS OF GOODWILL, ARISING OUT OF OR RELATED TO THESE TERMS OR YOUR USE OF OUR SERVICES, EVEN IF WE HAVE BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.</p>
+      <p>OUR TOTAL CUMULATIVE LIABILITY TO YOU FOR ANY CAUSE OF ACTION ARISING UNDER OR RELATED TO THESE TERMS SHALL NOT EXCEED THE TOTAL FEES PAID BY YOU TO US IN THE THREE (3) MONTHS PRECEDING THE EVENT GIVING RISE TO THE CLAIM.</p>
+      <p>SOME JURISDICTIONS DO NOT ALLOW THE EXCLUSION OF CERTAIN WARRANTIES OR LIMITATION OF LIABILITY. IN SUCH JURISDICTIONS, OUR LIABILITY SHALL BE LIMITED TO THE GREATEST EXTENT PERMITTED BY LAW.</p>
+    </div>
+
+    <div class="legal-section" id="indemnification">
+      <h2>14. Indemnification</h2>
+      <p>You agree to indemnify, defend, and hold harmless StarFi Pay and its officers, directors, employees, agents, successors, and banking partners from and against any and all claims, damages, losses, liabilities, costs, and expenses (including reasonable attorneys' fees) arising out of or related to:</p>
+      <ul>
+        <li>Your use of our services in violation of these Terms or applicable law</li>
+        <li>Your products, services, or business operations</li>
+        <li>Chargebacks, fraud, or disputes arising from your transactions</li>
+        <li>Your breach of any representation, warranty, or obligation under these Terms</li>
+        <li>Any third-party claims arising from your business activities</li>
+      </ul>
+    </div>
+
+    <div class="legal-section" id="termination">
+      <h2>15. Term and Termination</h2>
+      <p>These Terms remain in effect for the duration of your use of any StarFi Pay service. Either party may terminate services in accordance with the notice requirements in your applicable service agreement.</p>
+      <p>We may suspend or terminate your account immediately, without prior notice, if we determine that: (a) you have violated these Terms or applicable law; (b) your account presents an unacceptable risk of harm to us, our banking partners, or cardholders; (c) we are required to do so by a card network, regulatory authority, or banking partner; or (d) you are subject to bankruptcy or insolvency proceedings.</p>
+      <p>Upon termination, your right to use our services ceases immediately. Provisions that by their nature should survive termination will survive, including Sections 8 (Fees), 10 (Intellectual Property), 11 (Confidentiality), 12 (Disclaimers), 13 (Limitation of Liability), 14 (Indemnification), and 16 (Dispute Resolution).</p>
+    </div>
+
+    <div class="legal-section" id="disputes">
+      <h2>16. Dispute Resolution</h2>
+      <p>Any dispute, claim, or controversy arising out of or relating to these Terms or our services shall first be addressed through good-faith negotiation. Either party may initiate this process by providing written notice of the dispute.</p>
+      <p>If the parties cannot resolve a dispute through negotiation within thirty (30) days, the dispute shall be resolved by binding arbitration administered by the American Arbitration Association (AAA) under its Commercial Arbitration Rules. The arbitration shall take place in Maricopa County, Arizona. The arbitrator's decision shall be final and binding and may be entered as a judgment in any court of competent jurisdiction.</p>
+      <p>Notwithstanding the foregoing, either party may seek injunctive or other equitable relief in a court of competent jurisdiction to prevent irreparable harm. Nothing in this section limits our ability to report violations to card networks or regulatory authorities.</p>
+      <p><strong>Class Action Waiver:</strong> You agree that any arbitration shall be conducted on an individual basis and not as a class, collective, or representative action. You waive any right to participate in a class action lawsuit or class-wide arbitration.</p>
+    </div>
+
+    <div class="legal-section" id="governing-law">
+      <h2>17. Governing Law</h2>
+      <p>These Terms and any dispute arising hereunder shall be governed by and construed in accordance with the laws of the State of Arizona, without regard to its conflict of law principles. For any disputes not subject to arbitration, you consent to the exclusive jurisdiction of the state and federal courts located in Maricopa County, Arizona.</p>
+    </div>
+
+    <div class="legal-section" id="changes">
+      <h2>18. Changes to These Terms</h2>
+      <p>We reserve the right to modify these Terms at any time. We will provide notice of material changes by posting the updated Terms on our website and, where required by your service agreement, by direct written notice. The "Last Updated" date at the top of this page reflects the most recent revision.</p>
+      <p>Your continued use of our services following notice of updated Terms constitutes your acceptance of the revised Terms. If you do not agree with any changes, you must discontinue use of our services and provide notice of termination in accordance with your service agreement.</p>
+    </div>
+
+    <div class="legal-section" id="contact">
+      <h2>19. Contact Information</h2>
+      <p>If you have questions about these Terms or our services, please contact us:</p>
+      <p>
+        <strong>StarFi Pay</strong><br>
+        Contact: <a href="/contact-us">starfipay.com/contact-us</a><br>
+        Website: <a href="/">starfipay.com</a>
+      </p>
+      <p>For legal notices, please submit written correspondence via the contact information above and request acknowledgment of receipt.</p>
+    </div>
+
+  </div>
+</div>
+
+<!--ai:footer-->
+
+<script>
+(function() {
+  var navTog = document.getElementById('navToggle');
+  var mobMenu = document.getElementById('mobileMenu');
+  var mobClose = document.getElementById('mobileClose');
+  if (!navTog || !mobMenu) return;
+  navTog.addEventListener('click', function() {
+    mobMenu.classList.add('open');
+    navTog.setAttribute('aria-expanded', 'true');
+    document.body.style.overflow = 'hidden';
+  });
+  function closeNav() {
+    mobMenu.classList.remove('open');
+    navTog.setAttribute('aria-expanded', 'false');
+    document.body.style.overflow = '';
+  }
+  if (mobClose) mobClose.addEventListener('click', closeNav);
+  mobMenu.addEventListener('click', function(e) { if (e.target === mobMenu) closeNav(); });
+  mobMenu.querySelectorAll('a').forEach(function(a) { a.addEventListener('click', closeNav); });
+})();
+</script>

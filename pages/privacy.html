@@ -1,0 +1,390 @@
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --indigo:#4F46FF;--indigo-mid:#3730D9;--indigo-dark:#161335;--indigo-tint:#EEF0FF;
+  --ink:#0F1222;--body-c:#4A4F63;--muted:#868C9F;
+  --border:#E7E8F2;--border-strong:#D6D8EC;--white:#FFFFFF;--paper:#FAFAFE;
+  --pr:#12B76A;--pr-dark:#0A8F53;--pr-tint:#E3FBEF;--pr-deep:#064E3B;
+  --ins:#1B3A6B;--ins-tint:#EBF0F8;
+  --i-soft:rgba(255,255,255,.74);--i-muted:rgba(255,255,255,.44);
+  --r-lg:20px;--r-md:14px;--r-sm:10px;
+  --sh-sm:0 1px 3px rgba(15,18,34,.06);--sh-md:0 8px 24px rgba(15,18,34,.08);--sh-lg:0 24px 64px rgba(22,19,53,.14);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Inter',sans-serif;background:var(--white);color:var(--ink);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:var(--indigo-mid);text-decoration:none}
+a:hover{text-decoration:underline}
+button{font-family:inherit;cursor:pointer;border:none;background:none}
+:focus-visible{outline:2px solid var(--indigo);outline-offset:3px}
+.container{max-width:1180px;margin:0 auto;padding:0 32px}
+
+/* Header */
+.site-header{position:fixed;top:0;left:0;right:0;z-index:100;padding:13px 0;background:rgba(255,255,255,.92);backdrop-filter:blur(16px);border-bottom:1px solid var(--border)}
+.header-inner{display:flex;align-items:center;justify-content:space-between;gap:14px}
+.logo{display:flex;align-items:center;gap:10px;flex-shrink:0;text-decoration:none}
+.logo-mark{width:68px;height:27px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.logo-mark svg{width:100%;height:100%}
+.logo-text{font-family:'Space Grotesk',sans-serif;font-size:15px;font-weight:600;letter-spacing:-.01em;color:var(--ink)}
+.header-actions{display:flex;align-items:center;gap:12px;flex-shrink:0}
+.header-phone{display:none;font-size:13.5px;font-weight:500;color:var(--body-c);text-decoration:none}
+.header-cta{display:inline-flex;align-items:center;gap:8px;background:var(--ink);color:var(--white);font-size:13px;font-weight:600;padding:10px 20px;border-radius:999px;transition:background .2s;text-decoration:none}
+.header-cta:hover{background:var(--indigo);text-decoration:none}
+.header-nav{display:flex;align-items:center;gap:20px}
+.header-nav a{font-size:13px;font-weight:500;color:var(--body-c);text-decoration:none;transition:color .2s}
+.header-nav a:hover{color:var(--ink);text-decoration:none}
+@media(min-width:900px){.header-phone{display:flex}}
+@media(max-width:640px){.header-nav{display:none}}
+/* Mobile hamburger */
+.nav-toggle{display:none;width:40px;height:40px;align-items:center;justify-content:center;border-radius:10px;background:transparent;border:1px solid var(--border);cursor:pointer;transition:background .2s;flex-shrink:0;padding:0}
+.nav-toggle:hover{background:var(--paper)}
+.mobile-menu{display:none;position:fixed;inset:0;z-index:300;background:rgba(15,18,34,.55);backdrop-filter:blur(4px)}
+.mobile-menu.open{display:flex;align-items:flex-start;justify-content:flex-end}
+.mobile-panel{width:min(300px,88vw);height:100vh;background:var(--white);overflow-y:auto;padding:18px 22px 40px;display:flex;flex-direction:column;box-shadow:-24px 0 64px rgba(15,18,34,.14)}
+.mobile-panel-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:24px}
+.mobile-logo{display:flex;align-items:center;gap:9px;text-decoration:none}
+.mobile-logo-text{font-family:'Space Grotesk',sans-serif;font-size:14px;font-weight:600;color:var(--ink)}
+.mobile-close{width:34px;height:34px;display:flex;align-items:center;justify-content:center;border-radius:8px;border:1px solid var(--border);background:transparent;cursor:pointer;flex-shrink:0;padding:0}
+.mobile-close:hover{background:var(--paper)}
+.mobile-nav{display:flex;flex-direction:column;gap:2px;flex:1}
+.mobile-nav a{font-size:15px;font-weight:600;color:var(--ink);padding:11px 14px;border-radius:10px;transition:background .2s;display:block;text-decoration:none}
+.mobile-nav a:hover{background:var(--paper);text-decoration:none}
+.mobile-nav a.mob-active{background:var(--indigo-tint);color:var(--indigo-mid)}
+.mobile-divider{height:1px;background:var(--border);margin:10px 0}
+.mobile-login-btn{display:flex;align-items:center;justify-content:center;background:var(--ink);color:var(--white);font-size:14px;font-weight:600;padding:13px 20px;border-radius:999px;text-decoration:none;margin-top:16px;transition:background .2s}
+.mobile-login-btn:hover{background:var(--indigo);text-decoration:none}
+@media(max-width:640px){.header-cta{display:none}.nav-toggle{display:flex}}
+
+/* Legal hero */
+.legal-hero{padding:110px 0 56px;background:var(--indigo-dark);position:relative;overflow:hidden}
+.legal-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(600px 400px at 15% 0%,rgba(79,70,255,.4),transparent 60%);pointer-events:none}
+.legal-hero-inner{position:relative;z-index:1}
+.legal-tag{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:600;padding:5px 12px;border-radius:999px;background:rgba(255,255,255,.09);color:rgba(255,255,255,.7);margin-bottom:16px;letter-spacing:.02em}
+.legal-hero h1{font-family:'Space Grotesk',sans-serif;font-size:clamp(26px,3.5vw,42px);font-weight:700;color:var(--white);line-height:1.14;letter-spacing:-.015em;margin-bottom:12px}
+.legal-hero p{font-size:15px;color:rgba(255,255,255,.52)}
+
+/* Legal content */
+.legal-wrap{max-width:780px;margin:0 auto;padding:64px 32px 100px}
+.legal-toc{background:var(--paper);border:1px solid var(--border);border-radius:var(--r-lg);padding:24px 28px;margin-bottom:56px}
+.legal-toc h3{font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:700;color:var(--muted);letter-spacing:.05em;text-transform:uppercase;margin-bottom:14px}
+.toc-list{list-style:none;display:flex;flex-direction:column;gap:6px;columns:2;column-gap:24px}
+.toc-list li a{font-size:13.5px;color:var(--indigo-mid);text-decoration:none;line-height:1.5;display:block}
+.toc-list li a:hover{text-decoration:underline}
+
+.legal-section{margin-bottom:52px}
+.legal-section:last-child{margin-bottom:0}
+.legal-section h2{font-family:'Space Grotesk',sans-serif;font-size:20px;font-weight:700;color:var(--ink);margin-bottom:16px;padding-top:16px;border-top:1px solid var(--border)}
+.legal-section h3{font-family:'Space Grotesk',sans-serif;font-size:16px;font-weight:600;color:var(--ink);margin:22px 0 10px}
+.legal-section p{font-size:15px;color:var(--body-c);line-height:1.75;margin-bottom:14px}
+.legal-section p:last-child{margin-bottom:0}
+.legal-section ul,.legal-section ol{margin:0 0 14px 20px;display:flex;flex-direction:column;gap:8px}
+.legal-section li{font-size:15px;color:var(--body-c);line-height:1.7}
+.legal-section strong{color:var(--ink);font-weight:600}
+.notice-box{background:var(--indigo-tint);border:1px solid rgba(79,70,255,.2);border-radius:var(--r-md);padding:18px 22px;margin-bottom:24px}
+.notice-box p{font-size:14.5px;color:var(--indigo-dark);line-height:1.7;margin-bottom:0}
+.data-table{width:100%;border-collapse:collapse;margin:16px 0 14px;font-size:14px}
+.data-table th{background:var(--paper);font-family:'Space Grotesk',sans-serif;font-weight:600;color:var(--ink);text-align:left;padding:11px 14px;border:1px solid var(--border);font-size:13px}
+.data-table td{padding:11px 14px;border:1px solid var(--border);color:var(--body-c);line-height:1.55;vertical-align:top}
+.data-table tr:nth-child(even) td{background:var(--paper)}
+
+/* Footer */
+footer{background:var(--ink);padding:52px 0 28px}
+.footer-top{display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:44px;margin-bottom:36px}
+.footer-brand p{font-size:13px;color:rgba(255,255,255,.35);line-height:1.7;max-width:240px;margin-top:12px}
+.footer-brand .logo-text-w{font-family:'Space Grotesk',sans-serif;font-size:14.5px;font-weight:600;color:var(--white)}
+.footer-col h5{font-family:'Space Grotesk',sans-serif;font-size:12px;font-weight:600;letter-spacing:.02em;color:rgba(175,172,255,.85);margin-bottom:14px}
+.footer-col ul{list-style:none;display:flex;flex-direction:column;gap:8px}
+.footer-col ul li a{font-size:13px;color:rgba(255,255,255,.34);transition:color .2s;text-decoration:none}
+.footer-col ul li a:hover{color:rgba(175,172,255,1)}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.08);padding-top:20px;display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap}
+.footer-bottom p{font-size:12px;color:rgba(255,255,255,.26)}
+.footer-links{display:flex;gap:16px}
+.footer-links a{font-size:12px;color:rgba(255,255,255,.26);transition:color .2s;text-decoration:none}
+.footer-links a:hover{color:rgba(255,255,255,.7)}
+
+@media(max-width:960px){.footer-top{grid-template-columns:1fr 1fr}}
+@media(max-width:640px){
+  .container{padding:0 20px}
+  .legal-wrap{padding:48px 20px 80px}
+  .toc-list{columns:1}
+  .data-table{font-size:13px}
+  .footer-top{grid-template-columns:1fr;gap:28px}
+  .footer-bottom{flex-direction:column;align-items:flex-start}
+}
+</style>
+
+
+
+<!--ai:header-->
+
+<!-- HERO -->
+<section class="legal-hero">
+  <div class="container">
+    <div class="legal-hero-inner">
+      <div class="legal-tag">Legal</div>
+      <h1>Privacy Policy</h1>
+      <p>Last updated: August 27, 2026 &nbsp;·&nbsp; Effective: August 27, 2026</p>
+    </div>
+  </div>
+</section>
+
+<!-- CONTENT -->
+<div class="container">
+  <div class="legal-wrap">
+
+    <div class="notice-box">
+      <p>This Privacy Policy describes how StarFi Pay collects, uses, shares, and protects information in connection with our payment processing, payroll, commercial insurance, and related services. By using our services, you agree to the collection and use of information as described in this policy.</p>
+    </div>
+
+    <!-- TOC -->
+    <div class="legal-toc">
+      <h3>Contents</h3>
+      <ul class="toc-list">
+        <li><a href="#who-we-are">1. Who We Are</a></li>
+        <li><a href="#info-collect">2. Information We Collect</a></li>
+        <li><a href="#how-we-use">3. How We Use Information</a></li>
+        <li><a href="#sharing">4. Information We Share</a></li>
+        <li><a href="#card-data">5. Payment Card Data</a></li>
+        <li><a href="#retention">6. Data Retention</a></li>
+        <li><a href="#security">7. Data Security</a></li>
+        <li><a href="#your-rights">8. Your Rights and Choices</a></li>
+        <li><a href="#california">9. California Privacy Rights</a></li>
+        <li><a href="#cookies">10. Cookies and Tracking</a></li>
+        <li><a href="#third-party">11. Third-Party Services</a></li>
+        <li><a href="#children">12. Children's Privacy</a></li>
+        <li><a href="#changes">13. Changes to This Policy</a></li>
+        <li><a href="#contact">14. Contact Us</a></li>
+      </ul>
+    </div>
+
+    <div class="legal-section" id="who-we-are">
+      <h2>1. Who We Are</h2>
+      <p>StarFi Pay ("Company," "we," "us," or "our") is a financial services company providing payment processing, payroll administration, and commercial insurance services to businesses across the United States. We are the data controller for personal information collected in connection with our business services.</p>
+    </div>
+
+    <div class="legal-section" id="info-collect">
+      <h2>2. Information We Collect</h2>
+      <p>We collect information in the following categories depending on the services you use:</p>
+      <h3>Business and Owner Information</h3>
+      <ul>
+        <li>Business legal name, DBA, and entity type</li>
+        <li>Federal Employer Identification Number (FEIN) or Social Security Number for sole proprietors</li>
+        <li>Business address, phone number, and website</li>
+        <li>Principal owner name, date of birth, home address, and government-issued ID information</li>
+        <li>Business financial statements, bank account information, and processing history</li>
+        <li>Product and service descriptions, industry type, and business model information</li>
+      </ul>
+      <h3>Employee and Payroll Information</h3>
+      <p>For payroll clients, we collect employee names, addresses, Social Security Numbers, dates of birth, compensation and benefits information, banking information for direct deposit, and tax withholding elections.</p>
+      <h3>Transaction and Processing Data</h3>
+      <ul>
+        <li>Transaction amounts, dates, merchant category codes, and authorization data</li>
+        <li>Cardholder names and truncated card numbers (we do not store full card numbers)</li>
+        <li>Chargeback and dispute records</li>
+        <li>Fraud indicators and risk scoring data</li>
+      </ul>
+      <h3>Website and Communications Data</h3>
+      <ul>
+        <li>IP addresses, browser type, and device identifiers when you visit our website</li>
+        <li>Pages viewed, links clicked, and time spent on our site</li>
+        <li>Information you submit through contact forms or when requesting a quote</li>
+        <li>Records of communications between you and our team</li>
+      </ul>
+      <h3>Information from Third Parties</h3>
+      <p>We may receive information about you from credit bureaus, identity verification services, fraud prevention databases, banking partners, card networks, and other third parties as part of our underwriting, compliance, and fraud prevention processes.</p>
+    </div>
+
+    <div class="legal-section" id="how-we-use">
+      <h2>3. How We Use Information</h2>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Purpose</th>
+            <th>Types of Information Used</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Underwriting and account setup</td>
+            <td>Business, owner, and financial information</td>
+          </tr>
+          <tr>
+            <td>Processing transactions and settling funds</td>
+            <td>Transaction data, banking information</td>
+          </tr>
+          <tr>
+            <td>Fraud prevention and risk management</td>
+            <td>Transaction data, device data, third-party risk data</td>
+          </tr>
+          <tr>
+            <td>Chargeback and dispute management</td>
+            <td>Transaction data, cardholder data, communication records</td>
+          </tr>
+          <tr>
+            <td>Payroll processing and tax filing</td>
+            <td>Employee and payroll data</td>
+          </tr>
+          <tr>
+            <td>Insurance placement and servicing</td>
+            <td>Business and owner information</td>
+          </tr>
+          <tr>
+            <td>Regulatory compliance and reporting</td>
+            <td>Business, transaction, and identity data</td>
+          </tr>
+          <tr>
+            <td>Account management and customer support</td>
+            <td>Account and communication data</td>
+          </tr>
+          <tr>
+            <td>Improving our services and website</td>
+            <td>Website usage data, aggregated analytics</td>
+          </tr>
+          <tr>
+            <td>Marketing and service updates</td>
+            <td>Contact information (you may opt out)</td>
+          </tr>
+        </tbody>
+      </table>
+      <p>We process your information on the following legal bases: performance of a contract with you; compliance with legal obligations; our legitimate business interests (fraud prevention, service improvement, risk management); and, where required, your consent.</p>
+    </div>
+
+    <div class="legal-section" id="sharing">
+      <h2>4. Information We Share</h2>
+      <p>We do not sell your personal information. We share information only as described below:</p>
+      <h3>Banking Partners and Card Networks</h3>
+      <p>We share transaction and merchant information with our acquiring bank(s), card networks (Visa, Mastercard, American Express, Discover), and payment processors as necessary to facilitate payment services. These parties have their own privacy practices and are subject to their own regulatory requirements.</p>
+      <h3>Service Providers</h3>
+      <p>We engage third-party vendors who assist us in providing services, including technology providers, cloud infrastructure, identity verification, fraud prevention, and customer support tools. These providers are contractually required to use your information only to provide services to us and to maintain appropriate security measures.</p>
+      <h3>Insurance Carriers</h3>
+      <p>For insurance services, we share necessary information with underwriting carriers and reinsurers to facilitate coverage, policy issuance, and claims handling.</p>
+      <h3>Legal and Regulatory Requirements</h3>
+      <p>We may disclose information when required by law, court order, or government authority; to comply with card network rules or banking regulations; to enforce our Terms of Service; or to protect the safety and security of our clients, our company, or the public.</p>
+      <h3>Business Transfers</h3>
+      <p>In the event of a merger, acquisition, or sale of all or substantially all of our assets, information we hold may be transferred to the acquiring entity, subject to the same privacy commitments described in this policy.</p>
+    </div>
+
+    <div class="legal-section" id="card-data">
+      <h2>5. Payment Card Data</h2>
+      <p>We handle payment card data in compliance with the Payment Card Industry Data Security Standard (PCI DSS). We do not store full primary account numbers (PANs), card verification values (CVV/CVC), or magnetic stripe data after authorization. Where card data must be retained, it is encrypted and access-controlled in accordance with PCI DSS requirements.</p>
+      <p>As a merchant using our services, you are also responsible for PCI DSS compliance within your own systems and for protecting cardholder data at the point of sale and in your own records.</p>
+    </div>
+
+    <div class="legal-section" id="retention">
+      <h2>6. Data Retention</h2>
+      <p>We retain information for as long as necessary to provide our services, comply with legal and regulatory obligations, resolve disputes, enforce agreements, and for legitimate business purposes. Specific retention periods include:</p>
+      <ul>
+        <li><strong>Transaction records:</strong> Generally 7 years, as required by financial regulations and card network rules</li>
+        <li><strong>Merchant account records:</strong> Duration of the relationship plus a minimum of 5 years following termination</li>
+        <li><strong>Payroll and tax records:</strong> As required by IRS and applicable state regulations, typically 4–7 years</li>
+        <li><strong>Insurance records:</strong> As required by the applicable state insurance regulations and the terms of the policy</li>
+        <li><strong>Website analytics data:</strong> Up to 26 months in aggregated form</li>
+      </ul>
+      <p>When information is no longer needed, we securely delete or de-identify it in accordance with our data retention schedule.</p>
+    </div>
+
+    <div class="legal-section" id="security">
+      <h2>7. Data Security</h2>
+      <p>We implement administrative, technical, and physical safeguards designed to protect the information we hold against unauthorized access, disclosure, alteration, and destruction. These measures include encryption of data in transit and at rest, access controls and multi-factor authentication, network security monitoring, and regular security assessments.</p>
+      <p>No method of electronic storage or transmission is completely secure. While we strive to protect your information, we cannot guarantee absolute security. If you believe your information has been compromised, please <a href="/contact-us">contact us immediately</a>.</p>
+      <p>In the event of a data breach that triggers notification obligations under applicable law, we will notify affected parties in accordance with those requirements.</p>
+    </div>
+
+    <div class="legal-section" id="your-rights">
+      <h2>8. Your Rights and Choices</h2>
+      <h3>Access and Correction</h3>
+      <p>You may request access to the personal information we hold about you or your business and request correction of inaccurate information. We will respond to verifiable requests within the timeframe required by applicable law.</p>
+      <h3>Deletion</h3>
+      <p>You may request deletion of your personal information. Please note that we may be required to retain certain information for legal, regulatory, and contractual compliance purposes even after a deletion request. Information necessary for fraud prevention, dispute resolution, or legal proceedings may also be retained.</p>
+      <h3>Marketing Communications</h3>
+      <p>You may opt out of marketing emails by clicking the unsubscribe link in any marketing message or by contacting us directly. Please note that you will continue to receive service-related communications even if you opt out of marketing.</p>
+      <h3>How to Exercise Your Rights</h3>
+      <p>To exercise any of the rights described in this section, <a href="/contact-us">contact us here</a>. We will verify your identity before processing requests to protect against unauthorized disclosure.</p>
+    </div>
+
+    <div class="legal-section" id="california">
+      <h2>9. California Privacy Rights</h2>
+      <p>California residents have additional rights under the California Consumer Privacy Act (CCPA) and the California Privacy Rights Act (CPRA), to the extent those laws apply to our processing of your information.</p>
+      <h3>Categories of Personal Information Collected</h3>
+      <p>In the preceding 12 months, we have collected personal information in the categories described in Section 2 of this policy, including identifiers, financial information, commercial information, professional and employment information, and internet or other electronic network activity information.</p>
+      <h3>Right to Know</h3>
+      <p>You have the right to request disclosure of the categories and specific pieces of personal information we have collected about you, the categories of sources from which it was collected, the business purposes for collecting it, and the categories of third parties with whom it has been shared.</p>
+      <h3>Right to Delete</h3>
+      <p>You have the right to request deletion of personal information we have collected, subject to certain exceptions for legal compliance, fraud prevention, and other legitimate purposes.</p>
+      <h3>Right to Correct</h3>
+      <p>You have the right to request correction of inaccurate personal information we maintain about you.</p>
+      <h3>Right to Non-Discrimination</h3>
+      <p>We will not discriminate against you for exercising any of your CCPA/CPRA rights.</p>
+      <h3>Do Not Sell or Share</h3>
+      <p>We do not sell personal information or share it for cross-context behavioral advertising. You therefore do not need to submit an opt-out request for these purposes.</p>
+      <h3>Submitting a California Request</h3>
+      <p>California residents may submit requests to know, delete, or correct by <a href="/contact-us">contacting us here</a>. We will respond to verifiable consumer requests within 45 days, with a possible extension of an additional 45 days where reasonably necessary.</p>
+    </div>
+
+    <div class="legal-section" id="cookies">
+      <h2>10. Cookies and Tracking Technologies</h2>
+      <p>Our website uses cookies and similar tracking technologies to enhance your experience and gather analytics. We use the following types of cookies:</p>
+      <ul>
+        <li><strong>Essential cookies:</strong> Required for the website to function properly. These cannot be disabled.</li>
+        <li><strong>Analytics cookies:</strong> Help us understand how visitors interact with our website. Data is aggregated and anonymized where possible.</li>
+        <li><strong>Functional cookies:</strong> Remember your preferences to improve your experience on return visits.</li>
+      </ul>
+      <p>You can control cookies through your browser settings. Disabling certain cookies may affect the functionality of our website. We honor browser-based Do Not Track signals to the extent practicable.</p>
+      <p>We do not use cookies or tracking technologies to build profiles for targeted advertising on third-party platforms.</p>
+    </div>
+
+    <div class="legal-section" id="third-party">
+      <h2>11. Third-Party Services and Links</h2>
+      <p>Our website may contain links to third-party websites or services. This Privacy Policy does not apply to those third-party sites, and we are not responsible for their privacy practices. We encourage you to review the privacy policies of any third-party sites you visit.</p>
+      <p>Our services integrate with third-party platforms such as Shopify and other eCommerce systems. Data shared with those platforms in connection with payment processing is governed by those platforms' own terms and privacy policies.</p>
+    </div>
+
+    <div class="legal-section" id="children">
+      <h2>12. Children's Privacy</h2>
+      <p>Our services are intended for businesses and are not directed to individuals under 18 years of age. We do not knowingly collect personal information from children. If you believe we have inadvertently collected information from a minor, please contact us immediately and we will take steps to delete the information.</p>
+    </div>
+
+    <div class="legal-section" id="changes">
+      <h2>13. Changes to This Policy</h2>
+      <p>We may update this Privacy Policy from time to time. We will post any changes on this page and update the "Last Updated" date at the top. For material changes, we will provide additional notice as required by applicable law or as we deem appropriate, which may include email notification to active clients.</p>
+      <p>Your continued use of our services after changes are posted constitutes your acceptance of the updated policy. We encourage you to review this policy periodically.</p>
+    </div>
+
+    <div class="legal-section" id="contact">
+      <h2>14. Contact Us</h2>
+      <p>If you have questions, concerns, or requests regarding this Privacy Policy or our data practices, please contact us:</p>
+      <p>
+        <strong>StarFi Pay</strong><br>
+        Contact: <a href="/contact-us">starfipay.com/contact-us</a><br>
+        Website: <a href="/">starfipay.com</a>
+      </p>
+      <p>For formal privacy requests (access, deletion, correction), please state the nature of your request and include sufficient information to verify your identity. We will respond within the timeframe required by applicable law.</p>
+    </div>
+
+  </div>
+</div>
+
+<!--ai:footer-->
+
+<script>
+(function() {
+  var navTog = document.getElementById('navToggle');
+  var mobMenu = document.getElementById('mobileMenu');
+  var mobClose = document.getElementById('mobileClose');
+  if (!navTog || !mobMenu) return;
+  navTog.addEventListener('click', function() {
+    mobMenu.classList.add('open');
+    navTog.setAttribute('aria-expanded', 'true');
+    document.body.style.overflow = 'hidden';
+  });
+  function closeNav() {
+    mobMenu.classList.remove('open');
+    navTog.setAttribute('aria-expanded', 'false');
+    document.body.style.overflow = '';
+  }
+  if (mobClose) mobClose.addEventListener('click', closeNav);
+  mobMenu.addEventListener('click', function(e) { if (e.target === mobMenu) closeNav(); });
+  mobMenu.querySelectorAll('a').forEach(function(a) { a.addEventListener('click', closeNav); });
+})();
+</script>

@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<title>StarFi Pay — repo preview</title>
+<style>body{margin:0;background:#fff}</style>
+</head>
+<body>
+<!-- Preview any page straight from GitHub Pages: index.html?page=peptides
+     (site links like /contact-us won't resolve here — they work on the live domain) -->
+<div id="ai-root"></div>
+<script>
+  var p = new URLSearchParams(location.search).get('page') || 'home';
+  document.getElementById('ai-root').setAttribute('data-page', p);
+</script>
+<script src="loader.js"></script>
+</body>
+</html>

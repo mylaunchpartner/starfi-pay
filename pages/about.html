@@ -1,0 +1,102 @@
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet"/>
+<style>
+:root{--indigo:#4F46FF;--indigo-mid:#3730D9;--indigo-dark:#161335;--indigo-tint:#EEF0FF;--ink:#0F1222;--body-c:#4A4F63;--muted:#868C9F;--border:#E7E8F2;--white:#FFFFFF;--paper:#FAFAFE;--pr:#12B76A;--pr-tint:#E3FBEF;--pr-dark:#0A8F53;--ins:#1B3A6B;--ins-tint:#EBF0F8;--r-lg:20px;--r-md:14px;--sh-md:0 8px 24px rgba(15,18,34,.08)}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Inter',sans-serif;background:var(--white);color:var(--ink);-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+.container{max-width:1080px;margin:0 auto;padding:0 32px}
+.co-hero{padding:132px 0 64px;background:var(--indigo-dark);position:relative;overflow:hidden}
+.co-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(640px 420px at 15% 0%,rgba(79,70,255,.42),transparent 60%);pointer-events:none}
+.co-hero .container{position:relative;z-index:1}
+.co-eyebrow{display:inline-block;font-size:12.5px;font-weight:600;color:#C7C4FF;background:rgba(79,70,255,.22);padding:5px 12px;border-radius:999px;margin-bottom:16px}
+.co-hero h1{font-family:'Space Grotesk',sans-serif;font-size:clamp(30px,4vw,48px);font-weight:700;color:var(--white);line-height:1.1;letter-spacing:-.02em;max-width:820px}
+.co-hero p.lede{font-size:17px;line-height:1.65;color:rgba(255,255,255,.7);margin-top:16px;max-width:680px}
+.co-hero-row{display:flex;align-items:center;gap:36px}
+.co-main{padding:64px 0 80px}
+.co-section{padding:36px 0;border-bottom:1px solid var(--border)}
+.co-section:last-child{border-bottom:0}
+.co-section h2{font-family:'Space Grotesk',sans-serif;font-size:clamp(22px,2.4vw,28px);font-weight:700;color:var(--ink);margin-bottom:14px;letter-spacing:-.01em}
+.co-section p,.co-section li{font-size:16px;line-height:1.75;color:var(--body-c);max-width:720px}
+.co-section p+p{margin-top:12px}
+.co-section a.inline{color:var(--indigo-mid);text-decoration:underline;text-underline-offset:3px}
+.headshot{width:200px;height:200px;border-radius:50%;overflow:hidden;flex-shrink:0;position:relative;background:linear-gradient(135deg,var(--indigo),#2A2580);border:4px solid rgba(255,255,255,.9);box-shadow:0 20px 50px rgba(0,0,0,.3);display:flex;align-items:center;justify-content:center}
+.headshot img{width:100%;height:100%;object-fit:cover;position:relative;z-index:1}
+.headshot .initials{position:absolute;font-family:'Space Grotesk',sans-serif;font-size:58px;font-weight:700;color:#fff}
+.caption{font-size:13.5px;color:rgba(255,255,255,.62);margin-top:12px;text-align:center;max-width:220px}
+.team{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px;margin-top:8px}
+.team-card{border:1px solid var(--border);border-radius:var(--r-md);padding:20px;background:var(--paper)}
+.team-card .n{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:17px;color:var(--ink)}
+.team-card .t{font-size:14px;color:var(--muted);margin-top:4px}
+.svc{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px;margin-top:8px}
+.svc a{display:block;border:1px solid var(--border);border-radius:var(--r-md);padding:20px;transition:border-color .2s,transform .15s}
+.svc a:hover{border-color:var(--indigo);transform:translateY(-1px)}
+.svc .n{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:17px}
+.svc .d{font-size:14px;color:var(--body-c);margin-top:6px;line-height:1.55}
+.facts{list-style:none;display:grid;gap:10px;max-width:720px}
+.facts li{padding:14px 18px;border:1px solid var(--border);border-radius:12px;background:var(--paper)}
+.facts strong{color:var(--ink)}
+.nap-card{border:1px solid var(--border);border-radius:var(--r-md);padding:22px;background:var(--paper);display:inline-block;margin-top:6px}
+.nap-card .ai-nap{color:var(--body-c);font-style:normal;font-size:15.5px;line-height:1.8;margin:0;max-width:none}
+.nap-card .ai-nap strong{color:var(--ink)}
+.nap-card .ai-nap a{color:var(--indigo-mid)}
+.btn{display:inline-flex;align-items:center;gap:8px;font-weight:600;font-size:15px;padding:13px 24px;border-radius:999px;background:var(--indigo);color:#fff;margin-top:18px}
+.btn:hover{background:var(--indigo-mid)}
+.btn.ghost{background:transparent;color:var(--indigo-mid);border:1px solid var(--border);margin-left:8px}
+@media(max-width:760px){.co-hero-row{flex-direction:column-reverse;align-items:flex-start}.container{padding:0 20px}.btn.ghost{margin-left:0}}
+</style>
+<!--ai:header-->
+<section class="co-hero">
+  <div class="container">
+    <div class="co-hero-row">
+      <div>
+        <span class="co-eyebrow">About us</span>
+        <h1>About StarFi Pay</h1>
+        <p class="lede">An Arizona company providing payment processing, payroll, and business insurance to small and midsize businesses nationwide. Owned and operated by Samantha Martinez.</p>
+      </div>
+      <figure>
+        <div class="headshot" style="width:200px;height:200px"><img src="https://mylaunchpartner.github.io/starfi-pay/assets/samantha-martinez-starfi-pay.jpg" alt="Samantha Martinez, owner of StarFi Pay" width="200" height="200" onerror="this.remove()"><span class="initials" aria-hidden="true">SM</span></div>
+        <figcaption class="caption">Samantha Martinez, President &amp; CEO, StarFi Pay</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+<main class="co-main">
+  <div class="container">
+    <section class="co-section">
+      <h2>Who we are</h2>
+      <p>StarFi Pay is a trade name of Starfighter Financial LLC, an Arizona limited liability company registered with the Arizona Corporation Commission (Business ID [[ACC_BUSINESS_ID]]). We help businesses lower their card processing costs and simplify payroll and business insurance, with one team behind all three. The company was founded in 2026.</p>
+    </section>
+    <section class="co-section">
+      <h2>Meet Samantha</h2>
+      <p>Samantha Martinez is the President and CEO of StarFi Pay, a trade name of Starfighter Financial LLC, an Arizona limited liability company. She owns the company, runs it from Arizona, and signs for it.</p>
+<p>Under Samantha, StarFi Pay is built around a few commitments: merchants see exactly what they pay before they switch, pricing is transparent interchange-plus, and every client has one dedicated point of contact instead of a ticket queue. The same approach carries across the company's three services — payment processing, payroll, and business insurance — so a business can work with one team for all three.</p>
+<p>Samantha works directly with the merchants, referral partners, and sales team the company serves, and is the person accountable for how every account is handled. StarFi Pay serves businesses in all 50 states.</p>
+      <a href="/samantha-martinez" class="btn">More about Samantha →</a>
+      <a href="https://www.linkedin.com/in/samantha-rae-martinez" class="btn" target="_blank" rel="noopener">Connect with Samantha on LinkedIn</a>
+    </section>
+    <section class="co-section">
+      <h2>Our team</h2>
+      <div class="team">
+        <div class="team-card"><div class="n">Samantha Martinez</div><div class="t">President &amp; CEO</div></div>
+      </div>
+    </section>
+    <section class="co-section">
+      <h2>What we do</h2>
+      <div class="svc">
+        <a href="/#payments"><div class="n">Payments</div><div class="d">Interchange-plus card processing, POS, ecommerce, ACH and recurring billing.</div></a>
+        <a href="/#payroll"><div class="n">Payroll</div><div class="d">Automated payroll with tax filing, direct deposit and year-end forms.</div></a>
+        <a href="/#insurance"><div class="n">Insurance</div><div class="d">General liability, workers' comp, commercial auto and more.</div></a>
+        <a href="/specialty-peptide-payment-processing"><div class="n">Specialty Processing</div><div class="d">Specialized underwriting for RUO peptide eCommerce merchants.</div></a>
+      </div>
+    </section>
+    <section class="co-section">
+      <h2>Where we're based</h2>
+      <p>We're based in Arizona and serve businesses in all 50 states.</p>
+      <div class="nap-card"><!--ai:nap--></div>
+      <p style="margin-top:18px">Want the details on who owns the company? See our <a class="inline" href="/ownership">Ownership page</a>.</p>
+    </section>
+  </div>
+</main>
+<!--ai:footer-->

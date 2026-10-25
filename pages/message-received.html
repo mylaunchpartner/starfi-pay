@@ -1,0 +1,140 @@
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --indigo:#4F46FF;--indigo-mid:#3730D9;--indigo-dark:#161335;--indigo-tint:#EEF0FF;
+  --ink:#0F1222;--body-c:#4A4F63;--muted:#868C9F;
+  --border:#E7E8F2;--white:#FFFFFF;--paper:#FAFAFE;
+  --r-lg:20px;--r-md:14px;
+  --sh-lg:0 24px 64px rgba(22,19,53,.14);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Inter',sans-serif;background:var(--white);color:var(--ink);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:var(--indigo-mid);text-decoration:none}
+a:hover{text-decoration:underline}
+button{font-family:inherit;cursor:pointer;border:none;background:none}
+:focus-visible{outline:2px solid var(--indigo);outline-offset:3px}
+.container{max-width:1180px;margin:0 auto;padding:0 32px}
+
+/* Header */
+.site-header{position:fixed;top:0;left:0;right:0;z-index:100;padding:13px 0;background:rgba(255,255,255,.92);backdrop-filter:blur(16px);border-bottom:1px solid var(--border)}
+.header-inner{display:flex;align-items:center;justify-content:space-between;gap:14px}
+.logo{display:flex;align-items:center;gap:10px;flex-shrink:0;text-decoration:none}
+.logo-mark{display:flex;align-items:center;flex-shrink:0}
+.logo-text{font-family:'Space Grotesk',sans-serif;font-size:15px;font-weight:600;letter-spacing:-.01em;color:var(--ink)}
+.header-actions{display:flex;align-items:center;gap:12px;flex-shrink:0}
+.header-cta{display:inline-flex;align-items:center;gap:8px;background:var(--ink);color:var(--white);font-size:13px;font-weight:600;padding:10px 20px;border-radius:999px;transition:background .2s;text-decoration:none}
+.header-cta:hover{background:var(--indigo);text-decoration:none}
+.service-tabs{display:flex;align-items:center;gap:6px;padding:6px;background:var(--paper);border:1px solid var(--border);border-radius:999px;overflow:visible}
+.service-tab{font-size:13px;font-weight:600;padding:7px 16px;border-radius:999px;color:var(--body-c);background:transparent;transition:all .2s;text-decoration:none;white-space:nowrap}
+.service-tab:hover{color:var(--ink);background:rgba(15,18,34,.05);text-decoration:none}
+.tab-active{background:var(--indigo);color:var(--white)!important}
+.tab-active:hover{background:var(--indigo-mid)}
+.tab-dropdown{position:relative}
+.tab-dropdown-btn{display:flex;align-items:center;gap:6px;font-size:13px;font-weight:600;padding:7px 16px;border-radius:999px;color:var(--indigo-mid);background:var(--indigo-tint);border:none;cursor:pointer;font-family:'Inter',sans-serif;transition:all .2s;white-space:nowrap}
+.tab-dropdown-btn:hover{background:var(--indigo);color:var(--white)}
+.tab-dropdown-btn .arr{width:12px;height:12px;transition:transform .2s;flex-shrink:0;opacity:.7}
+.tab-dropdown.open .tab-dropdown-btn{background:var(--indigo);color:var(--white)}
+.tab-dropdown.open .arr{transform:rotate(180deg)}
+.tab-dropdown-menu{position:absolute;top:calc(100% + 10px);left:50%;transform:translateX(-50%) translateY(-6px);min-width:160px;background:var(--white);border:1px solid var(--border);border-radius:var(--r-md);box-shadow:var(--sh-lg);padding:6px;opacity:0;pointer-events:none;transition:opacity .15s,transform .15s;z-index:200}
+.tab-dropdown.open .tab-dropdown-menu{opacity:1;pointer-events:auto;transform:translateX(-50%) translateY(0)}
+.tab-dropdown-item{display:flex;align-items:center;gap:9px;font-size:13px;font-weight:600;color:var(--body-c);padding:9px 14px;border-radius:9px;transition:background .15s,color .15s;white-space:nowrap;text-decoration:none}
+.tab-dropdown-item:hover{background:var(--indigo-tint);color:var(--indigo-mid);text-decoration:none}
+.tab-dropdown-item .item-dot{width:7px;height:7px;border-radius:50%;background:var(--indigo);flex-shrink:0}
+/* Mobile hamburger */
+.nav-toggle{display:none;width:40px;height:40px;align-items:center;justify-content:center;border-radius:10px;background:transparent;border:1px solid var(--border);cursor:pointer;padding:0;flex-shrink:0}.nav-toggle:hover{background:var(--paper)}.mobile-menu{display:none;position:fixed;inset:0;z-index:300;background:rgba(15,18,34,.5)}.mobile-menu.open{display:flex;justify-content:flex-end}.mobile-panel{width:min(300px,90vw);height:100%;background:var(--white);padding:20px 22px 40px;overflow-y:auto;display:flex;flex-direction:column}.mob-x{width:34px;height:34px;display:flex;align-items:center;justify-content:center;border-radius:8px;border:1px solid var(--border);cursor:pointer;padding:0;margin-left:auto;margin-bottom:18px;background:transparent}.mob-x:hover{background:var(--paper)}.mob-nav a{font-size:15px;font-weight:600;color:var(--ink);padding:11px 14px;border-radius:10px;display:block;text-decoration:none;transition:background .15s}.mob-nav a:hover{background:var(--paper)}.mob-hr{height:1px;background:var(--border);margin:10px 0}.mob-cta{display:flex;align-items:center;justify-content:center;background:var(--ink);color:var(--white);font-size:14px;font-weight:600;padding:13px 20px;border-radius:999px;text-decoration:none;margin-top:auto;transition:background .15s}.mob-cta:hover{background:var(--indigo)}
+@media(max-width:900px){.service-tabs{display:none}.header-cta{display:none}.nav-toggle{display:flex}}
+
+/* Confirmation section */
+.thanks-top{padding:110px 0 56px;background:var(--indigo-dark);position:relative;overflow:hidden}
+.thanks-top::before{content:'';position:absolute;inset:0;background:radial-gradient(600px 400px at 15% 0%,rgba(79,70,255,.4),transparent 60%);pointer-events:none}
+.thanks-top-inner{position:relative;z-index:1;display:flex;align-items:flex-start;gap:20px}
+.check-ring{width:52px;height:52px;border-radius:50%;background:rgba(18,183,106,.15);border:1px solid rgba(18,183,106,.3);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:4px;color:#6EE8AA}
+.thanks-copy h1{font-family:'Space Grotesk',sans-serif;font-size:clamp(26px,3.5vw,40px);font-weight:700;color:#fff;line-height:1.14;letter-spacing:-.015em;margin-bottom:10px}
+.thanks-copy .sub{font-size:16px;color:rgba(255,255,255,.55);line-height:1.7;max-width:480px}
+.cal-intro{padding:44px 0 0}
+.cal-intro-inner{max-width:680px;margin:0 auto;padding:0 32px}
+.cal-label{font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);margin-bottom:20px}
+
+@media(max-width:640px){
+  .container{padding:0 20px}
+  .cal-intro-inner{padding:0 20px}
+  .thanks-top-inner{flex-direction:column;gap:14px}
+  .cal-intro{padding:36px 0 0}
+}
+</style>
+
+<!--ai:header-->
+
+<!-- CONFIRMATION HERO -->
+<section class="thanks-top">
+  <div class="container">
+    <div class="thanks-top-inner">
+      <div class="check-ring">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+      </div>
+      <div class="thanks-copy">
+        <h1>We Got Your Message!</h1>
+        <p class="sub">Someone from our team will reach out within 24 hours. Prefer to get started sooner and on your schedule? Pick a time below and book a call with an StarFi Pay team member.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CALENDAR INTRO -->
+<section class="cal-intro">
+  <div class="cal-intro-inner">
+    <p class="cal-label">Book a Call</p>
+  </div>
+</section>
+
+<script>
+(function() {
+  var dd = document.getElementById('specDropdown');
+  var btn = document.getElementById('specDropdownBtn');
+  if (dd && btn) {
+    btn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      var open = dd.classList.toggle('open');
+      btn.setAttribute('aria-expanded', open);
+    });
+    document.addEventListener('click', function() {
+      dd.classList.remove('open');
+      btn.setAttribute('aria-expanded', 'false');
+    });
+    dd.addEventListener('click', function(e) { e.stopPropagation(); });
+  }
+  var nt=document.getElementById('navToggle'),mm=document.getElementById('mobileMenu'),mc=document.getElementById('mobileClose');if(nt&&mm){function cn(){mm.classList.remove('open');nt.setAttribute('aria-expanded','false');document.body.style.overflow=''}nt.onclick=function(){mm.classList.add('open');nt.setAttribute('aria-expanded','true');document.body.style.overflow='hidden'};if(mc)mc.onclick=cn;mm.onclick=function(e){if(e.target===mm)cn()};mm.querySelectorAll('a').forEach(function(a){a.onclick=cn})}
+})();
+</script>
+
+<!-- GHL booking calendar -->
+<div class="ai-ghl-calendar" style="max-width:940px;margin:0 auto;padding:0 20px">
+<iframe src="https://api.leadconnectorhq.com/widget/booking/[[GHL_BOOKING_CALENDAR_ID]]" allow="payment" style="width:100%;border:none;overflow:hidden;" scrolling="no" id="[[GHL_BOOKING_CALENDAR_ID]]_1789607437107"></iframe>
+<script src="https://link.msgsndr.com/js/form_embed.js" type="text/javascript"></script>
+</div>
+
+<style>
+footer{background:var(--ink,#0F1222);padding:52px 0 28px;margin-top:72px}
+.footer-top{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:44px;margin-bottom:36px}
+.footer-brand p{font-size:13px;color:rgba(255,255,255,.35);line-height:1.7;max-width:240px;margin-top:12px}
+.footer-brand .logo-text-w{font-family:'Space Grotesk',sans-serif;font-size:14.5px;font-weight:600;color:#FFFFFF}
+.footer-brand-logo{display:flex;align-items:center;gap:10px}
+.footer-col h5{font-family:'Space Grotesk',sans-serif;font-size:12px;font-weight:600;letter-spacing:.02em;color:rgba(175,172,255,.85);margin-bottom:14px}
+.footer-col ul{list-style:none;display:flex;flex-direction:column;gap:8px}
+.footer-col ul li a{font-size:13px;color:rgba(255,255,255,.34);transition:color .2s;text-decoration:none}
+.footer-col ul li a:hover{color:rgba(175,172,255,1)}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.08);padding-top:20px;display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap}
+.footer-bottom p{font-size:12px;color:rgba(255,255,255,.26)}
+.footer-links{display:flex;gap:16px}
+.footer-links a{font-size:12px;color:rgba(255,255,255,.26);transition:color .2s;text-decoration:none}
+.footer-links a:hover{color:rgba(255,255,255,.7)}
+@media(max-width:960px){.footer-top{grid-template-columns:1fr 1fr}}
+@media(max-width:640px){
+  .footer-top{grid-template-columns:1fr;gap:28px}
+  .footer-bottom{flex-direction:column;align-items:flex-start}
+}
+</style>
+
+<!--ai:footer-->
