@@ -25,7 +25,7 @@ The `ai-` prefixes on ids and classes (`ai-root`, `ai-shell`, `ai-nap`) are inte
 |---|---|---|
 | `/` | `home` | `pages/home.html` |
 | `/contact-us` | `contact` | `pages/contact.html` (GHL form `l9dHbUA0Lhn3K0IDt1Gz`, "Contact Us Form - General") |
-| `/message-received` | `message-received` | `pages/message-received.html` (GHL calendar `[[GHL_BOOKING_CALENDAR_ID]]`) |
+| `/message-received` | `message-received` | `pages/message-received.html` (GHL calendar `ODUlJhywRK50Worsh354`, "StarFi Pay Fit Call") |
 | `/specialty-peptide-payment-processing` | `peptides` | `pages/peptides.html` |
 | `/privacy-policy` | `privacy` | `pages/privacy.html` |
 | `/terms-of-service` | `terms` | `pages/terms.html` |
@@ -61,7 +61,7 @@ Search the repo for `[[` and replace each token:
 | `[[ACC_BUSINESS_ID]]` | Starfighter Financial LLC's Arizona Corporation Commission Business ID |
 | `[[MERCHANT_LOGIN_URL]]` | Merchant portal login URL |
 | `[[GHL_CONTACT_FORM_ID]]` | ID of the StarFi Pay contact form in GHL |
-| `[[GHL_BOOKING_CALENDAR_ID]]` | ID of the StarFi Pay booking calendar in GHL |
+| `ODUlJhywRK50Worsh354` | ID of the StarFi Pay booking calendar in GHL |
 
 ## Assets
 
