@@ -63,9 +63,14 @@ Search the repo for `[[` and replace each token:
 | `[[GHL_CONTACT_FORM_ID]]` | ID of the StarFi Pay contact form in GHL |
 | `ODUlJhywRK50Worsh354` | ID of the StarFi Pay booking calendar in GHL |
 
+## Design
+
+The site follows the logo kit: Midnight `#0B1026`, Cobalt `#2D5BFF` (buttons and links), Gold `#F5B83D` (the star and the savings figure only), with Sora for headings and Public Sans for body text. Shared tokens and the header/footer live in `partials/shell.css`. Avoid pill labels above headings, colored words inside headlines, glow gradients and scroll-in animations.
+
 ## Assets
 
 - `assets/starfi-pay-logo.png`: wordmark PNG (used in the schema)
+- `assets/hero-merchant-checkout.jpg`, `assets/merchant-counter-tap.jpg`: home page photos, licensed from Envato ("Friendly Saleswoman Processes Mobile Payment at Store" by stockscar; "Happy Woman Paying with Phone at Zero Waste Store" by DC_Studio). Full-size originals are in Samantha's StarFi Pay folder.
 - `assets/samantha-martinez-starfi-pay.jpg`: owner headshot (home, about, author and blog pages). Pages show "SM" initials if it fails to load.
 
 ## Making a change

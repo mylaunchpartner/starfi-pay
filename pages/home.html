@@ -1,1034 +1,468 @@
-
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Public+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
 
 <style>
-  :root {
-    /* Core brand */
-    --indigo:#4F46FF; --indigo-mid:#3730D9; --indigo-dark:#161335; --indigo-tint:#EEF0FF;
-    --ink:#0F1222; --body-c:#4A4F63; --muted:#868C9F;
-    --border:#E7E8F2; --border-strong:#D6D8EC; --white:#FFFFFF; --paper:#FAFAFE;
-    --i-soft:rgba(255,255,255,.74); --i-muted:rgba(255,255,255,.44); --i-bdr:rgba(255,255,255,.12);
-    /* Payroll accent — site green */
-    --pr:#12B76A; --pr-dark:#0A8F53; --pr-tint:#E3FBEF; --pr-deep:#064E3B;
-    --pr-soft:rgba(255,255,255,.78);
-    /* Insurance accent — deep navy */
-    --ins:#1B3A6B; --ins-mid:#152D56; --ins-dark:#0B2240; --ins-tint:#EBF0F8; --ins-light:#5B8FD9;
-    --ins-soft:rgba(255,255,255,.74);
-    /* Layout */
-    --r-lg:20px; --r-md:14px; --r-sm:10px;
-    --sh-sm:0 1px 3px rgba(15,18,34,.06); --sh-md:0 8px 24px rgba(15,18,34,.08); --sh-lg:0 24px 64px rgba(22,19,53,.14);
-    --glow-i:0 0 0 1px rgba(79,70,255,.35),0 0 32px rgba(79,70,255,.28);
-    --glow-pr:0 0 0 1px rgba(18,183,106,.35),0 0 28px rgba(18,183,106,.22);
+  .sf-home{
+    --midnight:#0B1026; --midnight-2:#151B3A; --cobalt:#2D5BFF; --cobalt-deep:#1E44D6; --cobalt-tint:#E9EEFF;
+    --gold:#F5B83D; --gold-soft:#FBE3AE;
+    --mist:#F3F5FA; --line:#DEE2EC; --slate:#474E68; --quiet:#7A8199; --white:#FFFFFF;
+    --display:'Sora',system-ui,sans-serif; --text:'Public Sans',system-ui,sans-serif;
+    font-family:var(--text); color:var(--slate); font-size:17px; line-height:1.6; background:var(--white);
+    -webkit-font-smoothing:antialiased;
   }
-  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-  html{scroll-behavior:smooth}
-  @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation-duration:.001ms!important;transition-duration:.001ms!important}}
-  body{font-family:'Inter',sans-serif;background:var(--white);color:var(--ink);-webkit-font-smoothing:antialiased;overflow-x:hidden}
-  a{color:inherit;text-decoration:none}
-  img{max-width:100%;display:block}
-  button{font-family:inherit;cursor:pointer;border:none;background:none}
-  :focus-visible{outline:2px solid var(--indigo);outline-offset:3px}
-  .container{max-width:1180px;margin:0 auto;padding:0 32px}
+  .sf-home *,.sf-home *::before,.sf-home *::after{box-sizing:border-box}
+  .sf-home h1,.sf-home h2,.sf-home h3,.sf-home h4,.sf-home p,.sf-home dl,.sf-home dd,.sf-home ol,.sf-home ul{margin:0;padding:0}
+  .sf-home a{color:var(--cobalt);text-decoration:none}
+  .sf-home a:focus-visible,.sf-home button:focus-visible,.sf-home input:focus-visible{outline:3px solid var(--gold);outline-offset:3px;border-radius:4px}
+  .sf-home .wrap{max-width:1200px;margin:0 auto;padding:0 32px}
+  .sf-home h2{font-family:var(--display);font-weight:800;font-size:clamp(30px,3.6vw,44px);line-height:1.08;letter-spacing:-.03em;color:var(--midnight)}
+  .sf-home h3{font-family:var(--display);font-weight:700;font-size:20px;line-height:1.25;letter-spacing:-.015em;color:var(--midnight)}
+  .sf-home .lede{font-size:19px;line-height:1.6;max-width:34em}
 
-  .glass{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px)}
-  .scanline{position:absolute;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(79,70,255,.5),rgba(18,183,106,.45),transparent);animation:scan 7s linear infinite;pointer-events:none;z-index:1}
-  @keyframes scan{0%{top:8%}50%{top:88%}100%{top:8%}}
+  /* Buttons */
+  .sf-home .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;font-family:var(--display);font-weight:600;font-size:15px;line-height:1;padding:16px 22px;border-radius:8px;transition:background-color .15s,color .15s,border-color .15s;cursor:pointer;border:2px solid transparent}
+  .sf-home .btn-primary{background:var(--cobalt);color:var(--white)}
+  .sf-home .btn-primary:hover{background:var(--cobalt-deep)}
+  .sf-home .btn-plain{color:var(--midnight);border-color:var(--line);background:var(--white)}
+  .sf-home .btn-plain:hover{border-color:var(--midnight)}
+  .sf-home .btn-gold{background:var(--gold);color:var(--midnight)}
+  .sf-home .btn-gold:hover{background:#FFC958}
+  .sf-home .text-link{font-family:var(--display);font-weight:600;font-size:15px;color:var(--cobalt);border-bottom:2px solid var(--cobalt-tint);padding-bottom:2px}
+  .sf-home .text-link:hover{border-color:var(--cobalt)}
 
-  /* ── HEADER ── */
-  .site-header{position:fixed;top:0;left:0;right:0;z-index:100;padding:13px 0;background:rgba(255,255,255,.92);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid var(--border)}
-  .header-inner{display:flex;align-items:center;justify-content:space-between;gap:14px}
-  .logo{display:flex;align-items:center;gap:10px;flex-shrink:0}
-  .logo-mark{width:68px;height:27px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-  .logo-mark svg{width:100%;height:100%}
-  .logo-text{font-family:'Space Grotesk',sans-serif;font-size:15px;font-weight:600;letter-spacing:-.01em;color:var(--ink)}
-  .service-tabs{display:flex;align-items:center;gap:3px;background:var(--paper);border:1px solid var(--border);border-radius:999px;padding:4px;overflow:visible}
-  .service-tab{font-size:13px;font-weight:600;padding:7px 16px;border-radius:999px;color:var(--muted);transition:all .2s;white-space:nowrap;cursor:pointer}
-  .service-tab:hover{color:var(--ink)}
-  .tab-pay.active{background:var(--indigo-tint);color:var(--indigo-mid)}
-  .tab-pr.active{background:var(--pr-tint);color:var(--pr-dark)}
-  .tab-ins.active{background:var(--ins-tint);color:var(--ins)}
-  /* Specialty Processing dropdown */
-  .tab-dropdown{position:relative}
-  .tab-dropdown-btn{display:flex;align-items:center;gap:6px;font-size:13px;font-weight:600;padding:7px 16px;border-radius:999px;color:var(--indigo-mid);background:var(--indigo-tint);border:none;cursor:pointer;font-family:'Inter',sans-serif;transition:all .2s;white-space:nowrap}
-  .tab-dropdown-btn:hover{background:var(--indigo);color:var(--white)}
-  .tab-dropdown-btn .arr{width:12px;height:12px;transition:transform .2s;flex-shrink:0;opacity:.7}
-  .tab-dropdown.open .tab-dropdown-btn{background:var(--indigo);color:var(--white)}
-  .tab-dropdown.open .arr{transform:rotate(180deg)}
-  .tab-dropdown-menu{position:absolute;top:calc(100% + 10px);left:50%;transform:translateX(-50%) translateY(-6px);min-width:160px;background:var(--white);border:1px solid var(--border);border-radius:var(--r-md);box-shadow:var(--sh-lg);padding:6px;opacity:0;pointer-events:none;transition:opacity .15s,transform .15s;z-index:200}
-  .tab-dropdown.open .tab-dropdown-menu{opacity:1;pointer-events:auto;transform:translateX(-50%) translateY(0)}
-  .tab-dropdown-item{display:flex;align-items:center;gap:9px;font-size:13px;font-weight:600;color:var(--body-c);padding:9px 14px;border-radius:9px;transition:background .15s,color .15s;white-space:nowrap}
-  .tab-dropdown-item:hover{background:var(--indigo-tint);color:var(--indigo-mid)}
-  .tab-dropdown-item .item-dot{width:7px;height:7px;border-radius:50%;background:var(--indigo);flex-shrink:0}
-  .header-actions{display:flex;align-items:center;gap:12px;flex-shrink:0}
-  .header-phone{display:none;font-size:13.5px;font-weight:500;color:var(--body-c)}
-  .header-cta{display:inline-flex;align-items:center;gap:8px;background:var(--ink);color:var(--white);font-size:13px;font-weight:600;padding:10px 20px;border-radius:999px;transition:background .2s}
-  .header-cta:hover{background:var(--indigo)}
-  @media(min-width:900px){.header-phone{display:flex}}
-  @media(max-width:680px){.service-tabs{display:none}}
-  .nav-toggle{display:none;width:40px;height:40px;align-items:center;justify-content:center;border-radius:10px;background:transparent;border:1px solid var(--border);cursor:pointer;padding:0;flex-shrink:0}.nav-toggle:hover{background:var(--paper)}.mobile-menu{display:none;position:fixed;inset:0;z-index:300;background:rgba(15,18,34,.5)}.mobile-menu.open{display:flex;justify-content:flex-end}.mobile-panel{width:min(300px,90vw);height:100%;background:var(--white);padding:20px 22px 40px;overflow-y:auto;display:flex;flex-direction:column}.mob-x{width:34px;height:34px;display:flex;align-items:center;justify-content:center;border-radius:8px;border:1px solid var(--border);cursor:pointer;padding:0;margin-left:auto;margin-bottom:18px;background:transparent}.mob-x:hover{background:var(--paper)}.mob-nav a{font-size:15px;font-weight:600;color:var(--ink);padding:11px 14px;border-radius:10px;display:block;text-decoration:none;transition:background .15s}.mob-nav a:hover{background:var(--paper)}.mob-hr{height:1px;background:var(--border);margin:10px 0}.mob-cta{display:flex;align-items:center;justify-content:center;background:var(--ink);color:var(--white);font-size:14px;font-weight:600;padding:13px 20px;border-radius:999px;text-decoration:none;margin-top:auto;transition:background .15s}.mob-cta:hover{background:var(--indigo)}@media(max-width:680px){.header-cta{display:none}.nav-toggle{display:flex}}
+  /* HERO */
+  .sf-home .hero{padding:132px 0 88px}
+  .sf-home .hero-grid{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:64px;align-items:center}
+  .sf-home .hero h1{font-family:var(--display);font-weight:800;font-size:clamp(44px,6.2vw,82px);line-height:.98;letter-spacing:-.045em;color:var(--midnight);margin-bottom:28px}
+  .sf-home .hero .lede{margin-bottom:36px;max-width:28em}
+  .sf-home .hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:40px}
+  .sf-home .owner-line{display:flex;align-items:center;gap:14px;font-size:15px;color:var(--slate);padding-top:24px;border-top:1px solid var(--line);max-width:30em}
+  .sf-home .owner-line img{width:44px;height:44px;border-radius:50%;object-fit:cover;flex-shrink:0}
+  .sf-home .owner-line strong{color:var(--midnight);font-weight:600}
 
-  /* ── HERO ── */
-  .hero{padding:144px 0 86px;position:relative;overflow:hidden;background:var(--white)}
-  .hero-mesh{position:absolute;inset:0;pointer-events:none;z-index:0;
-    background:radial-gradient(680px 480px at 85% -5%,rgba(79,70,255,.11),transparent 58%),
-      radial-gradient(500px 380px at 100% 48%,rgba(18,183,106,.07),transparent 60%),
-      radial-gradient(380px 320px at 0% 85%,rgba(27,58,107,.05),transparent 58%)}
-  .hero-inner{position:relative;z-index:1;text-align:center;max-width:820px;margin:0 auto}
-  .eyebrow{display:inline-flex;align-items:center;gap:9px;font-size:12.5px;font-weight:600;color:var(--indigo-mid);background:var(--indigo-tint);padding:7px 14px 7px 10px;border-radius:999px;margin-bottom:24px;animation:fadeUp .6s ease both}
-  .eyebrow .dot{width:6px;height:6px;border-radius:50%;background:var(--pr);flex-shrink:0}
-  .hero h1{font-family:'Space Grotesk',sans-serif;font-size:clamp(34px,5vw,60px);font-weight:700;line-height:1.07;letter-spacing:-.02em;color:var(--ink);margin-bottom:20px;animation:fadeUp .6s .1s ease both}
-  .hero h1 .grad-pay{background:linear-gradient(100deg,var(--indigo),var(--indigo-mid));-webkit-background-clip:text;background-clip:text;color:transparent}
-  .hero-sub{font-size:18px;font-weight:400;line-height:1.65;color:var(--body-c);max-width:580px;margin:0 auto 44px;animation:fadeUp .6s .2s ease both}
+  .sf-home .hero-visual{position:relative;padding-bottom:56px}
+  .sf-home .hero-photo{display:block;width:100%;height:auto;aspect-ratio:4/3.3;object-fit:cover;object-position:58% 50%;border-radius:6px;background:var(--mist)}
+  .sf-home .breakdown{position:absolute;left:-40px;bottom:0;width:min(400px,88%);background:var(--white);border-radius:6px;padding:22px 24px 20px;box-shadow:0 1px 0 var(--line),0 18px 40px -12px rgba(11,16,38,.28)}
+  .sf-home .breakdown-head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:14px}
+  .sf-home .breakdown-head h3{font-size:16px}
+  .sf-home .breakdown-head span{font-size:13px;color:var(--quiet)}
+  .sf-home .bar{display:flex;height:10px;border-radius:2px;overflow:hidden;background:var(--mist);margin-bottom:16px}
+  .sf-home .bar i{display:block;height:100%;transform-origin:left;animation:grow .9s cubic-bezier(.2,.7,.2,1) both}
+  .sf-home .bar .seg-ic{background:var(--midnight);width:82.6%}
+  .sf-home .bar .seg-nw{background:var(--quiet);width:6%;animation-delay:.25s}
+  .sf-home .bar .seg-sf{background:var(--gold);width:11.4%;animation-delay:.45s}
+  @keyframes grow{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+  .sf-home .lines{list-style:none;font-size:14.5px}
+  .sf-home .lines li{display:grid;grid-template-columns:12px 1fr auto;gap:10px;align-items:baseline;padding:7px 0;border-top:1px solid var(--line)}
+  .sf-home .lines li:first-child{border-top:0}
+  .sf-home .lines .k{width:10px;height:10px;border-radius:2px;align-self:center}
+  .sf-home .lines b{font-weight:600;color:var(--midnight);font-variant-numeric:tabular-nums}
+  .sf-home .lines small{display:block;font-size:12.5px;color:var(--quiet)}
+  .sf-home .lines .keep{font-family:var(--display);font-weight:700;color:var(--midnight)}
+  .sf-home .lines .keep b{font-size:17px}
+  .sf-home .breakdown-note{font-size:12px;color:var(--quiet);margin-top:8px}
 
-  /* Three service cards */
-  .hero-services{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:48px;animation:fadeUp .6s .3s ease both}
-  .hero-svc{background:var(--paper);border:1px solid var(--border);border-radius:var(--r-lg);padding:26px 22px;text-align:left;transition:box-shadow .2s,transform .2s;position:relative;overflow:hidden}
-  .hero-svc:hover{box-shadow:var(--sh-md);transform:translateY(-2px)}
-  .hero-svc::before{content:'';position:absolute;top:0;left:0;right:0;height:3px}
-  .svc-pay::before{background:var(--indigo)}
-  .svc-pr::before{background:var(--pr)}
-  .svc-ins::before{background:var(--ins)}
-  .hero-svc-icon{width:42px;height:42px;border-radius:11px;display:flex;align-items:center;justify-content:center;margin-bottom:14px;flex-shrink:0}
-  .icon-pay{background:var(--indigo-tint);color:var(--indigo-mid)}
-  .icon-pr{background:var(--pr-tint);color:var(--pr-dark)}
-  .icon-ins{background:var(--ins-tint);color:var(--ins)}
-  .hero-svc h3{font-family:'Space Grotesk',sans-serif;font-size:16.5px;font-weight:700;color:var(--ink);margin-bottom:8px}
-  .hero-svc p{font-size:13.5px;color:var(--body-c);line-height:1.6;margin-bottom:16px}
-  .svc-link{font-size:13px;font-weight:600;display:inline-flex;align-items:center;gap:5px;transition:gap .15s}
-  .svc-link:hover{gap:9px}
-  .pay-link{color:var(--indigo-mid)}
-  .pr-link{color:var(--pr-dark)}
-  .ins-link{color:var(--ins)}
+  /* FACTS */
+  .sf-home .facts{border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .sf-home .facts dl{display:grid;grid-template-columns:repeat(4,1fr)}
+  .sf-home .facts div{padding:30px 28px 30px 0}
+  .sf-home .facts div+div{padding-left:28px;border-left:1px solid var(--line)}
+  .sf-home .facts dt{font-family:var(--display);font-weight:700;font-size:17px;color:var(--midnight);margin-bottom:4px;letter-spacing:-.01em}
+  .sf-home .facts dd{font-size:15px;line-height:1.5}
 
-  /* Hero stats */
-  .hero-stats{display:flex;justify-content:center;gap:48px;flex-wrap:wrap;animation:fadeUp .6s .4s ease both;padding-top:34px;border-top:1px solid var(--border)}
-  .hero-stat .number{font-family:'Space Grotesk',sans-serif;font-size:27px;font-weight:700;letter-spacing:-.01em;line-height:1;margin-bottom:5px}
-  .hero-stat .label{font-size:13px;font-weight:500;color:var(--muted);line-height:1.4}
-  .n-pay{color:var(--indigo)}
-  .n-pr{color:var(--pr-dark)}
-  .n-ins{color:var(--ins)}
+  /* PAYMENTS */
+  .sf-home .payments{padding:120px 0 104px}
+  .sf-home .split{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,7fr);gap:72px}
+  .sf-home .split-head{position:sticky;top:110px;align-self:start}
+  .sf-home .split-head h2{margin-bottom:20px}
+  .sf-home .split-head p{margin-bottom:28px}
+  .sf-home .steps{list-style:none;counter-reset:s;display:grid;gap:0;margin-bottom:72px}
+  .sf-home .steps li{counter-increment:s;display:grid;grid-template-columns:64px 1fr;gap:8px 20px;padding:28px 0;border-top:1px solid var(--line)}
+  .sf-home .steps li:last-child{border-bottom:1px solid var(--line)}
+  .sf-home .steps li::before{content:counter(s);font-family:var(--display);font-weight:800;font-size:40px;line-height:1;color:var(--cobalt);letter-spacing:-.04em;grid-row:span 2}
+  .sf-home .steps h3{margin-bottom:2px}
+  .sf-home .sub-h{font-family:var(--display);font-weight:700;font-size:24px;letter-spacing:-.02em;color:var(--midnight);margin-bottom:24px}
+  .sf-home .handle{display:grid;grid-template-columns:1fr 1fr;gap:0 48px}
+  .sf-home .handle div{padding:20px 0;border-top:1px solid var(--line)}
+  .sf-home .handle dt{font-family:var(--display);font-weight:600;font-size:16.5px;color:var(--midnight);margin-bottom:4px}
+  .sf-home .handle dd{font-size:15.5px;line-height:1.55}
 
-  /* ── SHARED ── */
-  .eyebrow-label{display:inline-flex;align-items:center;gap:8px;font-size:12.5px;font-weight:600;padding:5px 12px;border-radius:999px;margin-bottom:16px}
-  .el-pay{color:var(--indigo-mid);background:var(--indigo-tint)}
-  .el-pr{color:var(--pr-dark);background:var(--pr-tint)}
-  .el-ins{color:var(--ins);background:var(--ins-tint)}
-  .el-dark{color:var(--i-soft);background:rgba(255,255,255,.09)}
-  h2.section-title{font-family:'Space Grotesk',sans-serif;font-size:clamp(25px,3.1vw,39px);font-weight:700;line-height:1.14;letter-spacing:-.015em;color:var(--ink);margin-bottom:14px}
-  h2.section-title.light{color:var(--white)}
-  .grad-pr{background:linear-gradient(100deg,var(--pr),#5EEBAA);-webkit-background-clip:text;background-clip:text;color:transparent}
-  .grad-ins{background:linear-gradient(100deg,var(--ins-light),#A8C5F0);-webkit-background-clip:text;background-clip:text;color:transparent}
-  .section-desc{font-size:16.5px;color:var(--body-c);line-height:1.7;max-width:540px}
-  .section-desc.light{color:var(--i-soft)}
-  .section-head{margin-bottom:48px}
+  /* CALCULATOR */
+  .sf-home .calc{background:var(--midnight);color:#C9CEE3;padding:112px 0}
+  .sf-home .calc h2{color:var(--white);margin-bottom:16px}
+  .sf-home .calc-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:80px;align-items:center}
+  .sf-home .calc-intro p{max-width:30em;margin-bottom:44px}
+  .sf-home .field{margin-bottom:34px}
+  .sf-home .field label{display:flex;justify-content:space-between;align-items:baseline;font-family:var(--display);font-weight:600;font-size:15px;color:var(--white);margin-bottom:14px}
+  .sf-home .field .val{font-weight:700;font-size:20px;color:var(--white);font-variant-numeric:tabular-nums}
+  .sf-home input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:4px;border-radius:2px;background:rgba(255,255,255,.18);margin:0}
+  .sf-home input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:22px;height:22px;border-radius:50%;background:var(--white);border:5px solid var(--cobalt);cursor:pointer}
+  .sf-home input[type=range]::-moz-range-thumb{width:14px;height:14px;border-radius:50%;background:var(--white);border:5px solid var(--cobalt);cursor:pointer}
+  .sf-home .result{border-left:1px solid rgba(255,255,255,.14);padding-left:72px}
+  .sf-home .result-label{font-family:var(--display);font-weight:600;font-size:15px;color:#C9CEE3;margin-bottom:10px}
+  .sf-home .result-num{font-family:var(--display);font-weight:800;font-size:clamp(64px,8.4vw,120px);line-height:.95;letter-spacing:-.05em;color:var(--gold);font-variant-numeric:tabular-nums;margin-bottom:22px;white-space:nowrap}
+  .sf-home .result-num .cur{font-size:.5em;vertical-align:.62em;margin-right:4px;letter-spacing:0}
+  .sf-home .result p{font-size:15px;max-width:26em;margin-bottom:28px}
+  .sf-home .result small{display:block;font-size:13px;color:#8C93B0;margin-top:22px;max-width:30em}
 
-  /* ── TRUST BAR ── */
-  .trust-bar{padding:22px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);background:var(--paper)}
-  .trust-inner{display:flex;align-items:center;gap:28px;flex-wrap:wrap;justify-content:center}
-  .trust-item{display:flex;align-items:center;gap:8px;white-space:nowrap}
-  .trust-item svg{color:var(--indigo);flex-shrink:0}
-  .trust-item .text{font-size:13px;font-weight:600;color:var(--body-c)}
+  /* PAYROLL + INSURANCE */
+  .sf-home .more{padding:120px 0;background:var(--mist)}
+  .sf-home .more-head{max-width:40em;margin-bottom:56px}
+  .sf-home .more-head h2{margin-bottom:16px}
+  .sf-home .pair{display:grid;grid-template-columns:1fr 1fr;gap:28px}
+  .sf-home .svc{background:var(--white);border-radius:6px;padding:44px 44px 40px;display:flex;flex-direction:column}
+  .sf-home .svc h3{font-size:28px;letter-spacing:-.025em;margin-bottom:12px}
+  .sf-home .svc > p{margin-bottom:28px}
+  .sf-home .svc ul{list-style:none;margin-bottom:32px}
+  .sf-home .svc li{padding:13px 0 13px 22px;border-top:1px solid var(--line);position:relative;font-size:15.5px;line-height:1.5}
+  .sf-home .svc li::before{content:"";position:absolute;left:0;top:21px;width:8px;height:8px;background:var(--cobalt);border-radius:1px}
+  .sf-home .svc li strong{color:var(--midnight);font-weight:600}
+  .sf-home .svc .text-link{margin-top:auto;align-self:flex-start}
 
-  /* ── SERVICE INTRO BANDS ── */
-  .svc-band{padding:84px 0 76px;position:relative;overflow:hidden}
-  .pay-band{background:var(--indigo-dark)}
-  .pr-band{background:var(--pr-deep)}
-  .ins-band{background:var(--ins-dark)}
-  .svc-band .container{position:relative;z-index:1}
-  .pay-band::before{content:'';position:absolute;inset:0;background:radial-gradient(600px 440px at 8% 0%,rgba(79,70,255,.38),transparent 60%),radial-gradient(500px 420px at 95% 100%,rgba(18,183,106,.16),transparent 62%);pointer-events:none}
-  .pr-band::before{content:'';position:absolute;inset:0;background:radial-gradient(600px 440px at 8% 0%,rgba(18,183,106,.3),transparent 62%),radial-gradient(400px 360px at 95% 100%,rgba(6,78,59,.5),transparent 60%);pointer-events:none}
-  .ins-band::before{content:'';position:absolute;inset:0;background:radial-gradient(600px 440px at 8% 0%,rgba(27,58,107,.5),transparent 62%),radial-gradient(400px 360px at 95% 100%,rgba(91,143,217,.18),transparent 60%);pointer-events:none}
-  .svc-band-inner{display:grid;grid-template-columns:1.1fr .9fr;gap:64px;align-items:center}
-  .svc-band-left p{font-size:17px;color:var(--i-soft);line-height:1.7;margin:18px 0 30px;max-width:420px}
-  .pr-band .svc-band-left p{color:var(--pr-soft)}
-  .ins-band .svc-band-left p{color:var(--ins-soft)}
+  /* OWNER */
+  .sf-home .owner{padding:120px 0}
+  .sf-home .owner-grid{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:80px;align-items:center}
+  .sf-home .owner-photos{position:relative;padding:0 0 64px 0}
+  .sf-home .owner-photos .shop{display:block;width:78%;height:auto;aspect-ratio:4/5;object-fit:cover;border-radius:6px;background:var(--mist)}
+  .sf-home .owner-photos .portrait{position:absolute;right:0;bottom:0;width:44%;height:auto;aspect-ratio:1;object-fit:cover;border-radius:6px;border:6px solid var(--white);background:var(--mist)}
+  .sf-home .owner-photos .initials{display:none}
+  .sf-home .owner h2{margin-bottom:24px}
+  .sf-home .owner-copy p{margin-bottom:18px;max-width:32em}
+  .sf-home .commit{list-style:none;margin:32px 0 36px;display:grid;grid-template-columns:1fr 1fr;gap:0 36px}
+  .sf-home .commit li{padding:16px 0;border-top:1px solid var(--line);font-size:15.5px;line-height:1.5}
+  .sf-home .commit strong{display:block;font-family:var(--display);font-weight:600;color:var(--midnight);font-size:16px;margin-bottom:2px}
+  .sf-home .sign{font-family:var(--display);color:var(--midnight);font-weight:700;font-size:17px}
+  .sf-home .sign span{display:block;font-family:var(--text);font-weight:400;font-size:14.5px;color:var(--quiet)}
 
-  /* Stat tiles in band */
-  .svc-stats{display:flex;flex-direction:column;gap:14px}
-  .svc-stat{padding:20px 22px;border-radius:var(--r-md);border:1px solid}
-  .svc-stat.pay-st{background:rgba(79,70,255,.12);border-color:rgba(79,70,255,.28)}
-  .svc-stat.pr-st{background:rgba(18,183,106,.1);border-color:rgba(18,183,106,.22)}
-  .svc-stat.ins-st{background:rgba(91,143,217,.1);border-color:rgba(91,143,217,.22)}
-  .svc-stat .n{font-family:'Space Grotesk',sans-serif;font-size:28px;font-weight:700;line-height:1;margin-bottom:4px}
-  .pay-st .n{color:rgba(185,182,255,1)}
-  .pr-st .n{color:#6EE8AA}
-  .ins-st .n{color:var(--ins-light)}
-  .svc-stat .l{font-size:13px;color:rgba(255,255,255,.52)}
+  /* FAQ */
+  .sf-home .faq{padding:112px 0;border-top:1px solid var(--line)}
+  .sf-home .faq-grid{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,7fr);gap:72px}
+  .sf-home .faq-grid h2{margin-bottom:18px}
+  .sf-home .faq-item{border-top:1px solid var(--line)}
+  .sf-home .faq-item:last-child{border-bottom:1px solid var(--line)}
+  .sf-home .faq-q{width:100%;display:flex;justify-content:space-between;align-items:center;gap:24px;background:none;border:0;padding:24px 0;text-align:left;cursor:pointer;font-family:var(--display);font-weight:600;font-size:17.5px;letter-spacing:-.01em;color:var(--midnight)}
+  .sf-home .faq-q .plus{position:relative;width:14px;height:14px;flex-shrink:0}
+  .sf-home .faq-q .plus::before,.sf-home .faq-q .plus::after{content:"";position:absolute;background:var(--cobalt);left:0;top:6px;width:14px;height:2px;transition:transform .2s}
+  .sf-home .faq-q .plus::after{transform:rotate(90deg)}
+  .sf-home .faq-item.open .plus::after{transform:rotate(0)}
+  .sf-home .faq-a{max-height:0;overflow:hidden;transition:max-height .3s ease}
+  .sf-home .faq-a-inner{padding:0 48px 26px 0;font-size:16px;max-width:40em}
 
-  /* ── BUTTONS ── */
-  .btn{display:inline-flex;align-items:center;gap:9px;font-family:'Inter',sans-serif;font-size:15px;font-weight:600;padding:14px 26px;border-radius:999px;transition:background .2s,transform .15s}
-  .btn:hover{transform:translateY(-1px)}
-  .btn-pay{background:var(--indigo);color:var(--white)}
-  .btn-pay:hover{background:var(--indigo-mid)}
-  .btn-pr{background:var(--pr);color:var(--white)}
-  .btn-pr:hover{background:var(--pr-dark)}
-  .btn-ins{background:var(--ins);color:var(--white)}
-  .btn-ins:hover{background:var(--ins-mid)}
-  .btn-w-pr{background:var(--white);color:var(--pr-deep);font-weight:700}
-  .btn-w-pr:hover{background:#eafaf3}
-  .btn-w-ins{background:var(--white);color:var(--ins-dark);font-weight:700}
-  .btn-w-ins:hover{background:var(--ins-tint)}
-  .btn-mint{background:var(--pr);color:var(--pr-deep);font-weight:700}
-  .btn-mint:hover{background:#5EEBAA}
+  /* CLOSING */
+  .sf-home .closing{background:var(--midnight);padding:104px 0;color:#C9CEE3;position:relative;overflow:hidden}
+  .sf-home .closing-grid{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,4fr);gap:64px;align-items:end}
+  .sf-home .closing h2{color:var(--white);font-size:clamp(34px,4.6vw,60px);margin-bottom:20px}
+  .sf-home .closing p{max-width:34em}
+  .sf-home .closing-actions{display:flex;flex-direction:column;align-items:flex-start;gap:18px}
+  .sf-home .closing-actions a.tel{font-family:var(--display);font-weight:700;font-size:22px;color:var(--white)}
+  .sf-home .closing-actions small{font-size:14px;color:#8C93B0}
 
-  /* ── HOW IT WORKS ── */
-  .how-section{padding:96px 0;background:var(--white)}
-  .steps-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-  .step-card{background:var(--paper);border:1px solid var(--border);border-radius:var(--r-lg);padding:32px 28px;transition:box-shadow .2s,transform .2s}
-  .step-card:hover{box-shadow:var(--sh-md);transform:translateY(-3px)}
-  .step-num{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:8px;font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:700;margin-bottom:18px;background:var(--indigo-tint);color:var(--indigo-mid)}
-  .step-card h3{font-family:'Space Grotesk',sans-serif;font-size:17.5px;font-weight:600;color:var(--ink);margin-bottom:10px;line-height:1.3}
-  .step-card p{font-size:14.5px;color:var(--body-c);line-height:1.65}
-
-  /* ── SERVICES GRID (payments) ── */
-  .services-section{padding:96px 0;background:var(--paper)}
-  .services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
-  .service-card{background:var(--white);border:1px solid var(--border);border-radius:var(--r-lg);padding:28px 24px;transition:box-shadow .2s,transform .2s}
-  .service-card:hover{box-shadow:var(--sh-md);transform:translateY(-3px)}
-  .service-icon{width:40px;height:40px;border-radius:11px;background:var(--indigo-tint);color:var(--indigo-mid);display:flex;align-items:center;justify-content:center;margin-bottom:14px}
-  .service-card h3{font-family:'Space Grotesk',sans-serif;font-size:15.5px;font-weight:600;color:var(--ink);margin-bottom:8px}
-  .service-card p{font-size:14px;color:var(--body-c);line-height:1.6}
-
-  /* ── CALCULATOR ── */
-  .calc-section{padding:86px 0;background:var(--indigo-dark);position:relative;overflow:hidden}
-  .calc-section::before{content:'';position:absolute;inset:0;background:radial-gradient(560px 440px at 10% 0%,rgba(79,70,255,.36),transparent 60%),radial-gradient(480px 420px at 95% 100%,rgba(18,183,106,.17),transparent 62%);pointer-events:none}
-  .calc-head{max-width:560px;margin:0 auto 40px;text-align:center;position:relative;z-index:1}
-  .calc-card{position:relative;z-index:1;background:rgba(255,255,255,.05);border:1px solid var(--i-bdr);border-radius:var(--r-lg);padding:42px;display:grid;grid-template-columns:1fr 1fr;gap:44px;align-items:center;backdrop-filter:blur(6px);box-shadow:var(--glow-i)}
-  .calc-inputs{display:flex;flex-direction:column;gap:26px}
-  .calc-field label{display:flex;justify-content:space-between;align-items:baseline;font-size:13px;font-weight:600;color:var(--i-soft);margin-bottom:12px}
-  .calc-field label .val{font-family:'Space Grotesk',sans-serif;font-size:17px;font-weight:700;color:var(--pr)}
-  .calc-field input[type=range]{-webkit-appearance:none;width:100%;height:4px;border-radius:2px;background:var(--i-bdr);outline:none}
-  .calc-field input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;height:18px;border-radius:50%;background:var(--white);box-shadow:0 0 0 4px rgba(79,70,255,.5);cursor:pointer}
-  .calc-field input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;background:var(--white);box-shadow:0 0 0 4px rgba(79,70,255,.5);cursor:pointer;border:none}
-  .calc-output{text-align:center;padding:28px 20px;background:rgba(18,183,106,.08);border:1px solid rgba(18,183,106,.3);border-radius:var(--r-md);box-shadow:var(--glow-pr)}
-  .calc-output .out-label{font-size:11.5px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--i-soft);margin-bottom:10px}
-  .calc-output .out-number{font-family:'Space Grotesk',sans-serif;font-size:clamp(36px,4.4vw,50px);font-weight:700;color:var(--white);line-height:1;margin-bottom:8px}
-  .calc-output .out-number .cur{color:var(--pr);font-size:.5em;vertical-align:top;margin-right:2px}
-  .calc-output .out-sub{font-size:13px;color:var(--i-muted);line-height:1.6}
-  .calc-fineprint{grid-column:1/-1;font-size:12px;color:var(--i-muted);text-align:center;padding-top:4px;line-height:1.6}
-  @media(max-width:840px){.calc-card{grid-template-columns:1fr;padding:26px 20px}}
-
-  /* ── PAYROLL FEATURES ── */
-  .pr-features{padding:96px 0;background:var(--white)}
-  .pr-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
-  .pr-card{background:var(--paper);border:1px solid var(--border);border-radius:var(--r-lg);padding:28px 24px;transition:box-shadow .2s,transform .2s;border-top:3px solid transparent}
-  .pr-card:hover{box-shadow:var(--sh-md);transform:translateY(-3px);border-top-color:var(--pr)}
-  .pr-card-icon{width:40px;height:40px;border-radius:11px;background:var(--pr-tint);color:var(--pr-dark);display:flex;align-items:center;justify-content:center;margin-bottom:14px}
-  .pr-card h3{font-family:'Space Grotesk',sans-serif;font-size:15.5px;font-weight:600;color:var(--ink);margin-bottom:8px}
-  .pr-card p{font-size:14px;color:var(--body-c);line-height:1.6}
-
-  /* Payroll CTA */
-  .pr-cta{background:linear-gradient(135deg,var(--pr-deep) 0%,#0A6644 100%);padding:68px 0;position:relative;overflow:hidden}
-  .pr-cta::before{content:'';position:absolute;inset:0;background:radial-gradient(600px 380px at 92% 50%,rgba(18,183,106,.22),transparent 60%);pointer-events:none}
-  .pr-cta-inner{position:relative;z-index:1;display:flex;align-items:center;justify-content:space-between;gap:32px;flex-wrap:wrap}
-  .pr-cta-text h3{font-family:'Space Grotesk',sans-serif;font-size:clamp(20px,2.6vw,28px);font-weight:700;color:var(--white);margin-bottom:8px}
-  .pr-cta-text p{font-size:15px;color:var(--pr-soft);max-width:480px;line-height:1.6}
-
-  /* ── INSURANCE COVERAGE ── */
-  .ins-features{padding:96px 0;background:var(--white)}
-  .ins-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
-  .ins-card{background:var(--paper);border:1px solid var(--border);border-radius:var(--r-lg);padding:28px 24px;transition:box-shadow .2s,transform .2s;border-top:3px solid transparent}
-  .ins-card:hover{box-shadow:var(--sh-md);transform:translateY(-3px);border-top-color:var(--ins)}
-  .ins-card-icon{width:40px;height:40px;border-radius:11px;background:var(--ins-tint);color:var(--ins);display:flex;align-items:center;justify-content:center;margin-bottom:14px}
-  .ins-card h3{font-family:'Space Grotesk',sans-serif;font-size:15.5px;font-weight:600;color:var(--ink);margin-bottom:8px}
-  .ins-card p{font-size:14px;color:var(--body-c);line-height:1.6}
-
-  /* Insurance CTA */
-  .ins-cta{background:linear-gradient(135deg,var(--ins-dark) 0%,#102B52 100%);padding:68px 0;position:relative;overflow:hidden}
-  .ins-cta::before{content:'';position:absolute;inset:0;background:radial-gradient(600px 380px at 92% 50%,rgba(91,143,217,.18),transparent 60%);pointer-events:none}
-  .ins-cta-inner{position:relative;z-index:1;display:flex;align-items:center;justify-content:space-between;gap:32px;flex-wrap:wrap}
-  .ins-cta-text h3{font-family:'Space Grotesk',sans-serif;font-size:clamp(20px,2.6vw,28px);font-weight:700;color:var(--white);margin-bottom:8px}
-  .ins-cta-text p{font-size:15px;color:var(--ins-soft);max-width:480px;line-height:1.6}
-
-  /* ── ONE RELATIONSHIP BAND ── */
-  .combined-band{background:var(--paper);padding:86px 0}
-  .combined-inner{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
-  .combined-text h2{font-family:'Space Grotesk',sans-serif;font-size:clamp(24px,3vw,36px);font-weight:700;color:var(--ink);line-height:1.2;letter-spacing:-.01em;margin-bottom:14px}
-  .combined-text p{font-size:16px;color:var(--body-c);line-height:1.72;margin-bottom:28px}
-  .combined-cards{display:flex;flex-direction:column;gap:12px}
-  .combined-card{display:flex;align-items:flex-start;gap:14px;padding:18px 20px;background:var(--white);border:1px solid var(--border);border-radius:var(--r-md);border-left:3px solid}
-  .cc-pay{border-left-color:var(--indigo)}
-  .cc-pr{border-left-color:var(--pr)}
-  .cc-ins{border-left-color:var(--ins)}
-  .combined-card .ci{width:34px;height:34px;border-radius:9px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-  .ci-pay{background:var(--indigo-tint);color:var(--indigo-mid)}
-  .ci-pr{background:var(--pr-tint);color:var(--pr-dark)}
-  .ci-ins{background:var(--ins-tint);color:var(--ins)}
-  .combined-card h4{font-family:'Space Grotesk',sans-serif;font-size:14.5px;font-weight:600;color:var(--ink);margin-bottom:3px}
-  .combined-card p{font-size:13.5px;color:var(--body-c);line-height:1.5}
-
-  /* ── WHY STARFI PAY ── */
-  .why-section{padding:96px 0;background:var(--indigo-dark);position:relative;overflow:hidden}
-  .why-section::before{content:'';position:absolute;inset:0;background:radial-gradient(560px 480px at 100% 100%,rgba(79,70,255,.22),transparent 60%);pointer-events:none}
-  .why-inner{display:grid;grid-template-columns:.9fr 1.1fr;gap:68px;position:relative;z-index:1;align-items:start}
-  .why-left p{font-size:16.5px;color:var(--i-soft);line-height:1.72;margin:18px 0 30px;max-width:400px}
-  .why-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-  .diff-card{background:rgba(255,255,255,.04);border:1px solid var(--i-bdr);border-radius:var(--r-md);padding:22px}
-  .diff-num{font-family:'Space Grotesk',sans-serif;font-size:12px;font-weight:700;color:var(--pr);margin-bottom:10px}
-  .diff-card h4{font-family:'Space Grotesk',sans-serif;font-size:15.5px;font-weight:600;color:var(--white);margin-bottom:7px}
-  .diff-card p{font-size:13.5px;color:var(--i-soft);line-height:1.6}
-  .pulse-wrap{display:flex;align-items:center;gap:14px;margin-top:28px;padding:14px 16px;border-radius:var(--r-md)}
-  .pulse-ring{position:relative;width:40px;height:40px;flex-shrink:0;display:flex;align-items:center;justify-content:center}
-  .pulse-ring .core{width:11px;height:11px;border-radius:50%;background:var(--pr);box-shadow:0 0 10px rgba(18,183,106,.8);z-index:1}
-  .pulse-ring::before,.pulse-ring::after{content:'';position:absolute;inset:0;border-radius:50%;border:1.5px solid var(--pr);animation:ringPulse 2.4s ease-out infinite}
-  .pulse-ring::after{animation-delay:1.2s}
-  @keyframes ringPulse{0%{transform:scale(.3);opacity:.9}100%{transform:scale(1);opacity:0}}
-  .pulse-wrap span{font-size:13px;color:var(--i-soft);line-height:1.5}
-
-  /* ── TESTIMONIALS ── */
-  .testimonial-section{padding:96px 0;background:var(--white)}
-  .testimonial-head{margin-bottom:46px;text-align:center;max-width:500px;margin-left:auto;margin-right:auto}
-  .testimonial-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-  .t-card{background:var(--paper);border:1px solid var(--border);border-radius:var(--r-lg);padding:26px;display:flex;flex-direction:column;gap:14px;box-shadow:var(--sh-sm)}
-  .t-stars{color:var(--pr-dark);font-size:13.5px;letter-spacing:.05em}
-  .t-quote{font-size:15px;line-height:1.65;color:var(--body-c);flex-grow:1}
-  .t-person{display:flex;align-items:center;gap:10px;padding-top:14px;border-top:1px solid var(--border)}
-  .t-avatar{width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Space Grotesk',sans-serif;font-size:12px;font-weight:700;flex-shrink:0}
-  .av-pay{background:var(--indigo-tint);color:var(--indigo-mid)}
-  .av-pr{background:var(--pr-tint);color:var(--pr-dark)}
-  .av-ins{background:var(--ins-tint);color:var(--ins)}
-  .t-name{font-size:13.5px;font-weight:600;color:var(--ink)}
-  .t-biz{font-size:12px;color:var(--muted)}
-  .t-tag{display:inline-block;font-size:11px;font-weight:600;padding:3px 9px;border-radius:999px;margin-top:2px}
-  .tt-pay{background:var(--indigo-tint);color:var(--indigo-mid)}
-  .tt-pr{background:var(--pr-tint);color:var(--pr-dark)}
-  .tt-ins{background:var(--ins-tint);color:var(--ins)}
-
-  /* ── FAQ ── */
-  .faq-section{padding:96px 0;background:var(--paper)}
-  .faq-head{margin-bottom:42px;max-width:520px}
-  .faq-list{display:flex;flex-direction:column;gap:8px;max-width:760px}
-  .faq-item{border:1px solid var(--border);border-radius:var(--r-md);overflow:hidden;transition:border-color .2s}
-  .faq-item.open{border-color:var(--border-strong)}
-  .faq-q{width:100%;display:flex;align-items:center;justify-content:space-between;gap:18px;padding:18px 20px;text-align:left;font-family:'Space Grotesk',sans-serif;font-size:15.5px;font-weight:600;color:var(--ink)}
-  .faq-q .plus{width:22px;height:22px;border-radius:7px;background:var(--indigo-tint);flex-shrink:0;position:relative;transition:transform .3s,background .2s}
-  .faq-q .plus::before,.faq-q .plus::after{content:'';position:absolute;background:var(--indigo-mid);transition:transform .3s}
-  .faq-q .plus::before{top:50%;left:5px;right:5px;height:1.5px;transform:translateY(-50%)}
-  .faq-q .plus::after{left:50%;top:5px;bottom:5px;width:1.5px;transform:translateX(-50%)}
-  .faq-item.open .faq-q .plus{background:var(--pr-tint);transform:rotate(180deg)}
-  .faq-item.open .faq-q .plus::before,.faq-item.open .faq-q .plus::after{background:var(--pr-dark)}
-  .faq-item.open .faq-q .plus::after{transform:translateX(-50%) scaleY(0)}
-  .faq-a{max-height:0;overflow:hidden;transition:max-height .35s ease}
-  .faq-a-inner{padding:0 20px 20px;font-size:14.5px;color:var(--body-c);line-height:1.7}
-
-  /* ── FINAL CTA ── */
-  .cta-section{padding:110px 0;background:var(--indigo-dark);position:relative;overflow:hidden}
-  .cta-section::before{content:'';position:absolute;inset:0;background:radial-gradient(760px 500px at 50% 0%,rgba(79,70,255,.3),transparent 62%);pointer-events:none}
-  .cta-inner{position:relative;z-index:2;text-align:center;max-width:620px;margin:0 auto}
-  .cta-inner h2{font-family:'Space Grotesk',sans-serif;font-size:clamp(26px,3.8vw,44px);font-weight:700;color:var(--white);line-height:1.14;letter-spacing:-.015em;margin-bottom:18px}
-  .cta-inner p{font-size:17px;color:var(--i-soft);line-height:1.65;margin-bottom:40px}
-  .cta-phone-wrap{display:inline-flex;flex-direction:column;align-items:center;gap:14px}
-  .cta-phone-btn{display:inline-flex;align-items:center;gap:14px;background:var(--pr);color:var(--pr-deep);font-family:'Space Grotesk',sans-serif;font-size:20px;font-weight:700;padding:19px 38px;border-radius:999px;transition:transform .15s,background .2s;box-shadow:0 14px 32px rgba(18,183,106,.26)}
-  .cta-phone-btn:hover{transform:translateY(-1px);background:#5EEBAA}
-  .cta-fineprint{font-size:13px;color:var(--i-muted)}
-
-  /* ── FOOTER ── */
-  footer{background:var(--ink);padding:60px 0 32px}
-  .footer-top{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:44px;margin-bottom:44px}
-  .footer-brand .logo-text{color:var(--white);font-family:'Space Grotesk',sans-serif;font-size:14.5px;font-weight:600}
-  .footer-brand p{font-size:13.5px;color:rgba(255,255,255,.36);line-height:1.7;max-width:250px;margin-top:14px}
-  .footer-col h5{font-family:'Space Grotesk',sans-serif;font-size:12px;font-weight:600;letter-spacing:.02em;margin-bottom:16px}
-  .footer-col.col-pay h5{color:rgba(175,172,255,.9)}
-  .footer-col.col-pr h5{color:rgba(110,232,170,.9)}
-  .footer-col.col-ins h5{color:rgba(91,143,217,.9)}
-  .footer-col ul{list-style:none;display:flex;flex-direction:column;gap:9px}
-  .footer-col ul li a{font-size:13.5px;color:rgba(255,255,255,.36);transition:color .2s}
-  .col-pay ul li a:hover{color:rgba(175,172,255,1)}
-  .col-pr ul li a:hover{color:var(--pr)}
-  .col-ins ul li a:hover{color:var(--ins-light)}
-  .footer-bottom{border-top:1px solid rgba(255,255,255,.08);padding-top:22px;display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap}
-  .footer-bottom p{font-size:12px;color:rgba(255,255,255,.28)}
-  .footer-links{display:flex;gap:18px}
-  .footer-links a{font-size:12px;color:rgba(255,255,255,.28);transition:color .2s}
-  .footer-links a:hover{color:rgba(255,255,255,.7)}
-
-  /* ── ANIMATION ── */
-  @keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
-  .reveal{opacity:0;transform:translateY(14px);transition:opacity .6s ease,transform .6s ease}
-  .reveal.visible{opacity:1;transform:translateY(0)}
-
-  /* ── RESPONSIVE ── */
-  @media(max-width:960px){
-    .svc-band-inner{grid-template-columns:1fr}
-    .svc-stats{flex-direction:row;flex-wrap:wrap}
-    .svc-stat{flex:1;min-width:150px}
-    .steps-grid,.services-grid,.pr-grid,.ins-grid,.testimonial-grid{grid-template-columns:1fr 1fr}
-    .why-inner{grid-template-columns:1fr;gap:40px}
-    .why-grid{grid-template-columns:1fr 1fr}
-    .combined-inner{grid-template-columns:1fr}
-    .footer-top{grid-template-columns:1fr 1fr}
+  /* Responsive */
+  @media (max-width:1060px){
+    .sf-home .hero-grid,.sf-home .owner-grid{grid-template-columns:1fr;gap:56px}
+    .sf-home .hero-visual{max-width:720px}
+    .sf-home .breakdown{left:-16px}
+    .sf-home .split,.sf-home .faq-grid{grid-template-columns:1fr;gap:40px}
+    .sf-home .split-head{position:static}
+    .sf-home .calc-grid{grid-template-columns:1fr;gap:56px}
+    .sf-home .result{border-left:0;border-top:1px solid rgba(255,255,255,.14);padding:48px 0 0}
+    .sf-home .closing-grid{grid-template-columns:1fr;gap:36px}
+    .sf-home .facts dl{grid-template-columns:1fr 1fr}
+    .sf-home .facts div:nth-child(3){padding-left:0;border-left:0}
+    .sf-home .facts div:nth-child(n+3){border-top:1px solid var(--line)}
   }
-  @media(max-width:640px){
-    .container{padding:0 20px}
-    .hero{padding:128px 0 68px}
-    .hero h1{font-size:31px}
-    .hero-services{grid-template-columns:1fr}
-    .hero-stats{gap:26px}
-    .steps-grid,.services-grid,.pr-grid,.ins-grid,.testimonial-grid{grid-template-columns:1fr}
-    .why-grid{grid-template-columns:1fr}
-    .footer-top{grid-template-columns:1fr;gap:30px}
-    .footer-bottom{flex-direction:column;align-items:flex-start}
-    .pr-cta-inner,.ins-cta-inner{flex-direction:column;align-items:flex-start}
-    .cta-phone-btn{font-size:16.5px;padding:16px 28px}
+  @media (max-width:760px){
+    .sf-home{font-size:16px}
+    .sf-home .wrap{padding:0 20px}
+    .sf-home .hero{padding:104px 0 64px}
+    .sf-home .hero-visual{padding-bottom:0}
+    .sf-home .breakdown{position:relative;left:auto;bottom:auto;width:auto;margin:-48px 14px 0}
+    .sf-home .pair,.sf-home .handle,.sf-home .commit{grid-template-columns:1fr}
+    .sf-home .svc{padding:32px 24px}
+    .sf-home .payments,.sf-home .more,.sf-home .owner,.sf-home .calc,.sf-home .faq,.sf-home .closing{padding:80px 0}
+    .sf-home .facts dl{grid-template-columns:1fr}
+    .sf-home .facts div,.sf-home .facts div+div{padding:20px 0;border-left:0}
+    .sf-home .facts div+div{border-top:1px solid var(--line)}
+    .sf-home .steps li{grid-template-columns:44px 1fr}
+    .sf-home .steps li::before{font-size:30px}
+    .sf-home .faq-a-inner{padding-right:0}
   }
-
-  /* MEET THE OWNER */
-  .owner-band{padding:72px 0;background:var(--paper);border-bottom:1px solid var(--border)}
-  .owner-card{display:grid;grid-template-columns:190px 1fr;gap:44px;align-items:center;max-width:960px;margin:0 auto}
-  .owner-photo{width:190px;height:190px;border-radius:50%;overflow:hidden;background:linear-gradient(135deg,var(--indigo),var(--indigo-dark));display:flex;align-items:center;justify-content:center;box-shadow:var(--sh-md);border:4px solid var(--white);position:relative}
-  .owner-photo img{width:100%;height:100%;object-fit:cover;position:relative;z-index:1}
-  .owner-photo .initials{position:absolute;font-family:'Space Grotesk',sans-serif;font-size:54px;font-weight:700;color:var(--white);letter-spacing:.02em}
-  .owner-name{font-family:'Space Grotesk',sans-serif;font-size:clamp(24px,2.6vw,32px);font-weight:700;color:var(--ink);line-height:1.15}
-  .owner-title{font-size:14px;font-weight:600;color:var(--indigo-mid);margin:6px 0 16px}
-  .owner-copy p{font-size:16px;line-height:1.7;color:var(--body-c);margin-bottom:12px;max-width:640px}
-  .owner-copy .btn{margin-top:10px}
-  @media(max-width:720px){.owner-card{grid-template-columns:1fr;text-align:center;gap:24px}.owner-photo{margin:0 auto;width:150px;height:150px}.owner-copy p{margin-left:auto;margin-right:auto}}
+  @media (prefers-reduced-motion:reduce){
+    .sf-home .bar i{animation:none}
+    .sf-home .faq-a{transition:none}
+  }
 </style>
 
 <!--ai:header-->
 
+<div class="sf-home">
+
 <!-- HERO -->
 <section class="hero">
-  <div class="hero-mesh"></div>
-  <div class="container">
-    <div class="hero-inner">
-      <div class="eyebrow"><span class="dot"></span>Complete Business Financial Services</div>
-      <h1>One trusted name.<br><span class="grad-pay">Three essential services.</span></h1>
-      <p class="hero-sub">Payment processing, payroll, and business insurance — built to work together under the StarFi Pay brand. One relationship, one team, one point of contact.</p>
-      <div class="hero-services">
-        <div class="hero-svc svc-pay reveal">
-          <div class="hero-svc-icon icon-pay">
-            <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
-          </div>
-          <h3>Payments</h3>
-          <p>Interchange-plus pricing, zero equipment cost, dedicated rep, and a 60-month rate guarantee.</p>
-          <a href="#payments" class="svc-link pay-link">See how it works →</a>
-        </div>
-        <div class="hero-svc svc-pr reveal">
-          <div class="hero-svc-icon icon-pr">
-            <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          </div>
-          <h3>Payroll</h3>
-          <p>Automated, fully compliant payroll with tax filing, direct deposit, and year-end forms included.</p>
-          <a href="#payroll" class="svc-link pr-link">See how it works →</a>
-        </div>
-        <div class="hero-svc svc-ins reveal">
-          <div class="hero-svc-icon icon-ins">
-            <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4.5 8-11V5l-8-3-8 3v6c0 6.5 8 11 8 11z"/></svg>
-          </div>
-          <h3>Insurance</h3>
-          <p>Business liability, workers' comp, commercial auto, and professional coverage placed with top carriers.</p>
-          <a href="#insurance" class="svc-link ins-link">See how it works →</a>
-        </div>
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <h1>Know what every card sale costs you.</h1>
+      <p class="lede">StarFi Pay handles payment processing, payroll and business insurance for small and midsize businesses. Our processing is priced interchange-plus, so every fee on your statement has a name and a number.</p>
+      <div class="hero-actions">
+        <a href="/contact-us" class="btn btn-primary">Get a free statement review</a>
+        <a href="#calculator" class="btn btn-plain svc-link">Estimate my savings</a>
       </div>
-      <div class="hero-stats reveal">
-        <div class="hero-stat"><div class="number n-pr">25%</div><div class="label">Avg. savings on payment processing</div></div>
-        <div class="hero-stat"><div class="number n-pay">60mo</div><div class="label">Guaranteed qualified rate</div></div>
-        <div class="hero-stat"><div class="number n-ins">All 50</div><div class="label">States served across all three divisions</div></div>
-        <div class="hero-stat"><div class="number n-pr">24/7</div><div class="label">U.S.-based support, always reachable</div></div>
+      <div class="owner-line">
+        <img src="https://mylaunchpartner.github.io/starfi-pay/assets/samantha-martinez-starfi-pay.jpg" alt="" width="44" height="44" onerror="this.remove()">
+        <p>Owned and run in Arizona by <strong>Samantha Martinez</strong>. Serving businesses in all 50 states.</p>
       </div>
+    </div>
+
+    <div class="hero-visual">
+      <img class="hero-photo" src="https://mylaunchpartner.github.io/starfi-pay/assets/hero-merchant-checkout.jpg" alt="A shop owner takes a contactless phone payment at her counter" width="1800" height="1200">
+      <figure class="breakdown" aria-label="Example fee breakdown on a 100 dollar card sale">
+        <div class="breakdown-head"><h3>Where $100 goes</h3><span>Example card sale</span></div>
+        <div class="bar" aria-hidden="true"><i class="seg-ic"></i><i class="seg-nw"></i><i class="seg-sf"></i></div>
+        <ul class="lines">
+          <li><span class="k" style="background:var(--midnight)"></span><span>Interchange<small>Set by the card networks and the card’s bank</small></span><b>$1.80</b></li>
+          <li><span class="k" style="background:var(--quiet)"></span><span>Network fees</span><b>$0.13</b></li>
+          <li><span class="k" style="background:var(--gold)"></span><span>StarFi Pay markup</span><b>$0.25</b></li>
+          <li class="keep"><span></span><span>You keep</span><b>$97.82</b></li>
+        </ul>
+        <figcaption class="breakdown-note">Illustration only. Your rates depend on your card mix and ticket size.</figcaption>
+      </figure>
     </div>
   </div>
 </section>
 
-<!-- TRUST BAR -->
-<div class="trust-bar">
-  <div class="container">
-    <div class="trust-inner">
-      <div class="trust-item"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4.5 8-11V5l-8-3-8 3v6c0 6.5 8 11 8 11z"/></svg><span class="text">PCI DSS Level 1 Compliant</span></div>
-      <div class="trust-item"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg><span class="text">Registered ISO / MSP</span></div>
-      <div class="trust-item"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M8 12l2.5 2.5L16 9"/></svg><span class="text">50-State Tax Compliance</span></div>
-      <div class="trust-item"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg><span class="text">Next-Day Funding</span></div>
-      <div class="trust-item"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 000-7.78z"/></svg><span class="text">One Dedicated Rep</span></div>
-    </div>
-  </div>
-</div>
-
-
-<!-- MEET THE OWNER -->
-<section class="owner-band" id="owner">
-  <div class="container">
-    <div class="owner-card reveal">
-      <div class="owner-photo">
-        <img src="https://mylaunchpartner.github.io/starfi-pay/assets/samantha-martinez-starfi-pay.jpg" alt="Samantha Martinez, owner of StarFi Pay" width="190" height="190" loading="lazy" onerror="this.remove()">
-        <span class="initials" aria-hidden="true">SM</span>
-      </div>
-      <div class="owner-copy">
-        <div class="eyebrow-label" style="color:var(--indigo-mid);background:var(--indigo-tint)">Meet the owner</div>
-        <div class="owner-name">Samantha Martinez</div>
-        <div class="owner-title">President &amp; CEO, StarFi Pay</div>
-        <p>StarFi Pay is owned and run by Samantha Martinez. She leads the company from Arizona and works directly with the merchants and partners we serve.</p>
-        <p>Her standard is simple: every client should understand exactly what they pay, and should always reach a real person when they call.</p>
-        <a href="/about" class="btn btn-pay">Read Samantha's story →</a>
-      </div>
-    </div>
+<!-- FACTS -->
+<section class="facts" aria-label="What every account includes">
+  <div class="wrap">
+    <dl>
+      <div><dt>60-month rate guarantee</dt><dd>Your qualified rate holds for five years.</dd></div>
+      <div><dt>$0 equipment</dt><dd>Terminals and POS set up at no upfront cost.</dd></div>
+      <div><dt>Next-day funding</dt><dd>For most transactions.</dd></div>
+      <div><dt>A dedicated rep</dt><dd>One person to call, backed by 24/7 U.S.-based support.</dd></div>
+    </dl>
   </div>
 </section>
 
 <!-- PAYMENTS -->
 <div id="payments"></div>
+<section class="payments">
+  <div class="wrap split">
+    <div class="split-head">
+      <h2>Card processing without the guesswork</h2>
+      <p>Most processors bundle their markup into flat or tiered rates, so you can’t see it. We show you the interchange cost, which is the same whoever you process with, and add one markup on top. You see the comparison before you sign anything.</p>
+      <a href="/contact-us" class="btn btn-primary">Send us your statement</a>
+    </div>
+    <div>
+      <ol class="steps">
+        <li><h3>Send us a recent statement</h3><p>We go through it line by line and show you where the markups are.</p></li>
+        <li><h3>Compare the two side by side</h3><p>Your current costs next to ours. The price on the proposal is the price you pay.</p></li>
+        <li><h3>Switch without downtime</h3><p>We program and ship your equipment before your old service is cancelled. Your rep stays with you after the switch.</p></li>
+      </ol>
 
-<section class="svc-band pay-band">
-  <div class="scanline"></div>
-  <div class="container">
-    <div class="svc-band-inner">
-      <div class="svc-band-left reveal">
-        <div class="eyebrow-label el-dark">Payment Processing</div>
-        <h2 class="section-title light">Stop overpaying for<br>card processing. <span class="grad-pr">See it first.</span></h2>
-        <p>Transparent interchange-based pricing with a dedicated human rep and a 60-month rate guarantee. We show you exactly what you're paying before you commit to anything.</p>
-        <a href="#calculator" class="btn btn-pay">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="16" y1="10" x2="16" y2="14"/><line x1="11" y1="10" x2="11.01" y2="10"/><line x1="8" y1="10" x2="8.01" y2="10"/><line x1="8" y1="14" x2="8.01" y2="14"/><line x1="11" y1="14" x2="11.01" y2="14"/><line x1="8" y1="18" x2="8.01" y2="18"/><line x1="11" y1="18" x2="11.01" y2="18"/><line x1="16" y1="18" x2="16.01" y2="18"/></svg>
-          Estimate my savings
-        </a>
-      </div>
-      <div class="svc-stats reveal">
-        <div class="svc-stat pay-st"><div class="n">25%</div><div class="l">Average savings after switching</div></div>
-        <div class="svc-stat pay-st"><div class="n">60mo</div><div class="l">Qualified rate guarantee — no surprise increases</div></div>
-        <div class="svc-stat pay-st"><div class="n">1 day</div><div class="l">Next-day funding for most transactions</div></div>
-      </div>
+      <h3 class="sub-h">What we handle</h3>
+      <dl class="handle">
+        <div><dt>In-person</dt><dd>Terminals, POS systems, tap-to-pay and mobile readers, programmed for how you run.</dd></div>
+        <div><dt>Ecommerce and gateways</dt><dd>Secure gateways connected to your website, cart, CRM or invoicing.</dd></div>
+        <div><dt>Virtual terminal</dt><dd>Take payments by phone or invoice. Useful for contractors, healthcare and service businesses.</dd></div>
+        <div><dt>ACH and recurring billing</dt><dd>Subscriptions, retainers and repeat charges, with fewer failed payments.</dd></div>
+        <div><dt>Gift and loyalty</dt><dd>Branded gift cards and rewards built into your point of sale.</dd></div>
+        <div><dt>Business financing</dt><dd>Merchant cash advances for qualified businesses, based on your processing volume.</dd></div>
+      </dl>
     </div>
   </div>
 </section>
 
-<section class="how-section">
-  <div class="container">
-    <div class="section-head reveal">
-      <div class="eyebrow-label el-pay">Simple Process</div>
-      <h2 class="section-title">From your first call to lower fees</h2>
-      <p class="section-desc">Three steps — no commitment required to find out what you're overpaying today.</p>
+<!-- CALCULATOR -->
+<section class="calc" id="calculator">
+  <div class="wrap calc-grid">
+    <div class="calc-intro">
+      <h2>Estimate your savings</h2>
+      <p>Set the sliders to your monthly card volume and your current effective rate. For an exact number, send us a statement.</p>
+      <div class="field">
+        <label for="volume">Monthly card volume <span class="val" id="volumeVal">$40,000</span></label>
+        <input type="range" id="volume" min="5000" max="200000" step="1000" value="40000">
+      </div>
+      <div class="field">
+        <label for="rate">Current effective rate <span class="val" id="rateVal">3.2%</span></label>
+        <input type="range" id="rate" min="2.4" max="4.5" step="0.1" value="3.2">
+      </div>
     </div>
-    <div class="steps-grid">
-      <div class="step-card reveal">
-        <div class="step-num">01</div>
-        <h3>Call for a Free Statement Review</h3>
-        <p>Share your current processing statement. We analyze exactly what you're paying and pinpoint where markups are quietly costing you more than they should.</p>
-      </div>
-      <div class="step-card reveal">
-        <div class="step-num">02</div>
-        <h3>See Your Real Savings, Side by Side</h3>
-        <p>An honest comparison — your current costs versus ours. No bait-and-switch pricing. What you see on the proposal is exactly what you'll pay.</p>
-      </div>
-      <div class="step-card reveal">
-        <div class="step-num">03</div>
-        <h3>Switch With Zero Disruption</h3>
-        <p>We handle the equipment, programming, and setup. Your business never skips a beat, and your dedicated rep stays with you after the sale.</p>
-      </div>
+    <div class="result" aria-live="polite">
+      <div class="result-label">Estimated savings per year</div>
+      <div class="result-num"><span class="cur">$</span><span id="savingsOut">3,840</span></div>
+      <p>Based on processing costs about 25% lower, on average, after switching to interchange-plus.</p>
+      <a href="/contact-us" class="btn btn-gold">Get my exact number</a>
+      <small>This is an estimate, not a quote. Real savings depend on your card mix, ticket size and current agreement.</small>
     </div>
   </div>
 </section>
 
-<section class="services-section">
-  <div class="container">
-    <div class="section-head reveal">
-      <div class="eyebrow-label el-pay">What We Handle</div>
-      <h2 class="section-title">Every way your business accepts payments</h2>
-      <p class="section-desc">In-person, online, by phone, or recurring — we support every transaction type.</p>
+<!-- PAYROLL + INSURANCE -->
+<section class="more">
+  <div class="wrap">
+    <div class="more-head">
+      <h2>Payroll and insurance from the same team</h2>
+      <p class="lede">Each service works on its own. If you use more than one, you keep one point of contact who knows your whole business.</p>
     </div>
-    <div class="services-grid">
-      <div class="service-card reveal">
-        <div class="service-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg></div>
-        <h3>In-Person Processing</h3>
-        <p>Modern terminals, POS systems, tap-to-pay devices, and mobile card readers — set up and programmed for your operation at no upfront cost.</p>
-      </div>
-      <div class="service-card reveal">
-        <div class="service-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg></div>
-        <h3>Ecommerce &amp; Gateways</h3>
-        <p>Secure payment gateways integrated with your website, shopping cart, CRM, or invoicing platform.</p>
-      </div>
-      <div class="service-card reveal">
-        <div class="service-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg></div>
-        <h3>Virtual Terminal &amp; Mobile</h3>
-        <p>Accept payments by phone, invoice, or mobile device — ideal for contractors, healthcare, and service businesses.</p>
-      </div>
-      <div class="service-card reveal">
-        <div class="service-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/></svg></div>
-        <h3>ACH &amp; Recurring Billing</h3>
-        <p>Subscriptions, retainers, and recurring charges with fewer failed payments and less manual overhead.</p>
-      </div>
-      <div class="service-card reveal">
-        <div class="service-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div>
-        <h3>Gift &amp; Loyalty Programs</h3>
-        <p>Branded gift cards and loyalty rewards integrated into your point-of-sale to drive repeat business.</p>
-      </div>
-      <div class="service-card reveal">
-        <div class="service-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg></div>
-        <h3>Business Financing</h3>
-        <p>Merchant cash advances for qualified businesses — working capital backed by your existing processing volume.</p>
-      </div>
+    <div class="pair">
+      <article class="svc" id="payroll">
+        <h3>Payroll</h3>
+        <p>Automated, compliant payroll for businesses of any size, run by people who answer the phone. Most businesses run their first payroll within a week.</p>
+        <ul>
+          <li><strong>Scheduled pay runs.</strong> Review and approve in one click, with no per-run fees.</li>
+          <li><strong>Tax filing in all 50 states.</strong> Federal, state and local deposits and filings.</li>
+          <li><strong>Direct deposit.</strong> Next-day available.</li>
+          <li><strong>Employee portal.</strong> Pay stubs, tax documents and PTO balances.</li>
+          <li><strong>W-2s and 1099s.</strong> Prepared, filed and sent before the deadline.</li>
+        </ul>
+        <a href="/contact-us" class="text-link">Talk to a payroll specialist</a>
+      </article>
+      <article class="svc" id="insurance">
+        <h3>Business insurance</h3>
+        <p>We shop your coverage across top-rated carriers and place it for you. Quotes are same-day on most standard policies.</p>
+        <ul>
+          <li><strong>General liability.</strong> Third-party injury, property damage and advertising claims.</li>
+          <li><strong>Workers’ compensation.</strong> Placed with carriers that know your industry.</li>
+          <li><strong>Commercial auto.</strong> From one service van to a full fleet.</li>
+          <li><strong>Professional liability.</strong> Errors and omissions for consultants and contractors.</li>
+          <li><strong>Business owner’s policy and group benefits.</strong> Bundled liability and property, plus health, dental and vision.</li>
+        </ul>
+        <a href="/contact-us" class="text-link">Get an insurance quote</a>
+      </article>
     </div>
   </div>
 </section>
 
-<section class="calc-section" id="calculator">
-  <div class="scanline"></div>
-  <div class="container">
-    <div class="calc-head reveal">
-      <div class="eyebrow-label el-dark">Free, No-Obligation Estimate</div>
-      <h2 class="section-title light">See your <span class="grad-pr">estimated savings</span></h2>
-      <p class="section-desc light" style="margin:0 auto;text-align:center">Move the sliders to match your business — send us a statement for your exact number.</p>
+<!-- OWNER -->
+<section class="owner" id="owner">
+  <div class="wrap owner-grid">
+    <div class="owner-photos">
+      <img class="shop" src="https://mylaunchpartner.github.io/starfi-pay/assets/merchant-counter-tap.jpg" alt="A customer pays by phone at a market counter" width="1000" height="1500">
+      <img class="portrait" src="https://mylaunchpartner.github.io/starfi-pay/assets/samantha-martinez-starfi-pay.jpg" alt="Samantha Martinez, owner of StarFi Pay" width="300" height="300">
     </div>
-    <div class="calc-card reveal">
-      <div class="calc-inputs">
-        <div class="calc-field">
-          <label for="volume">Monthly Card Volume <span class="val" id="volumeVal">$40,000</span></label>
-          <input type="range" id="volume" min="5000" max="200000" step="1000" value="40000">
-        </div>
-        <div class="calc-field">
-          <label for="rate">Current Effective Rate <span class="val" id="rateVal">3.2%</span></label>
-          <input type="range" id="rate" min="2.4" max="4.5" step="0.1" value="3.2">
-        </div>
-      </div>
-      <div class="calc-output">
-        <div class="out-label">Estimated Annual Savings</div>
-        <div class="out-number"><span class="cur">$</span><span id="savingsOut">3,840</span></div>
-        <div class="out-sub">Based on ~25% lower processing costs on average after switching to interchange-plus.</div>
-      </div>
-      <div class="calc-fineprint">Illustrative estimate only — not a quote. Actual savings depend on your card mix, ticket size, and current agreement. <a href="/contact-us" style="color:var(--pr);text-decoration:underline">Contact us for your exact number →</a></div>
+    <div class="owner-copy">
+      <h2>You’ll always reach a real person</h2>
+      <p>StarFi Pay is owned and run by Samantha Martinez. She leads the company from Arizona and works directly with the merchants and partners we serve.</p>
+      <p>Her standard is simple: every client should understand exactly what they pay, and should reach a real person when they call.</p>
+      <ul class="commit">
+        <li><strong>Clear pricing</strong>No mystery line items and no bundled rates hiding a markup.</li>
+        <li><strong>One rep</strong>The same contact across every service you use.</li>
+        <li><strong>Stable rates</strong>A 60-month guarantee against surprise repricing.</li>
+        <li><strong>Equipment covered</strong>No upfront cost, and next-day replacement if a terminal fails.</li>
+      </ul>
+      <p class="sign">Samantha Martinez<span>President &amp; CEO, StarFi Pay</span></p>
+      <p style="margin-top:24px"><a href="/about" class="text-link">Read Samantha’s story</a></p>
     </div>
   </div>
 </section>
 
-<script>
-(function() {
-  var dd  = document.getElementById('specDropdown');
-  var btn = document.getElementById('specDropdownBtn');
-  if (!dd || !btn) return;
-
-  btn.addEventListener('click', function(e) {
-    e.stopPropagation();
-    var open = dd.classList.toggle('open');
-    btn.setAttribute('aria-expanded', open);
-  });
-
-  document.addEventListener('click', function() {
-    dd.classList.remove('open');
-    btn.setAttribute('aria-expanded', 'false');
-  });
-
-  /* keep clicks inside the dropdown from bubbling up and closing it */
-  dd.addEventListener('click', function(e) { e.stopPropagation(); });
-
-  var nt=document.getElementById('navToggle'),mm=document.getElementById('mobileMenu'),mc=document.getElementById('mobileClose');if(nt&&mm){function cn(){mm.classList.remove('open');nt.setAttribute('aria-expanded','false');document.body.style.overflow=''}nt.onclick=function(){mm.classList.add('open');nt.setAttribute('aria-expanded','true');document.body.style.overflow='hidden'};if(mc)mc.onclick=cn;mm.onclick=function(e){if(e.target===mm)cn()};mm.querySelectorAll('a').forEach(function(a){a.onclick=cn})}
-})();
-</script>
-
-
-<!-- PAYROLL -->
-<div id="payroll"></div>
-
-<section class="svc-band pr-band">
-  <div class="container">
-    <div class="svc-band-inner">
-      <div class="svc-band-left reveal">
-        <div class="eyebrow-label" style="color:rgba(110,232,170,.9);background:rgba(18,183,106,.15)">Payroll Services</div>
-        <h2 class="section-title light">Payroll that runs itself — <span class="grad-pr">so you don't have to.</span></h2>
-        <p>Automated, accurate, and fully compliant payroll for businesses of every size. Tax filings handled, direct deposits sent, and year-end forms taken care of — by people who answer the phone.</p>
-        <a href="/contact-us" class="btn btn-w-pr">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-          Talk to a Payroll Specialist
-        </a>
-      </div>
-      <div class="svc-stats reveal">
-        <div class="svc-stat pr-st"><div class="n">All 50</div><div class="l">States — fully compliant tax filing</div></div>
-        <div class="svc-stat pr-st"><div class="n">1 day</div><div class="l">Next-day direct deposit available</div></div>
-        <div class="svc-stat pr-st"><div class="n">Unlimited</div><div class="l">Payroll runs, no per-run fees</div></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="pr-features">
-  <div class="container">
-    <div class="section-head reveal">
-      <div class="eyebrow-label el-pr">What's Included</div>
-      <h2 class="section-title">Everything payroll requires, handled</h2>
-      <p class="section-desc">From the first pay run to year-end filings — we take the compliance burden off your plate entirely.</p>
-    </div>
-    <div class="pr-grid">
-      <div class="pr-card reveal">
-        <div class="pr-card-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
-        <h3>Automated Payroll Runs</h3>
-        <p>Set your schedule, review, and approve with a single click. Runs on time, every time, whether you're in the office or on the road.</p>
-      </div>
-      <div class="pr-card reveal">
-        <div class="pr-card-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg></div>
-        <h3>Tax Filing &amp; Compliance</h3>
-        <p>Federal, state, and local payroll tax deposits and filings handled automatically. Penalties and late fees become someone else's problem.</p>
-      </div>
-      <div class="pr-card reveal">
-        <div class="pr-card-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg></div>
-        <h3>Direct Deposit</h3>
-        <p>Employees paid directly to their bank accounts — next-day available. No checks to cut, no trips to the bank, no delays.</p>
-      </div>
-      <div class="pr-card reveal">
-        <div class="pr-card-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
-        <h3>Employee Self-Service</h3>
-        <p>Staff access their own pay stubs, tax documents, and PTO balances through a secure portal — fewer questions to you.</p>
-      </div>
-      <div class="pr-card reveal">
-        <div class="pr-card-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div>
-        <h3>Year-End Forms</h3>
-        <p>W-2s and 1099s prepared, filed with the IRS, and distributed to your employees and contractors well before every deadline.</p>
-      </div>
-      <div class="pr-card reveal">
-        <div class="pr-card-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 014.69 10.5 19.36 19.36 0 011.64 2a2 2 0 012-2.18h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 7.91a16 16 0 006 6l1.27-.82a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 15.17z"/></svg></div>
-        <h3>Dedicated Payroll Specialist</h3>
-        <p>One person who knows your payroll setup, your team, and your business — reachable by phone, not buried behind a ticket queue.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="pr-cta">
-  <div class="container">
-    <div class="pr-cta-inner reveal">
-      <div class="pr-cta-text">
-        <h3>Ready to take payroll off your plate?</h3>
-        <p>Our payroll specialists walk you through a simple setup — most businesses are running their first payroll within the week.</p>
-      </div>
-      <a href="/contact-us" class="btn btn-w-pr">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-        Talk to a Payroll Specialist
-      </a>
-    </div>
-  </div>
-</section>
-
-<!-- INSURANCE -->
-<div id="insurance"></div>
-
-<section class="svc-band ins-band">
-  <div class="container">
-    <div class="svc-band-inner">
-      <div class="svc-band-left reveal">
-        <div class="eyebrow-label" style="color:rgba(91,143,217,.9);background:rgba(91,143,217,.15)">Business Insurance</div>
-        <h2 class="section-title light">Coverage that protects <span class="grad-ins">what you've built.</span></h2>
-        <p>From general liability to workers' comp, we place your business coverage with top-rated carriers and keep the process simple. One conversation, the right coverage.</p>
-        <a href="/contact-us" class="btn btn-w-ins">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-          Talk to an Insurance Specialist
-        </a>
-      </div>
-      <div class="svc-stats reveal">
-        <div class="svc-stat ins-st"><div class="n">A-rated</div><div class="l">Top-rated carrier partners for every policy type</div></div>
-        <div class="svc-stat ins-st"><div class="n">Same day</div><div class="l">Quotes available on most standard policies</div></div>
-        <div class="svc-stat ins-st"><div class="n">1 agent</div><div class="l">Dedicated specialist who knows your business</div></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="ins-features">
-  <div class="container">
-    <div class="section-head reveal">
-      <div class="eyebrow-label el-ins">Coverage Types</div>
-      <h2 class="section-title">The coverage your business needs</h2>
-      <p class="section-desc">All major policy types placed with top-rated carriers — bundled or à la carte to match your operation.</p>
-    </div>
-    <div class="ins-grid">
-      <div class="ins-card reveal">
-        <div class="ins-card-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4.5 8-11V5l-8-3-8 3v6c0 6.5 8 11 8 11z"/></svg></div>
-        <h3>General Liability</h3>
-        <p>Protection for third-party bodily injury, property damage, and advertising claims arising from your day-to-day business operations.</p>
-      </div>
-      <div class="ins-card reveal">
-        <div class="ins-card-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg></div>
-        <h3>Workers' Compensation</h3>
-        <p>Required coverage in most states, placed efficiently with carriers that understand your industry — we handle the process.</p>
-      </div>
-      <div class="ins-card reveal">
-        <div class="ins-card-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></div>
-        <h3>Commercial Auto</h3>
-        <p>Coverage for vehicles used in your business — whether you operate a single service van or a full fleet of company vehicles.</p>
-      </div>
-      <div class="ins-card reveal">
-        <div class="ins-card-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/></svg></div>
-        <h3>Professional Liability</h3>
-        <p>Errors &amp; omissions coverage for consultants, advisors, contractors, and service professionals — protecting against claims of negligence or mistakes.</p>
-      </div>
-      <div class="ins-card reveal">
-        <div class="ins-card-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20"/><path d="M9 22V12h6v10"/><line x1="8" y1="6" x2="10" y2="6"/><line x1="14" y1="6" x2="16" y2="6"/><line x1="8" y1="10" x2="10" y2="10"/><line x1="14" y1="10" x2="16" y2="10"/></svg></div>
-        <h3>Business Owner's Policy</h3>
-        <p>General liability plus commercial property coverage bundled into one policy — typically more cost-effective than buying each separately.</p>
-      </div>
-      <div class="ins-card reveal">
-        <div class="ins-card-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 000-7.78z"/></svg></div>
-        <h3>Group Health &amp; Benefits</h3>
-        <p>Health, dental, and vision benefit options to help you attract and retain great employees — structured to fit your budget and workforce size.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="ins-cta">
-  <div class="container">
-    <div class="ins-cta-inner reveal">
-      <div class="ins-cta-text">
-        <h3>Get a quote for your business today</h3>
-        <p>A quick conversation with one of our specialists is all it takes. We'll identify the right coverage and shop multiple carriers on your behalf.</p>
-      </div>
-      <a href="/contact-us" class="btn btn-w-ins">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-        Get Your Quote
-      </a>
-    </div>
-  </div>
-</section>
-
-<!-- ONE RELATIONSHIP -->
-<section class="combined-band">
-  <div class="container">
-    <div class="combined-inner">
-      <div class="combined-text reveal">
-        <div class="eyebrow-label el-pay">Why Combine Services</div>
-        <h2>One relationship for everything your business needs</h2>
-        <p>When your payments, payroll, and insurance all come from StarFi Pay, you get coordinated service, a team that understands your full picture, and one point of contact — not three different vendors to manage.</p>
-        <a href="/contact-us" class="btn btn-pay">Talk to our team</a>
-      </div>
-      <div class="combined-cards reveal">
-        <div class="combined-card cc-pay">
-          <div class="ci ci-pay"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg></div>
-          <div><h4>Payments</h4><p>Transparent interchange-plus rates, $0 equipment cost, 60-month rate stability.</p></div>
-        </div>
-        <div class="combined-card cc-pr">
-          <div class="ci ci-pr"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
-          <div><h4>Payroll</h4><p>Automated, compliant payroll with tax filing, direct deposit, and year-end forms.</p></div>
-        </div>
-        <div class="combined-card cc-ins">
-          <div class="ci ci-ins"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4.5 8-11V5l-8-3-8 3v6c0 6.5 8 11 8 11z"/></svg></div>
-          <div><h4>Insurance</h4><p>Business coverage placed with top-rated carriers — quotes same day, bundling discounts available.</p></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- WHY STARFI PAY -->
-<section class="why-section">
-  <div class="container">
-    <div class="why-inner">
-      <div class="why-left reveal">
-        <div class="eyebrow-label el-dark">Why StarFi Pay</div>
-        <h2 class="section-title light">Merchants don't stay because they're <span class="grad-pr">locked in</span></h2>
-        <p>They stay because it works. We built this company on the belief that financial services should be simple to understand, honest in its pricing, and backed by real people who pick up the phone.</p>
-        <a href="/contact-us" class="btn btn-mint">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-          Talk to a Real Person
-        </a>
-        <div class="pulse-wrap glass">
-          <div class="pulse-ring"><div class="core"></div></div>
-          <span>Live account monitoring — every switch and setup tracked start to finish</span>
-        </div>
-      </div>
-      <div class="why-grid reveal">
-        <div class="diff-card"><div class="diff-num">01</div><h4>Transparent Pricing</h4><p>We educate you on where every dollar goes. No mystery line items, no bundled rates hiding markups.</p></div>
-        <div class="diff-card"><div class="diff-num">02</div><h4>A Dedicated Rep</h4><p>One point of contact across all your services — reachable by phone, not buried behind a support portal.</p></div>
-        <div class="diff-card"><div class="diff-num">03</div><h4>Rate Stability</h4><p>Our 60-month qualified rate guarantee protects you from the re-pricing that plagues most merchant relationships.</p></div>
-        <div class="diff-card"><div class="diff-num">04</div><h4>Zero Equipment Cost</h4><p>State-of-the-art terminals and POS with zero upfront expense, and next-day replacement if one ever fails.</p></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- TESTIMONIALS -->
-<!-- Hidden until StarFi Pay has real, permissioned customer quotes. Replace the three quotes below, then remove the hidden attribute. -->
-<section class="testimonial-section" hidden>
-  <div class="container">
-    <div class="testimonial-head reveal">
-      <div class="eyebrow-label el-pay" style="display:inline-flex">What Clients Are Saying</div>
-      <h2 class="section-title">What switching actually sounds like</h2>
-    </div>
-    <div class="testimonial-grid">
-      <div class="t-card reveal">
-        <div class="t-stars">★★★★★</div>
-        <p class="t-quote">Our old provider kept adding fees we never agreed to. StarFi Pay walked us through every line of our statement and showed us exactly what we'd save before we switched.</p>
-        <div class="t-person">
-          <div class="t-avatar av-pay">M</div>
-          <div>
-            <div class="t-name">Maria T.</div>
-            <div class="t-biz">Owner, retail storefront</div>
-            <div class="t-tag tt-pay">Payments</div>
-          </div>
-        </div>
-      </div>
-      <div class="t-card reveal">
-        <div class="t-stars">★★★★★</div>
-        <p class="t-quote">Payroll used to take me half a day every two weeks. Now I approve it in five minutes and the taxes just get filed. I didn't realize how much time I was wasting until I stopped doing it myself.</p>
-        <div class="t-person">
-          <div class="t-avatar av-pr">J</div>
-          <div>
-            <div class="t-name">James W.</div>
-            <div class="t-biz">Owner, landscaping company</div>
-            <div class="t-tag tt-pr">Payroll</div>
-          </div>
-        </div>
-      </div>
-      <div class="t-card reveal">
-        <div class="t-stars">★★★★★</div>
-        <p class="t-quote">They bundled our GL and workers' comp into one policy and saved us over $3,000 a year. The whole process took one afternoon — same agent handled everything.</p>
-        <div class="t-person">
-          <div class="t-avatar av-ins">R</div>
-          <div>
-            <div class="t-name">Rachel M.</div>
-            <div class="t-biz">Owner, home services company</div>
-            <div class="t-tag tt-ins">Insurance</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+<!-- Testimonials removed for now: StarFi Pay has no customer quotes of its own yet. Add a section here only with real, permissioned quotes. -->
 
 <!-- FAQ -->
-<section class="faq-section">
-  <div class="container">
-    <div class="faq-head reveal">
-      <div class="eyebrow-label el-pay">Common Questions</div>
-      <h2 class="section-title">Everything you're wondering about</h2>
+<section class="faq">
+  <div class="wrap faq-grid">
+    <div>
+      <h2>Questions merchants ask us</h2>
+      <p>Something else? <a href="/contact-us" class="text-link">Send us a message</a></p>
     </div>
-    <div class="faq-list reveal">
+    <div class="faq-list">
       <div class="faq-item">
-        <button class="faq-q" aria-expanded="false">Will switching payment processors interrupt my ability to take payments?<span class="plus"></span></button>
-        <div class="faq-a"><div class="faq-a-inner">No. We program and ship your new equipment before your old service is cancelled, so there's no gap. Most merchants are fully switched in a single visit or afternoon.</div></div>
+        <button class="faq-q" aria-expanded="false">Will switching processors interrupt my payments?<span class="plus" aria-hidden="true"></span></button>
+        <div class="faq-a"><div class="faq-a-inner">No. We program and ship your new equipment before your old service is cancelled, so there’s no gap. Most merchants switch over in one visit or one afternoon.</div></div>
       </div>
       <div class="faq-item">
-        <button class="faq-q" aria-expanded="false">What does interchange-plus pricing actually mean?<span class="plus"></span></button>
-        <div class="faq-a"><div class="faq-a-inner">Every card transaction has a base "interchange" cost set by the card networks — the same no matter who you process with. We show you that cost directly and add one transparent markup on top. No bundled rates, no hidden padding.</div></div>
+        <button class="faq-q" aria-expanded="false">What does interchange-plus pricing mean?<span class="plus" aria-hidden="true"></span></button>
+        <div class="faq-a"><div class="faq-a-inner">Every card sale has a base interchange cost set by the card networks. It’s the same whoever you process with. We show you that cost directly and add one stated markup on top, with no bundled rates.</div></div>
       </div>
       <div class="faq-item">
-        <button class="faq-q" aria-expanded="false">How does payroll setup work — how long does it take?<span class="plus"></span></button>
-        <div class="faq-a"><div class="faq-a-inner">Our payroll specialists handle the configuration for you. Most businesses run their first payroll within a week of signing on. We gather your employee data, set up your pay schedule, and configure any state tax accounts needed.</div></div>
+        <button class="faq-q" aria-expanded="false">How long does payroll setup take?<span class="plus" aria-hidden="true"></span></button>
+        <div class="faq-a"><div class="faq-a-inner">Most businesses run their first payroll within a week. We gather your employee data, set your pay schedule and set up any state tax accounts you need.</div></div>
       </div>
       <div class="faq-item">
-        <button class="faq-q" aria-expanded="false">Can I get insurance coverage even if I've had claims before?<span class="plus"></span></button>
-        <div class="faq-a"><div class="faq-a-inner">In most cases, yes. Our specialists work with a broad panel of carriers, including those experienced with businesses that have claims history. We'll be upfront about your options and pricing before you commit to anything.</div></div>
+        <button class="faq-q" aria-expanded="false">Can I get insurance if I’ve had claims before?<span class="plus" aria-hidden="true"></span></button>
+        <div class="faq-a"><div class="faq-a-inner">In most cases, yes. We work with a broad panel of carriers, including ones experienced with claims history, and we’ll be upfront about your options and pricing before you commit.</div></div>
       </div>
       <div class="faq-item">
-        <button class="faq-q" aria-expanded="false">Do I have to use all three services to work with StarFi Pay?<span class="plus"></span></button>
-        <div class="faq-a"><div class="faq-a-inner">Not at all. Each service stands completely on its own — you can start with payment processing, payroll, or insurance and add others later. That said, clients who use multiple services do benefit from coordinated service and a single point of contact.</div></div>
+        <button class="faq-q" aria-expanded="false">Do I have to use all three services?<span class="plus" aria-hidden="true"></span></button>
+        <div class="faq-a"><div class="faq-a-inner">No. Start with processing, payroll or insurance and add others later if you want them.</div></div>
       </div>
       <div class="faq-item">
-        <button class="faq-q" aria-expanded="false">What if I want to talk to someone before I decide anything?<span class="plus"></span></button>
-        <div class="faq-a"><div class="faq-a-inner">That's exactly what the free consultation is for. No commitment, no pressure — just an honest conversation about whether any of our services would actually benefit your business. <a href="/contact-us" style="color:inherit;text-decoration:underline">Reach out on our contact page.</a></div></div>
+        <button class="faq-q" aria-expanded="false">Can I talk to someone before deciding anything?<span class="plus" aria-hidden="true"></span></button>
+        <div class="faq-a"><div class="faq-a-inner">Yes. The consultation is free and there’s no commitment. <a href="/contact-us" style="color:inherit;text-decoration:underline">Reach out on our contact page.</a></div></div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- FINAL CTA -->
-<section class="cta-section" id="contact">
-  <div class="container">
-    <div class="cta-inner reveal">
-      <div class="eyebrow-label el-dark" style="display:inline-flex">Free, No-Obligation Consultation</div>
-      <h2>Find out what you're leaving on the table</h2>
-      <p>One conversation with our team covers all three service areas. Tell us what you're dealing with — we'll be honest about where we can help and where we can't.</p>
-      <div class="cta-phone-wrap">
-        <a href="/contact-us" class="cta-phone-btn">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-          Contact Us
-        </a>
-        <span class="cta-fineprint">24/7 U.S.-based support · No sales pressure</span>
-      </div>
+<!-- CLOSING -->
+<section class="closing" id="contact">
+  <div class="wrap closing-grid">
+    <div>
+      <h2>Find out what you’re paying now</h2>
+      <p>Send us a recent processing statement, or just tell us what you’re dealing with. We’ll tell you honestly where we can help and where we can’t.</p>
+    </div>
+    <div class="closing-actions">
+      <a href="/contact-us" class="btn btn-gold">Get a free statement review</a>
+      <a href="tel:+16199956484" class="tel">(619) 995-6484</a>
+      <small>24/7 U.S.-based support</small>
     </div>
   </div>
 </section>
+
+</div>
 
 <!--ai:footer-->
 
 <script>
-window.addEventListener('load', function() {
-
-  // Scroll reveal
-  var revealObs = new IntersectionObserver(function(entries) {
-    entries.forEach(function(e) {
-      if (e.isIntersecting) {
-        setTimeout(function() { e.target.classList.add('visible'); }, 60);
-        revealObs.unobserve(e.target);
-      }
-    });
-  }, { threshold: 0.08, rootMargin: '0px 0px -36px 0px' });
-  document.querySelectorAll('.reveal').forEach(function(el) { revealObs.observe(el); });
-  document.querySelectorAll('.steps-grid, .services-grid, .pr-grid, .ins-grid, .testimonial-grid, .hero-services, .why-grid, .combined-cards').forEach(function(grid) {
-    grid.querySelectorAll('.reveal').forEach(function(card, i) { card.style.transitionDelay = (i * 0.07) + 's'; });
-  });
-
-  // Service tab active state on scroll
-  var tabs = {
-    payments: document.querySelector('.tab-pay'),
-    payroll:  document.querySelector('.tab-pr'),
-    insurance: document.querySelector('.tab-ins')
-  };
-  var sectionEls = [
-    { id: 'payments', el: document.getElementById('payments') },
-    { id: 'payroll',  el: document.getElementById('payroll') },
-    { id: 'insurance',el: document.getElementById('insurance') }
-  ];
+window.addEventListener('load', function () {
+  // Header tab highlight while scrolling the home page
+  var tabs = { payments: document.querySelector('.tab-pay'), payroll: document.querySelector('.tab-pr'), insurance: document.querySelector('.tab-ins') };
+  var ids = ['payments', 'payroll', 'insurance'];
   function updateActiveTabs() {
-    var scrollY = window.pageYOffset + 120;
-    var active = 'payments';
-    sectionEls.forEach(function(s) {
-      if (s.el && scrollY >= s.el.getBoundingClientRect().top + window.pageYOffset) active = s.id;
-    });
-    Object.keys(tabs).forEach(function(k) {
-      if (tabs[k]) tabs[k].classList.toggle('active', k === active);
-    });
+    var y = window.pageYOffset + 140, active = null;
+    ids.forEach(function (id) { var el = document.getElementById(id); if (el && y >= el.getBoundingClientRect().top + window.pageYOffset) active = id; });
+    Object.keys(tabs).forEach(function (k) { if (tabs[k]) tabs[k].classList.toggle('active', k === active); });
   }
   window.addEventListener('scroll', updateActiveTabs, { passive: true });
   updateActiveTabs();
 
-  // Smooth scroll — uses window.scrollTo so it always scrolls the page, not a container
+  // In-page links scroll the window (GHL wraps content in its own containers)
   function scrollToId(id) {
     var el = document.getElementById(id);
     if (!el) return;
-    var top = el.getBoundingClientRect().top + window.pageYOffset - 72;
-    window.scrollTo({ top: Math.max(0, top), behavior: 'instant' });
+    window.scrollTo({ top: Math.max(0, el.getBoundingClientRect().top + window.pageYOffset - 80), behavior: 'instant' });
   }
-  document.querySelectorAll('.service-tab, .svc-link').forEach(function(link) {
-    link.addEventListener('click', function(e) {
+  document.querySelectorAll('.service-tab, .svc-link').forEach(function (link) {
+    link.addEventListener('click', function (e) {
       var href = link.getAttribute('href');
-      if (href && href.startsWith('#')) {
-        e.preventDefault();
-        scrollToId(href.slice(1));
-      }
+      if (href && href.charAt(0) === '#') { e.preventDefault(); scrollToId(href.slice(1)); }
     });
   });
 
   // Savings calculator
-  var volEl = document.getElementById('volume');
-  var rateEl = document.getElementById('rate');
-  var volVal = document.getElementById('volumeVal');
-  var rateVal = document.getElementById('rateVal');
-  var savOut = document.getElementById('savingsOut');
+  var volEl = document.getElementById('volume'), rateEl = document.getElementById('rate');
+  var volVal = document.getElementById('volumeVal'), rateVal = document.getElementById('rateVal'), out = document.getElementById('savingsOut');
   function fmt(n) { return Math.round(n).toLocaleString('en-US'); }
-  function calcUpdate() {
-    var vol = parseFloat(volEl.value);
-    var rate = parseFloat(rateEl.value);
+  function calc() {
+    var vol = parseFloat(volEl.value), rate = parseFloat(rateEl.value);
     volVal.textContent = '$' + fmt(vol);
     rateVal.textContent = rate.toFixed(1) + '%';
-    savOut.textContent = fmt(vol * (rate / 100) * 12 * 0.25);
+    out.textContent = fmt(vol * (rate / 100) * 12 * 0.25);
   }
-  volEl.addEventListener('input', calcUpdate);
-  rateEl.addEventListener('input', calcUpdate);
-  calcUpdate();
+  if (volEl && rateEl) { volEl.addEventListener('input', calc); rateEl.addEventListener('input', calc); calc(); }
 
   // FAQ accordion
-  document.querySelectorAll('.faq-item').forEach(function(item) {
-    item.querySelector('.faq-q').addEventListener('click', function() {
-      var isOpen = item.classList.contains('open');
-      document.querySelectorAll('.faq-item.open').forEach(function(o) {
-        if (o !== item) {
-          o.classList.remove('open');
-          o.querySelector('.faq-q').setAttribute('aria-expanded', 'false');
-          o.querySelector('.faq-a').style.maxHeight = null;
-        }
+  document.querySelectorAll('.sf-home .faq-item').forEach(function (item) {
+    var q = item.querySelector('.faq-q'), a = item.querySelector('.faq-a');
+    q.addEventListener('click', function () {
+      var open = item.classList.contains('open');
+      document.querySelectorAll('.sf-home .faq-item.open').forEach(function (o) {
+        if (o !== item) { o.classList.remove('open'); o.querySelector('.faq-q').setAttribute('aria-expanded', 'false'); o.querySelector('.faq-a').style.maxHeight = null; }
       });
-      item.classList.toggle('open', !isOpen);
-      item.querySelector('.faq-q').setAttribute('aria-expanded', !isOpen);
-      item.querySelector('.faq-a').style.maxHeight = isOpen ? null : item.querySelector('.faq-a').scrollHeight + 'px';
+      item.classList.toggle('open', !open);
+      q.setAttribute('aria-expanded', String(!open));
+      a.style.maxHeight = open ? null : a.scrollHeight + 'px';
     });
   });
-
-}); // end load
+});
 </script>
