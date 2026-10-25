@@ -13,7 +13,17 @@
   var self = document.currentScript;
   var BASE = self.src.replace(/[?#].*$/, '').replace(/[^\/]*$/, '');
   var BUST = "v=" + Math.floor(Date.now() / 60000); // new cache key every minute
-  var page = (mount.getAttribute('data-page') || 'home').replace(/[^a-z0-9-]/gi, '');
+  // data-page wins when set; otherwise the page is picked from the URL path,
+  // so every GHL page can carry the identical embed (handy when cloning pages).
+  var PATHS = {
+    '/': 'home', '/contact-us': 'contact', '/message-received': 'message-received',
+    '/specialty-peptide-payment-processing': 'peptides', '/privacy-policy': 'privacy',
+    '/terms-of-service': 'terms', '/about': 'about', '/ownership': 'ownership',
+    '/samantha-martinez': 'samantha-martinez', '/blog': 'blog'
+  };
+  var urlPath = location.pathname.replace(/\/+$/, '') || '/';
+  if (urlPath.indexOf('/blog') === 0) urlPath = '/blog';
+  var page = (mount.getAttribute('data-page') || PATHS[urlPath] || 'home').replace(/[^a-z0-9-]/gi, '');
 
   mount.style.minHeight = '100vh';
 
