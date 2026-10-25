@@ -1,551 +1,326 @@
-<link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Public+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet"/>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Public+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
+
 <style>
-:root{
-  --indigo:#2D5BFF;--indigo-mid:#1E44D6;--indigo-dark:#0B1026;--indigo-tint:#E9EEFF;
-  --ink:#0B1026;--body-c:#474E68;--muted:#7A8199;
-  --border:#DEE2EC;--border-strong:#C9CFDD;--white:#FFFFFF;--paper:#F3F5FA;
-  --pr:#2D5BFF;--pr-dark:#1E44D6;--pr-tint:#E9EEFF;--pr-deep:#0B1026;
-  --ins:#0B1026;--ins-tint:#F3F5FA;
-  --warn:#DC2626;--warn-tint:#FEF2F2;
-  --i-soft:rgba(255,255,255,.74);--i-muted:rgba(255,255,255,.44);--i-bdr:rgba(255,255,255,.12);
-  --r-lg:20px;--r-md:14px;--r-sm:10px;
-  --sh-sm:0 1px 3px rgba(15,18,34,.06);--sh-md:0 8px 24px rgba(15,18,34,.08);--sh-lg:0 24px 64px rgba(22,19,53,.14);
-}
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:auto}
-body{font-family:'Public Sans',sans-serif;background:var(--white);color:var(--ink);-webkit-font-smoothing:antialiased;overflow-x:hidden}
-a{color:inherit;text-decoration:none}
-button{font-family:inherit;cursor:pointer;border:none;background:none}
-:focus-visible{outline:2px solid var(--indigo);outline-offset:3px}
-.container{max-width:1180px;margin:0 auto;padding:0 32px}
+  .sf-pep{
+    --midnight:#0B1026; --cobalt:#2D5BFF; --cobalt-deep:#1E44D6; --cobalt-tint:#E9EEFF;
+    --gold:#F5B83D; --mist:#F3F5FA; --line:#DEE2EC; --slate:#474E68; --quiet:#7A8199; --white:#FFFFFF;
+    --display:'Sora',system-ui,sans-serif; --text:'Public Sans',system-ui,sans-serif;
+    font-family:var(--text); color:var(--slate); font-size:17px; line-height:1.6; background:var(--white);
+    -webkit-font-smoothing:antialiased;
+  }
+  .sf-pep *,.sf-pep *::before,.sf-pep *::after{box-sizing:border-box}
+  .sf-pep h1,.sf-pep h2,.sf-pep h3,.sf-pep p,.sf-pep dl,.sf-pep dd,.sf-pep ul,.sf-pep figure{margin:0;padding:0}
+  .sf-pep a{color:var(--cobalt);text-decoration:none}
+  .sf-pep a:focus-visible{outline:3px solid var(--gold);outline-offset:3px;border-radius:4px}
+  .sf-pep .wrap{max-width:1200px;margin:0 auto;padding:0 32px}
+  .sf-pep h2{font-family:var(--display);font-weight:800;font-size:clamp(30px,3.6vw,44px);line-height:1.08;letter-spacing:-.03em;color:var(--midnight)}
+  .sf-pep h3{font-family:var(--display);font-weight:700;font-size:19px;line-height:1.25;letter-spacing:-.015em;color:var(--midnight)}
+  .sf-pep .lede{font-size:19px;line-height:1.6;max-width:32em}
+  .sf-pep img{display:block;max-width:100%;height:auto;border-radius:6px;background:var(--mist)}
 
-/* Header */
-.site-header{position:fixed;top:0;left:0;right:0;z-index:100;padding:13px 0;background:rgba(255,255,255,.92);backdrop-filter:blur(16px);border-bottom:1px solid var(--border)}
-.header-inner{display:flex;align-items:center;justify-content:space-between;gap:14px}
-.logo{display:flex;align-items:center;gap:10px;flex-shrink:0}
-.logo-mark{width:68px;height:27px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.logo-mark svg{width:100%;height:100%}
-.logo-text{font-family:'Sora',sans-serif;font-size:15px;font-weight:600;letter-spacing:-.01em;color:var(--ink)}
-.service-tabs{display:flex;align-items:center;gap:3px;background:var(--paper);border:1px solid var(--border);border-radius:999px;padding:4px}
-.service-tab{font-size:13px;font-weight:600;padding:7px 16px;border-radius:999px;color:var(--muted);transition:all .2s;white-space:nowrap;cursor:pointer}
-.service-tab:hover{color:var(--ink)}
-.tab-pay.active{background:var(--indigo-tint);color:var(--indigo-mid)}
-.tab-pr.active{background:var(--pr-tint);color:var(--pr-dark)}
-.tab-ins.active{background:var(--ins-tint);color:var(--ins)}
-.tab-dropdown{position:relative}
-.tab-dropdown-btn{display:flex;align-items:center;gap:6px;font-size:13px;font-weight:600;padding:7px 16px;border-radius:999px;color:var(--white);background:var(--indigo);border:none;cursor:pointer;font-family:'Public Sans',sans-serif;white-space:nowrap}
-.tab-dropdown-btn .arr{width:12px;height:12px;flex-shrink:0;opacity:.8}
-.tab-dropdown-menu{position:absolute;top:calc(100% + 10px);left:50%;transform:translateX(-50%) translateY(-6px);min-width:160px;background:var(--white);border:1px solid var(--border);border-radius:var(--r-md);box-shadow:var(--sh-lg);padding:6px;opacity:0;pointer-events:none;transition:opacity .15s,transform .15s;z-index:200}
-.tab-dropdown.open .tab-dropdown-menu{opacity:1;pointer-events:auto;transform:translateX(-50%) translateY(0)}
-.tab-dropdown-item{display:flex;align-items:center;gap:9px;font-size:13px;font-weight:600;color:var(--indigo-mid);padding:9px 14px;border-radius:9px;background:var(--indigo-tint)}
-.tab-dropdown-item .item-dot{width:7px;height:7px;border-radius:50%;background:var(--indigo);flex-shrink:0}
-.header-actions{display:flex;align-items:center;gap:12px;flex-shrink:0}
-.header-phone{display:none;font-size:13.5px;font-weight:500;color:var(--body-c)}
-.header-cta{display:inline-flex;align-items:center;gap:8px;background:var(--ink);color:var(--white);font-size:13px;font-weight:600;padding:10px 20px;border-radius:999px;transition:background .2s}
-.header-cta:hover{background:var(--indigo)}
-@media(min-width:900px){.header-phone{display:flex}}
-@media(max-width:680px){.service-tabs{display:none}}
-/* Mobile hamburger */
-.nav-toggle{display:none;width:40px;height:40px;align-items:center;justify-content:center;border-radius:10px;background:transparent;border:1px solid var(--border);cursor:pointer;transition:background .2s;flex-shrink:0;padding:0}
-.nav-toggle:hover{background:var(--paper)}
-.mobile-menu{display:none;position:fixed;inset:0;z-index:300;background:rgba(15,18,34,.55);backdrop-filter:blur(4px)}
-.mobile-menu.open{display:flex;align-items:flex-start;justify-content:flex-end}
-.mobile-panel{width:min(300px,88vw);height:100vh;background:var(--white);overflow-y:auto;padding:18px 22px 40px;display:flex;flex-direction:column;box-shadow:-24px 0 64px rgba(15,18,34,.14)}
-.mobile-panel-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:24px}
-.mobile-logo{display:flex;align-items:center;gap:9px;text-decoration:none}
-.mobile-logo-text{font-family:'Sora',sans-serif;font-size:14px;font-weight:600;color:var(--ink)}
-.mobile-close{width:34px;height:34px;display:flex;align-items:center;justify-content:center;border-radius:8px;border:1px solid var(--border);background:transparent;cursor:pointer;flex-shrink:0;padding:0}
-.mobile-close:hover{background:var(--paper)}
-.mobile-nav{display:flex;flex-direction:column;gap:2px;flex:1}
-.mobile-nav a{font-size:15px;font-weight:600;color:var(--ink);padding:11px 14px;border-radius:10px;transition:background .2s;display:block;text-decoration:none}
-.mobile-nav a:hover{background:var(--paper);text-decoration:none}
-.mobile-nav a.mob-active{background:var(--indigo-tint);color:var(--indigo-mid)}
-.mobile-nav .mob-sub{font-size:14px;color:var(--body-c);padding:9px 14px 9px 28px}
-.mobile-divider{height:1px;background:var(--border);margin:10px 0}
-.mobile-login-btn{display:flex;align-items:center;justify-content:center;background:var(--ink);color:var(--white);font-size:14px;font-weight:600;padding:13px 20px;border-radius:999px;text-decoration:none;margin-top:16px;transition:background .2s}
-.mobile-login-btn:hover{background:var(--indigo);text-decoration:none}
-@media(max-width:680px){.header-cta{display:none}.nav-toggle{display:flex}}
+  .sf-pep .btn{display:inline-flex;align-items:center;justify-content:center;font-family:var(--display);font-weight:600;font-size:15px;line-height:1;padding:16px 22px;border-radius:8px;border:2px solid transparent;transition:background-color .15s,border-color .15s}
+  .sf-pep .btn-primary{background:var(--cobalt);color:var(--white)}
+  .sf-pep .btn-primary:hover{background:var(--cobalt-deep)}
+  .sf-pep .btn-plain{color:var(--midnight);border-color:var(--line);background:var(--white)}
+  .sf-pep .btn-plain:hover{border-color:var(--midnight)}
+  .sf-pep .btn-gold{background:var(--gold);color:var(--midnight)}
+  .sf-pep .btn-gold:hover{background:#FFC958}
 
+  /* Hero */
+  .sf-pep .hero{padding:132px 0 88px}
+  .sf-pep .hero-grid{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:64px;align-items:center}
+  .sf-pep .hero h1{font-family:var(--display);font-weight:800;font-size:clamp(38px,4.6vw,60px);line-height:1.02;letter-spacing:-.045em;color:var(--midnight);margin-bottom:26px}
+  .sf-pep .hero .lede{margin-bottom:36px}
+  .sf-pep .hero-actions{display:flex;gap:12px;flex-wrap:wrap}
+  .sf-pep .hero-photo{position:relative}
+  .sf-pep .hero-photo img{width:100%;aspect-ratio:4/3.3;object-fit:cover;object-position:40% 50%}
+  .sf-pep .hero-photo figcaption{position:absolute;left:-32px;bottom:-28px;background:var(--midnight);color:var(--white);border-radius:6px;padding:18px 22px;max-width:300px;font-size:14.5px;line-height:1.5}
+  .sf-pep .hero-photo figcaption strong{display:block;font-family:var(--display);font-weight:700;font-size:16px;margin-bottom:2px;color:var(--gold)}
 
-/* Animations */
-@keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
-.reveal{opacity:0;transform:translateY(14px);transition:opacity .6s ease,transform .6s ease}
-.reveal.visible{opacity:1;transform:translateY(0)}
+  /* Facts */
+  .sf-pep .facts{border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .sf-pep .facts dl{display:grid;grid-template-columns:repeat(4,1fr)}
+  .sf-pep .facts div{padding:30px 28px 30px 0}
+  .sf-pep .facts div+div{padding-left:28px;border-left:1px solid var(--line)}
+  .sf-pep .facts dt{font-family:var(--display);font-weight:700;font-size:17px;color:var(--midnight);margin-bottom:4px;letter-spacing:-.01em}
+  .sf-pep .facts dd{font-size:15px;line-height:1.5}
 
-/* Buttons */
-.btn{display:inline-flex;align-items:center;gap:9px;font-size:15px;font-weight:600;padding:14px 26px;border-radius:8px;transition:all .2s;cursor:pointer}
-.btn:hover{transform:translateY(-1px)}
-.btn-indigo{background:var(--indigo);color:var(--white)}
-.btn-indigo:hover{background:var(--indigo-mid)}
-.btn-mint{background:var(--pr);color:var(--pr-deep);font-weight:700}
-.btn-mint:hover{background:#F5B83D}
-.btn-ghost{background:rgba(255,255,255,.1);color:var(--white);border:1px solid rgba(255,255,255,.22)}
-.btn-ghost:hover{background:rgba(255,255,255,.18)}
+  /* Problem */
+  .sf-pep .problem{padding:120px 0}
+  .sf-pep .split{display:grid;grid-template-columns:minmax(0,6fr) minmax(0,5fr);gap:72px;align-items:start}
+  .sf-pep .problem h2{margin-bottom:24px}
+  .sf-pep .problem p{margin-bottom:18px;max-width:34em}
+  .sf-pep .closer{margin-top:28px;padding-left:20px;border-left:3px solid var(--gold);font-family:var(--display);font-weight:600;font-size:18px;line-height:1.45;color:var(--midnight);max-width:30em}
+  .sf-pep .triggers{background:var(--mist);border-radius:6px;padding:36px 36px 28px}
+  .sf-pep .triggers h3{margin-bottom:18px}
+  .sf-pep .triggers ul{list-style:none}
+  .sf-pep .triggers li{padding:12px 0 12px 22px;border-top:1px solid var(--line);position:relative;font-size:15.5px;line-height:1.5}
+  .sf-pep .triggers li::before{content:"";position:absolute;left:0;top:21px;width:10px;height:2px;background:var(--midnight)}
 
-/* Eyebrow labels */
-.eyebrow-label{display:inline-flex;align-items:center;gap:8px;font-size:12.5px;font-weight:600;padding:5px 12px;border-radius:999px;margin-bottom:16px}
-.el-pay{color:var(--indigo-mid);background:var(--indigo-tint)}
-.el-dark{color:var(--i-soft);background:rgba(255,255,255,.09)}
-.el-warn{color:#991B1B;background:var(--warn-tint)}
+  /* Features */
+  .sf-pep .features{padding:120px 0;background:var(--mist)}
+  .sf-pep .features-head{display:grid;grid-template-columns:minmax(0,6fr) minmax(0,5fr);gap:72px;align-items:end;margin-bottom:56px}
+  .sf-pep .features-head h2{max-width:14em}
+  .sf-pep .features-body{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:64px;align-items:start}
+  .sf-pep .features-body img{width:100%;aspect-ratio:4/5;object-fit:cover;object-position:62% 50%;position:sticky;top:110px}
+  .sf-pep .feat-list{display:grid;grid-template-columns:1fr 1fr;gap:0 40px}
+  .sf-pep .feat-list div{padding:22px 0;border-top:1px solid var(--line)}
+  .sf-pep .feat-list dt{font-family:var(--display);font-weight:600;font-size:17px;color:var(--midnight);margin-bottom:6px}
+  .sf-pep .feat-list dd{font-size:15.5px;line-height:1.55}
 
-/* HERO */
-.pep-hero{padding:144px 0 100px;position:relative;overflow:hidden;background:var(--indigo-dark)}
-.pep-hero::before{content:'';position:absolute;inset:0;background:none;pointer-events:none}
-.pep-hero-inner{position:relative;z-index:1;max-width:780px}
-.pep-hero h1{font-family:'Sora',sans-serif;font-size:clamp(30px,4.5vw,54px);font-weight:700;line-height:1.1;letter-spacing:-.02em;color:var(--white);margin-bottom:20px}
-.pep-hero h1 em{font-style:normal;color:inherit}
-.pep-hero p{font-size:18px;color:var(--i-soft);line-height:1.65;max-width:560px;margin-bottom:36px}
-.hero-btns{display:flex;gap:14px;flex-wrap:wrap}
+  /* Monitoring band */
+  .sf-pep .monitor{background:var(--midnight);color:#C9CEE3;padding:112px 0}
+  .sf-pep .monitor-grid{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,6fr);gap:80px;align-items:center}
+  .sf-pep .monitor img{width:100%;aspect-ratio:4/5;object-fit:cover;object-position:50% 30%;background:var(--midnight)}
+  .sf-pep .monitor h2{color:var(--white);margin-bottom:22px}
+  .sf-pep .monitor p{max-width:32em;margin-bottom:18px}
+  .sf-pep .monitor ul{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:0 32px;margin:32px 0 40px}
+  .sf-pep .monitor li{padding:16px 0;border-top:1px solid rgba(255,255,255,.14);font-size:15px;line-height:1.5}
+  .sf-pep .monitor li strong{display:block;font-family:var(--display);font-weight:600;color:var(--white);font-size:16px;margin-bottom:2px}
 
-/* Trust bar */
-.trust-bar{padding:20px 0;background:var(--paper);border-bottom:1px solid var(--border)}
-.trust-inner{display:flex;align-items:center;gap:28px;flex-wrap:wrap;justify-content:center}
-.trust-item{display:flex;align-items:center;gap:8px;white-space:nowrap}
-.trust-item svg{color:var(--indigo);flex-shrink:0}
-.trust-item .ti-text{font-size:13px;font-weight:600;color:var(--body-c)}
+  /* Compare */
+  .sf-pep .compare{padding:120px 0}
+  .sf-pep .compare-head{max-width:40em;margin-bottom:52px}
+  .sf-pep .compare-head h2{margin-bottom:16px}
+  .sf-pep .compare-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:start}
+  .sf-pep .col{border-radius:6px;padding:36px 36px 24px}
+  .sf-pep .col h3{font-size:20px;margin-bottom:14px}
+  .sf-pep .col ul{list-style:none}
+  .sf-pep .col li{display:grid;grid-template-columns:22px 1fr;gap:10px;padding:13px 0;border-top:1px solid var(--line);font-size:15.5px;line-height:1.5}
+  .sf-pep .col-generic{background:var(--mist)}
+  .sf-pep .col-generic li{color:var(--quiet)}
+  .sf-pep .col-generic h3{color:var(--quiet)}
+  .sf-pep .col-generic .mk{color:var(--quiet);font-weight:600}
+  .sf-pep .col-starfi{background:var(--white);border:2px solid var(--midnight)}
+  .sf-pep .col-starfi li{color:var(--midnight)}
+  .sf-pep .col-starfi .mk{color:var(--cobalt);font-weight:700}
 
-/* Problem section */
-.problem-section{padding:96px 0;background:var(--white)}
-.problem-inner{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start}
-.problem-copy .kicker{font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--warn);margin-bottom:18px}
-.problem-copy h2{font-family:'Sora',sans-serif;font-size:clamp(22px,2.8vw,34px);font-weight:700;color:var(--ink);line-height:1.2;letter-spacing:-.01em;margin-bottom:18px}
-.problem-copy p{font-size:15.5px;color:var(--body-c);line-height:1.72;margin-bottom:14px}
-.problem-copy .closer{font-size:16px;font-weight:600;color:var(--ink);border-left:3px solid var(--indigo);padding:14px 18px;background:var(--indigo-tint);border-radius:0 var(--r-sm) var(--r-sm) 0;margin-top:24px;line-height:1.6}
-.risk-card{background:var(--warn-tint);border:1px solid rgba(220,38,38,.18);border-radius:var(--r-lg);padding:28px}
-.risk-card-head{font-size:12.5px;font-weight:700;color:var(--warn);letter-spacing:.03em;text-transform:uppercase;margin-bottom:18px;display:flex;align-items:center;gap:8px}
-.risk-card-head::before{content:'';width:8px;height:8px;border-radius:50%;background:var(--warn);flex-shrink:0}
-.risk-list{list-style:none;display:flex;flex-direction:column;gap:9px}
-.risk-list li{font-size:14px;color:#7F1D1D;line-height:1.55;display:flex;align-items:flex-start;gap:10px;padding:10px 12px;background:rgba(220,38,38,.07);border-radius:9px;border-left:2px solid rgba(220,38,38,.3)}
-.risk-list li::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--warn);flex-shrink:0;margin-top:5px}
+  /* Checklist */
+  .sf-pep .fit{padding:120px 0;border-top:1px solid var(--line)}
+  .sf-pep .fit h2{margin-bottom:22px}
+  .sf-pep .fit p{max-width:30em;margin-bottom:18px}
+  .sf-pep .fit .note{font-family:var(--display);font-weight:600;color:var(--midnight);margin-bottom:28px}
+  .sf-pep .fit ul{list-style:none}
+  .sf-pep .fit li{display:grid;grid-template-columns:22px 1fr;gap:10px;padding:14px 0;border-top:1px solid var(--line);font-size:16px;line-height:1.5}
+  .sf-pep .fit li:last-child{border-bottom:1px solid var(--line)}
+  .sf-pep .fit .mk{color:var(--cobalt);font-weight:700}
+  .sf-pep .fit-head{position:sticky;top:110px}
 
-/* Features grid */
-.features-section{padding:96px 0;background:var(--paper)}
-.features-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
-.feat-card{background:var(--white);border:1px solid var(--border);border-radius:var(--r-lg);padding:26px 22px;transition:box-shadow .2s,transform .2s;border-top:3px solid transparent}
-.feat-card:hover{box-shadow:var(--sh-md);transform:translateY(-3px);border-top-color:var(--indigo)}
-.feat-icon{width:40px;height:40px;border-radius:11px;background:var(--indigo-tint);color:var(--indigo-mid);display:flex;align-items:center;justify-content:center;margin-bottom:14px}
-.feat-card h3{font-family:'Sora',sans-serif;font-size:15px;font-weight:600;color:var(--ink);margin-bottom:8px;line-height:1.3}
-.feat-card p{font-size:13.5px;color:var(--body-c);line-height:1.6}
+  /* Closing */
+  .sf-pep .closing{background:var(--midnight);padding:104px 0;color:#C9CEE3}
+  .sf-pep .closing-grid{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,4fr);gap:64px;align-items:end}
+  .sf-pep .closing h2{color:var(--white);font-size:clamp(32px,4.2vw,54px);margin-bottom:20px}
+  .sf-pep .closing p{max-width:34em}
+  .sf-pep .closing-actions{display:flex;flex-direction:column;align-items:flex-start;gap:18px}
+  .sf-pep .closing-actions a.tel{font-family:var(--display);font-weight:700;font-size:22px;color:var(--white)}
+  .sf-pep .closing-actions small{font-size:14px;color:#8C93B0}
 
-/* Deep band */
-.deep-band{padding:88px 0;position:relative;overflow:hidden;background:var(--indigo-dark)}
-.deep-band::before{content:'';position:absolute;inset:0;background:none;pointer-events:none}
-.deep-inner{display:grid;grid-template-columns:1.1fr .9fr;gap:64px;align-items:center;position:relative;z-index:1}
-.deep-left p{font-size:17px;color:var(--i-soft);line-height:1.7;margin:18px 0 30px;max-width:430px}
-.deep-stats{display:flex;flex-direction:column;gap:14px}
-.deep-stat{padding:20px 22px;border-radius:var(--r-md);background:rgba(45,91,255,.12);border:1px solid rgba(45,91,255,.28)}
-.deep-stat .n{font-family:'Sora',sans-serif;font-size:26px;font-weight:700;color:rgba(185,182,255,1);line-height:1;margin-bottom:5px}
-.deep-stat .l{font-size:13px;color:rgba(255,255,255,.52)}
-
-/* Comparison */
-.compare-section{padding:96px 0;background:var(--white)}
-.compare-head{text-align:center;margin-bottom:48px}
-.compare-head h2{font-family:'Sora',sans-serif;font-size:clamp(24px,3vw,38px);font-weight:700;line-height:1.14;letter-spacing:-.015em;color:var(--ink);margin-bottom:12px}
-.compare-head p{font-size:16.5px;color:var(--body-c);line-height:1.65;max-width:520px;margin:0 auto}
-.compare-table{display:grid;grid-template-columns:1fr 1fr;gap:16px;max-width:860px;margin:0 auto}
-.compare-col{border-radius:var(--r-lg);overflow:hidden;box-shadow:var(--sh-sm)}
-.compare-col-head{padding:22px 26px;font-family:'Sora',sans-serif;font-size:16px;font-weight:700}
-.generic-head{background:#F1F2F6;color:#6B7280}
-.ai-head{background:var(--indigo);color:var(--white)}
-.generic-body{background:#F9FAFB;border:1px solid #E5E7EB;border-top:none;border-radius:0 0 var(--r-lg) var(--r-lg)}
-.ai-body{background:var(--indigo-tint);border:1px solid rgba(45,91,255,.2);border-top:none;border-radius:0 0 var(--r-lg) var(--r-lg)}
-.compare-item{padding:12px 20px;font-size:14px;line-height:1.5;display:flex;align-items:flex-start;gap:10px;border-bottom:1px solid rgba(0,0,0,.05)}
-.compare-item:last-child{border-bottom:none}
-.generic-item{color:#6B7280}
-.ai-item{color:var(--indigo-dark);font-weight:500}
-.generic-icon{font-size:13px;color:#D1D5DB;flex-shrink:0;margin-top:1px;line-height:1.5}
-.ai-icon{font-size:13px;font-weight:700;color:var(--pr-dark);flex-shrink:0;margin-top:1px;line-height:1.5}
-
-/* Checklist section */
-.checklist-section{padding:96px 0;background:var(--paper)}
-.checklist-inner{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start}
-.checklist-copy h2{font-family:'Sora',sans-serif;font-size:clamp(22px,2.8vw,34px);font-weight:700;color:var(--ink);line-height:1.2;letter-spacing:-.01em;margin-bottom:16px}
-.checklist-copy p{font-size:15.5px;color:var(--body-c);line-height:1.7;margin-bottom:14px}
-.checklist-copy p.bold-note{font-weight:600;color:var(--ink)}
-.check-list{list-style:none;display:flex;flex-direction:column;gap:8px;margin-top:8px}
-.check-list li{display:flex;align-items:flex-start;gap:11px;font-size:14.5px;color:var(--body-c);line-height:1.5;padding:11px 14px;background:var(--white);border:1px solid var(--border);border-radius:var(--r-sm)}
-.check-list li .ck{width:18px;height:18px;border-radius:6px;background:var(--pr-tint);color:var(--pr-dark);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;font-size:11px;font-weight:700}
-
-/* Final CTA */
-.final-cta{padding:110px 0;background:var(--indigo-dark);position:relative;overflow:hidden}
-.final-cta::before{content:'';position:absolute;inset:0;background:none;pointer-events:none}
-.final-cta-inner{position:relative;z-index:2;text-align:center;max-width:660px;margin:0 auto}
-.final-cta h2{font-family:'Sora',sans-serif;font-size:clamp(24px,3.5vw,42px);font-weight:700;color:var(--white);line-height:1.14;letter-spacing:-.015em;margin-bottom:18px}
-.final-cta p{font-size:17px;color:var(--i-soft);line-height:1.65;margin-bottom:36px}
-.cta-phone-btn{display:inline-flex;align-items:center;gap:14px;background:var(--pr);color:var(--pr-deep);font-family:'Sora',sans-serif;font-size:19px;font-weight:700;padding:19px 38px;border-radius:8px;transition:transform .15s,background .2s;box-shadow:0 14px 32px rgba(45,91,255,.26)}
-.cta-phone-btn:hover{transform:translateY(-1px);background:#F5B83D}
-.cta-fineprint{font-size:13px;color:var(--i-muted);margin-top:18px}
-
-/* Footer */
-footer{background:var(--ink);padding:52px 0 28px}
-.footer-top{display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:44px;margin-bottom:36px}
-.footer-brand .logo-text-w{font-family:'Sora',sans-serif;font-size:14.5px;font-weight:600;color:var(--white)}
-.footer-brand p{font-size:13px;color:rgba(255,255,255,.35);line-height:1.7;max-width:240px;margin-top:12px}
-.footer-col h5{font-family:'Sora',sans-serif;font-size:12px;font-weight:600;letter-spacing:.02em;color:rgba(245,184,61,.85);margin-bottom:14px}
-.footer-col ul{list-style:none;display:flex;flex-direction:column;gap:8px}
-.footer-col ul li a{font-size:13px;color:rgba(255,255,255,.34);transition:color .2s}
-.footer-col ul li a:hover{color:rgba(245,184,61,1)}
-.footer-bottom{border-top:1px solid rgba(255,255,255,.08);padding-top:20px;display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap}
-.footer-bottom p{font-size:12px;color:rgba(255,255,255,.26)}
-.footer-links{display:flex;gap:16px}
-.footer-links a{font-size:12px;color:rgba(255,255,255,.26);transition:color .2s}
-.footer-links a:hover{color:rgba(255,255,255,.7)}
-
-/* Responsive */
-@media(max-width:960px){
-  .problem-inner,.deep-inner,.checklist-inner{grid-template-columns:1fr}
-  .features-grid{grid-template-columns:repeat(2,1fr)}
-  .compare-table{grid-template-columns:1fr;gap:24px}
-  .footer-top{grid-template-columns:1fr 1fr}
-}
-@media(max-width:640px){
-  .container{padding:0 20px}
-  .pep-hero{padding:128px 0 72px}
-  .features-grid{grid-template-columns:1fr}
-  .hero-btns{flex-direction:column;align-items:flex-start}
-  .footer-top{grid-template-columns:1fr;gap:28px}
-  .footer-bottom{flex-direction:column;align-items:flex-start}
-}
+  @media (max-width:1060px){
+    .sf-pep .hero-grid,.sf-pep .split,.sf-pep .features-head,.sf-pep .features-body,.sf-pep .monitor-grid,.sf-pep .closing-grid{grid-template-columns:1fr;gap:48px}
+    .sf-pep .hero-photo{max-width:720px}
+    .sf-pep .hero-photo figcaption{left:-12px}
+    .sf-pep .features-body img{position:static;aspect-ratio:16/10}
+    .sf-pep .monitor img{aspect-ratio:16/11;max-width:640px}
+    .sf-pep .fit-head{position:static}
+    .sf-pep .facts dl{grid-template-columns:1fr 1fr}
+    .sf-pep .facts div:nth-child(3){padding-left:0;border-left:0}
+    .sf-pep .facts div:nth-child(n+3){border-top:1px solid var(--line)}
+  }
+  @media (max-width:760px){
+    .sf-pep{font-size:16px}
+    .sf-pep .wrap{padding:0 20px}
+    .sf-pep .hero{padding:104px 0 72px}
+    .sf-pep .hero-photo figcaption{position:relative;left:auto;bottom:auto;margin:-36px 14px 0;max-width:none}
+    .sf-pep .problem,.sf-pep .features,.sf-pep .monitor,.sf-pep .compare,.sf-pep .fit,.sf-pep .closing{padding:80px 0}
+    .sf-pep .feat-list,.sf-pep .monitor ul,.sf-pep .compare-grid{grid-template-columns:1fr}
+    .sf-pep .triggers,.sf-pep .col{padding:28px 22px 18px}
+    .sf-pep .facts dl{grid-template-columns:1fr}
+    .sf-pep .facts div,.sf-pep .facts div+div{padding:20px 0;border-left:0}
+    .sf-pep .facts div+div{border-top:1px solid var(--line)}
+  }
 </style>
-
-
 
 <!--ai:header-->
 
+<div class="sf-pep">
+
 <!-- HERO -->
-<section class="pep-hero">
-  <div class="container">
-    <div class="pep-hero-inner">
-      <div class="eyebrow-label el-dark" style="">RUO Peptide eCommerce</div>
-      <h1>Payment Processing Built for<br><em>RUO Peptide eCommerce</em></h1>
-      <p>Your business isn't ordinary — your payment processing shouldn't be either. Specialized underwriting, scalable infrastructure, and a processor that understands your industry before your first transaction.</p>
-      <div class="hero-btns">
-        <a href="/contact-us" class="btn btn-mint">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-          Schedule Your Processing Review
-        </a>
-        <a href="#compare" class="btn btn-ghost">See How We Compare</a>
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <h1>Payment processing built for RUO peptide eCommerce</h1>
+      <p class="lede">Specialized underwriting, processing sized to your growth, and a team that understands your products before your first transaction.</p>
+      <div class="hero-actions">
+        <a href="/contact-us" class="btn btn-primary">Schedule a processing review</a>
+        <a href="#compare" class="btn btn-plain">See how we compare</a>
+      </div>
+    </div>
+    <figure class="hero-photo">
+      <img src="https://mylaunchpartner.github.io/starfi-pay/assets/ruo-vials-lab.jpg" alt="A gloved hand arranges sealed research vials on a lab bench" width="1800" height="1200">
+      <figcaption><strong>Reviewed by a person</strong>Every RUO application is underwritten individually, not rejected by an automated category filter.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- FACTS -->
+<section class="facts" aria-label="What RUO merchants get">
+  <div class="wrap">
+    <dl>
+      <div><dt>RUO underwriting</dt><dd>Underwriters who know peptide merchants.</dd></div>
+      <div><dt>RUO-aware risk models</dt><dd>Fewer false flags as you grow.</dd></div>
+      <div><dt>Shopify compatible</dt><dd>Works with Shopify and major carts.</dd></div>
+      <div><dt>24/7 U.S.-based support</dt><dd>Plus a dedicated account manager.</dd></div>
+    </dl>
+  </div>
+</section>
+
+<!-- PROBLEM -->
+<section class="problem">
+  <div class="wrap split">
+    <div>
+      <h2>Generic processors weren’t built for your business</h2>
+      <p>Most processors rely on automated underwriting, one-size-fits-all risk models and support teams that have never seen an RUO peptide product description.</p>
+      <p>That mismatch creates risk, not just friction. The RUO merchants who last aren’t the ones who found the cheapest processor. They found one that understood their business model from day one.</p>
+      <p class="closer">When your processor understands your industry, your account is built to last, not flagged at the first sign of growth.</p>
+    </div>
+    <div class="triggers">
+      <h3>What gets RUO accounts flagged elsewhere</h3>
+      <ul>
+        <li>Product names or descriptions tripping automated risk systems</li>
+        <li>High average order values triggering manual review holds</li>
+        <li>Fast sales growth causing unexpected account reviews</li>
+        <li>Seasonal spikes past undisclosed velocity limits</li>
+        <li>Chargebacks leading to rolling reserves or termination</li>
+        <li>New product launches raising chargeback risk</li>
+        <li>Customer concentration in one region flagging fraud models</li>
+        <li>A growing customer list raising “unknown merchant” flags at the bank</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="features" id="how-it-works">
+  <div class="wrap">
+    <div class="features-head">
+      <h2>Processing set up around how you sell</h2>
+      <p>Every part of your payment setup is planned around RUO peptide eCommerce, from your first order to your thousandth.</p>
+    </div>
+    <div class="features-body">
+      <img src="https://mylaunchpartner.github.io/starfi-pay/assets/ruo-ecommerce-fulfillment.jpg" alt="An order is scanned and packed next to a laptop showing an online store dashboard" width="1400" height="933" loading="lazy">
+      <dl class="feat-list">
+        <div><dt>Specialized underwriting</dt><dd>Each business is evaluated on its own. No automatic rejections based on product category alone.</dd></div>
+        <div><dt>Built to scale</dt><dd>Limits planned around your expected volume, so growth doesn’t put your account at risk.</dd></div>
+        <div><dt>Fast funding</dt><dd>Competitive funding timelines that keep cash flow healthy.</dd></div>
+        <div><dt>Fraud prevention</dt><dd>Models tuned to RUO order patterns that stop fraud without blocking real customers.</dd></div>
+        <div><dt>Chargeback management</dt><dd>Ongoing monitoring and expert representment, so one spike doesn’t threaten your account.</dd></div>
+        <div><dt>Shopify and eCommerce</dt><dd>Integrates with Shopify and major platforms, with checkout that stays fast.</dd></div>
+        <div><dt>Transparent pricing</dt><dd>Interchange-plus with no hidden fees. You see what you pay and why, every month.</dd></div>
+        <div><dt>Real support</dt><dd>A dedicated account manager and 24/7 U.S.-based support, not a ticket queue.</dd></div>
+      </dl>
+    </div>
+  </div>
+</section>
+
+<!-- MONITORING -->
+<section class="monitor">
+  <div class="wrap monitor-grid">
+    <img src="https://mylaunchpartner.github.io/starfi-pay/assets/ruo-researcher-pipette.jpg" alt="A researcher uses a pipette to fill test tubes in a lab" width="1100" height="1650" loading="lazy">
+    <div>
+      <h2>We watch your account before there’s a problem</h2>
+      <p>Most merchants don’t hear from their processor until something is wrong. We monitor volume patterns, chargeback ratios and fraud indicators continuously, and we reach out first when something needs attention.</p>
+      <p>That’s the difference between a processor and a payment partner.</p>
+      <ul>
+        <li><strong>Proactive monitoring</strong>We spot issues before they become holds.</li>
+        <li><strong>A dedicated manager</strong>Someone who knows your business.</li>
+        <li><strong>24/7/365 support</strong>U.S.-based people with real answers.</li>
+        <li><strong>Compliance focus</strong>Processing built for specialty eCommerce.</li>
+      </ul>
+      <a href="/contact-us" class="btn btn-gold">Talk to a specialist</a>
+    </div>
+  </div>
+</section>
+
+<!-- COMPARE -->
+<section class="compare" id="compare">
+  <div class="wrap">
+    <div class="compare-head">
+      <h2>Generic processor or StarFi Pay</h2>
+      <p class="lede">The difference is whether your processor built its system around businesses like yours, or expects you to fit into theirs.</p>
+    </div>
+    <div class="compare-grid">
+      <div class="col col-generic">
+        <h3>Generic payment platform</h3>
+        <ul>
+          <li><span class="mk" aria-hidden="true">✕</span>Instant or automated approval</li>
+          <li><span class="mk" aria-hidden="true">✕</span>One-size-fits-all risk models</li>
+          <li><span class="mk" aria-hidden="true">✕</span>Little understanding of RUO peptide businesses</li>
+          <li><span class="mk" aria-hidden="true">✕</span>Growth can trigger surprise account reviews</li>
+          <li><span class="mk" aria-hidden="true">✕</span>Automated fraud controls with little guidance</li>
+          <li><span class="mk" aria-hidden="true">✕</span>Ticket-based support</li>
+          <li><span class="mk" aria-hidden="true">✕</span>Reactive account management</li>
+          <li><span class="mk" aria-hidden="true">✕</span>Generic eCommerce processing</li>
+        </ul>
+      </div>
+      <div class="col col-starfi">
+        <h3>StarFi Pay</h3>
+        <ul>
+          <li><span class="mk" aria-hidden="true">✓</span>Specialized RUO peptide underwriting</li>
+          <li><span class="mk" aria-hidden="true">✓</span>Individual business evaluation</li>
+          <li><span class="mk" aria-hidden="true">✓</span>Processing built around your volume and growth</li>
+          <li><span class="mk" aria-hidden="true">✓</span>Fraud prevention tuned to your business</li>
+          <li><span class="mk" aria-hidden="true">✓</span>Chargeback and dispute management</li>
+          <li><span class="mk" aria-hidden="true">✓</span>Fast funding and transparent pricing</li>
+          <li><span class="mk" aria-hidden="true">✓</span>Shopify-compatible eCommerce setup</li>
+          <li><span class="mk" aria-hidden="true">✓</span>Dedicated account manager and 24/7 U.S. support</li>
+          <li><span class="mk" aria-hidden="true">✓</span>Proactive account monitoring</li>
+          <li><span class="mk" aria-hidden="true">✓</span>Compliance-focused processing for specialty merchants</li>
+        </ul>
       </div>
     </div>
   </div>
 </section>
 
-<!-- TRUST BAR -->
-<div class="trust-bar">
-  <div class="container trust-inner">
-    <div class="trust-item">
-      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-      <span class="ti-text">Specialized RUO Underwriting</span>
+<!-- FIT -->
+<section class="fit">
+  <div class="wrap split">
+    <div class="fit-head">
+      <h2>Who we work best with</h2>
+      <p>Merchants who run their business the right way and want a processor built for long-term growth, not just a fast setup.</p>
+      <p class="note">If this describes your business, we want to talk.</p>
+      <a href="/contact-us" class="btn btn-primary">Schedule your review</a>
     </div>
-    <div class="trust-item">
-      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
-      <span class="ti-text">RUO-Aware Risk Models</span>
+    <ul>
+      <li><span class="mk" aria-hidden="true">✓</span>You sell Research Use Only peptides to researchers, labs or informed buyers</li>
+      <li><span class="mk" aria-hidden="true">✓</span>Your products carry proper RUO labeling and compliant descriptions</li>
+      <li><span class="mk" aria-hidden="true">✓</span>You run an established or growing store on Shopify or a similar platform</li>
+      <li><span class="mk" aria-hidden="true">✓</span>You have a clean processing history, or a clear explanation of past issues</li>
+      <li><span class="mk" aria-hidden="true">✓</span>You’re open about sourcing, ingredients and your business model</li>
+      <li><span class="mk" aria-hidden="true">✓</span>You want a long-term processing relationship, not just a quick approval</li>
+      <li><span class="mk" aria-hidden="true">✓</span>Your financials support your monthly processing volume</li>
+      <li><span class="mk" aria-hidden="true">✓</span>You stay on top of compliance and work with your processor</li>
+      <li><span class="mk" aria-hidden="true">✓</span>You know specialized processing needs a specialized application</li>
+    </ul>
+  </div>
+</section>
+
+<!-- CLOSING -->
+<section class="closing">
+  <div class="wrap closing-grid">
+    <div>
+      <h2>Talk to a specialist before your account is at risk</h2>
+      <p>Most RUO merchants don’t think about processing until they have to, and by then the damage is done. A review now costs nothing and carries no commitment.</p>
     </div>
-    <div class="trust-item">
-      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
-      <span class="ti-text">Shopify Compatible</span>
-    </div>
-    <div class="trust-item">
-      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-      <span class="ti-text">Fast Funding</span>
-    </div>
-    <div class="trust-item">
-      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
-      <span class="ti-text">24/7 U.S.-Based Support</span>
-    </div>
-    <div class="trust-item">
-      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
-      <span class="ti-text">Transparent Pricing</span>
+    <div class="closing-actions">
+      <a href="/contact-us" class="btn btn-gold">Schedule a processing review</a>
+      <a href="tel:+16199956484" class="tel">(619) 995-6484</a>
+      <small>24/7 U.S.-based support</small>
     </div>
   </div>
+</section>
+
 </div>
 
-<!-- PROBLEM SECTION -->
-<section class="problem-section">
-  <div class="container">
-    <div class="problem-inner">
-      <div class="problem-copy reveal">
-        <div class="kicker">The Reality for RUO Peptide Merchants</div>
-        <h2>Stop Building Your Business on a Processor That Doesn't Understand It</h2>
-        <p>Most payment processors weren't built for specialty eCommerce. They rely on automated underwriting, one-size-fits-all risk models, and customer service teams that have never seen a RUO peptide product description before.</p>
-        <p>That mismatch doesn't just create friction — it creates risk. The most successful RUO peptide merchants aren't the ones who found the cheapest processor. They're the ones who found a processor that understood their business model from day one.</p>
-        <div class="closer">When your processor understands your industry, your account is built to last — not flagged at the first sign of growth.</div>
-      </div>
-      <div class="risk-card reveal">
-        <div class="risk-card-head">Common triggers with generic processors</div>
-        <ul class="risk-list">
-          <li>Unusual product names or descriptions flagging automated risk systems</li>
-          <li>High average order values triggering manual review holds</li>
-          <li>Rapid sales growth causing unexpected account reviews</li>
-          <li>Seasonal spikes exceeding undisclosed velocity limits</li>
-          <li>Chargebacks leading to rolling reserve requirements or termination</li>
-          <li>New product launches increasing chargeback risk unexpectedly</li>
-          <li>Geographic customer concentration flagging fraud models</li>
-          <li>Growing customer list raising "unknown merchant" flags in bank systems</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- FEATURES GRID -->
-<section class="features-section" id="how-it-works">
-  <div class="container">
-    <div class="section-head" style="margin-bottom:44px">
-      <div class="eyebrow-label el-pay">What You Get</div>
-      <h2 style="font-family:'Sora',sans-serif;font-size:clamp(24px,3vw,36px);font-weight:700;line-height:1.14;letter-spacing:-.015em;color:var(--ink);margin-bottom:12px">Processing Infrastructure Built for Your Business</h2>
-      <p style="font-size:16px;color:var(--body-c);line-height:1.7;max-width:540px">Every component of your payment stack is designed around the specific needs of RUO peptide eCommerce — from your first transaction to your thousandth.</p>
-    </div>
-    <div class="features-grid">
-      <div class="feat-card reveal">
-        <div class="feat-icon">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-        </div>
-        <h3>Specialized Underwriting</h3>
-        <p>Individual business evaluation by underwriters who know RUO peptide merchants — no automated rejections based on product category alone.</p>
-      </div>
-      <div class="feat-card reveal">
-        <div class="feat-icon">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
-        </div>
-        <h3>Built to Scale</h3>
-        <p>Processing infrastructure engineered around your expected volume and growth trajectory — so scaling your business never puts your account at risk.</p>
-      </div>
-      <div class="feat-card reveal">
-        <div class="feat-icon">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
-        </div>
-        <h3>Fast Funding</h3>
-        <p>Competitive funding timelines that keep your cash flow healthy. No waiting weeks to access revenue you've already earned.</p>
-      </div>
-      <div class="feat-card reveal">
-        <div class="feat-icon">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
-        </div>
-        <h3>Fraud Prevention</h3>
-        <p>Advanced fraud detection models tuned for RUO peptide order patterns — protecting your revenue without blocking legitimate customers.</p>
-      </div>
-      <div class="feat-card reveal">
-        <div class="feat-icon">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
-        </div>
-        <h3>Chargeback Management</h3>
-        <p>Dedicated dispute management with proactive monitoring and expert representment — so one chargeback spike doesn't threaten your account.</p>
-      </div>
-      <div class="feat-card reveal">
-        <div class="feat-icon">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/></svg>
-        </div>
-        <h3>eCommerce &amp; Shopify Ready</h3>
-        <p>Seamless integration with Shopify and major eCommerce platforms. Real-time payment processing that keeps checkout conversion high.</p>
-      </div>
-      <div class="feat-card reveal">
-        <div class="feat-icon">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
-        </div>
-        <h3>Transparent Pricing</h3>
-        <p>Clear, predictable interchange-plus pricing with no hidden fees. Know exactly what you're paying and why — every statement, every month.</p>
-      </div>
-      <div class="feat-card reveal">
-        <div class="feat-icon">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
-        </div>
-        <h3>Real People, Real Support</h3>
-        <p>Dedicated account managers and 24/7 U.S.-based support from a team that knows your business — not a ticket queue that doesn't know your industry.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- DEEP SECTION: Proactive Management -->
-<section class="deep-band">
-  <div class="container">
-    <div class="deep-inner">
-      <div class="deep-left">
-        <div class="eyebrow-label el-dark">Proactive Account Management</div>
-        <h2 style="font-family:'Sora',sans-serif;font-size:clamp(22px,2.8vw,34px);font-weight:700;color:var(--white);line-height:1.18;letter-spacing:-.015em">Your processor should be monitoring your account before there's a problem</h2>
-        <p>Most merchants don't hear from their processor until something is wrong. We monitor volume patterns, chargeback ratios, and fraud indicators on an ongoing basis — and we reach out proactively if we see something that needs attention.</p>
-        <p style="font-size:17px;color:var(--i-soft);line-height:1.7;margin:0 0 30px;max-width:430px">That's the difference between a processor and a payment partner.</p>
-        <a href="/contact-us" class="btn btn-mint">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-          Talk to a Specialist
-        </a>
-      </div>
-      <div class="deep-stats">
-        <div class="deep-stat">
-          <div class="n">Proactive</div>
-          <div class="l">Account monitoring — not reactive support</div>
-        </div>
-        <div class="deep-stat">
-          <div class="n">Dedicated</div>
-          <div class="l">Account manager who knows your business</div>
-        </div>
-        <div class="deep-stat">
-          <div class="n">24/7/365</div>
-          <div class="l">U.S.-based support — real people, real answers</div>
-        </div>
-        <div class="deep-stat">
-          <div class="n">Compliance</div>
-          <div class="l">Focused processing for specialty eCommerce</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- COMPARISON TABLE -->
-<section class="compare-section" id="compare">
-  <div class="container">
-    <div class="compare-head reveal">
-      <div class="eyebrow-label el-pay" style="margin:0 auto 16px">Side by Side</div>
-      <h2>Generic Processor vs. StarFi Pay</h2>
-      <p>The difference isn't just features. It's whether your processor built their system around businesses like yours — or expects you to fit into theirs.</p>
-    </div>
-    <div class="compare-table reveal">
-      <div class="compare-col">
-        <div class="compare-col-head generic-head">Generic Payment Platform</div>
-        <div class="generic-body">
-          <div class="compare-item generic-item"><span class="generic-icon">✕</span>Instant or automated approval</div>
-          <div class="compare-item generic-item"><span class="generic-icon">✕</span>One-size-fits-all risk models</div>
-          <div class="compare-item generic-item"><span class="generic-icon">✕</span>Limited understanding of RUO peptide businesses</div>
-          <div class="compare-item generic-item"><span class="generic-icon">✕</span>Growth can trigger unexpected account reviews</div>
-          <div class="compare-item generic-item"><span class="generic-icon">✕</span>Automated fraud controls with limited guidance</div>
-          <div class="compare-item generic-item"><span class="generic-icon">✕</span>Ticket-based customer support</div>
-          <div class="compare-item generic-item"><span class="generic-icon">✕</span>Reactive account management</div>
-          <div class="compare-item generic-item"><span class="generic-icon">✕</span>Generic eCommerce processing</div>
-        </div>
-      </div>
-      <div class="compare-col">
-        <div class="compare-col-head ai-head">StarFi Pay</div>
-        <div class="ai-body">
-          <div class="compare-item ai-item"><span class="ai-icon">✓</span>Specialized RUO peptide underwriting</div>
-          <div class="compare-item ai-item"><span class="ai-icon">✓</span>Individual business evaluation</div>
-          <div class="compare-item ai-item"><span class="ai-icon">✓</span>Processing built around your volume and growth</div>
-          <div class="compare-item ai-item"><span class="ai-icon">✓</span>Advanced fraud prevention tuned to your business</div>
-          <div class="compare-item ai-item"><span class="ai-icon">✓</span>Chargeback and dispute management</div>
-          <div class="compare-item ai-item"><span class="ai-icon">✓</span>Fast funding and transparent pricing</div>
-          <div class="compare-item ai-item"><span class="ai-icon">✓</span>Shopify-compatible eCommerce solutions</div>
-          <div class="compare-item ai-item"><span class="ai-icon">✓</span>Dedicated account manager + 24/7 U.S. support</div>
-          <div class="compare-item ai-item"><span class="ai-icon">✓</span>Proactive account monitoring</div>
-          <div class="compare-item ai-item"><span class="ai-icon">✓</span>Compliance-focused processing for specialty merchants</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- STRONG MERCHANT CHECKLIST -->
-<section class="checklist-section">
-  <div class="container">
-    <div class="checklist-inner">
-      <div class="checklist-copy reveal">
-        <div class="eyebrow-label el-pay">Is This You?</div>
-        <h2>What a Strong RUO Peptide Merchant Looks Like</h2>
-        <p>We work best with merchants who are operating their business the right way — and want a processor that's built to support long-term growth, not just get them set up fast.</p>
-        <p class="bold-note">If this describes your business, we want to talk.</p>
-        <div style="margin-top:28px">
-          <a href="/contact-us" class="btn btn-indigo">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-            Schedule Your Review
-          </a>
-        </div>
-      </div>
-      <div class="reveal">
-        <ul class="check-list">
-          <li><span class="ck">✓</span>Selling Research Use Only peptides to researchers, labs, or informed consumers</li>
-          <li><span class="ck">✓</span>Proper RUO labeling and compliant product descriptions</li>
-          <li><span class="ck">✓</span>Established or growing eCommerce operation on Shopify or similar platform</li>
-          <li><span class="ck">✓</span>Clean processing history or a clear explanation of past issues</li>
-          <li><span class="ck">✓</span>Transparent about product sourcing, ingredients, and business model</li>
-          <li><span class="ck">✓</span>Looking for a long-term processing relationship, not just a quick approval</li>
-          <li><span class="ck">✓</span>Business financials that support your monthly processing volume</li>
-          <li><span class="ck">✓</span>Proactive about compliance and willing to work with your processor</li>
-          <li><span class="ck">✓</span>Understands that specialized processing requires a specialized application</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- FINAL CTA -->
-<section class="final-cta">
-  <div class="container">
-    <div class="final-cta-inner">
-      <div class="eyebrow-label el-dark" style="margin:0 auto 24px">Ready to Get Started?</div>
-      <h2>Don't Let Your Payment Processor Become Your Biggest Business Risk</h2>
-      <p>Most RUO peptide merchants don't think about payment processing until they have to. By then, the damage is done. The right time to talk to a specialist is before your account is at risk — not after.</p>
-      <a href="/contact-us" class="cta-phone-btn">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-        Contact Us
-      </a>
-      <div class="cta-fineprint">Speak with a specialist today — no commitment required</div>
-    </div>
-  </div>
-</section>
-
 <!--ai:footer-->
-
-<script>
-window.addEventListener('load', function() {
-  // Scroll reveal
-  var obs = new IntersectionObserver(function(entries) {
-    entries.forEach(function(e) {
-      if (e.isIntersecting) {
-        setTimeout(function() { e.target.classList.add('visible'); }, 60);
-        obs.unobserve(e.target);
-      }
-    });
-  }, { threshold: 0.08, rootMargin: '0px 0px -36px 0px' });
-  document.querySelectorAll('.reveal').forEach(function(el) { obs.observe(el); });
-
-  // Specialty Processing dropdown
-  var dd = document.getElementById('specDropdown');
-  var btn = document.getElementById('specDropdownBtn');
-  if (dd && btn) {
-    btn.addEventListener('click', function(e) {
-      e.stopPropagation();
-      var isOpen = dd.classList.toggle('open');
-      btn.setAttribute('aria-expanded', isOpen);
-    });
-    document.addEventListener('click', function() {
-      dd.classList.remove('open');
-      btn.setAttribute('aria-expanded', 'false');
-    });
-    dd.addEventListener('click', function(e) { e.stopPropagation(); });
-  }
-
-  // Hamburger menu
-  var navTog = document.getElementById('navToggle');
-  var mobMenu = document.getElementById('mobileMenu');
-  var mobClose = document.getElementById('mobileClose');
-  if (navTog && mobMenu) {
-    navTog.addEventListener('click', function() {
-      mobMenu.classList.add('open');
-      navTog.setAttribute('aria-expanded', 'true');
-      document.body.style.overflow = 'hidden';
-    });
-    function closeNav() {
-      mobMenu.classList.remove('open');
-      navTog.setAttribute('aria-expanded', 'false');
-      document.body.style.overflow = '';
-    }
-    if (mobClose) mobClose.addEventListener('click', closeNav);
-    mobMenu.addEventListener('click', function(e) { if (e.target === mobMenu) closeNav(); });
-    mobMenu.querySelectorAll('a').forEach(function(a) { a.addEventListener('click', closeNav); });
-  }
-
-  // Smooth scroll for internal anchors
-  document.querySelectorAll('a[href^="#"]').forEach(function(link) {
-    link.addEventListener('click', function(e) {
-      var id = link.getAttribute('href').slice(1);
-      var el = document.getElementById(id);
-      if (!el) return;
-      e.preventDefault();
-      var top = el.getBoundingClientRect().top + window.pageYOffset - 72;
-      window.scrollTo({ top: Math.max(0, top), behavior: 'instant' });
-    });
-  });
-});
-</script>
