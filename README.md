@@ -13,6 +13,8 @@ Each page's Custom Code element contains only:
 <script src="https://mylaunchpartner.github.io/starfi-pay/loader.js"></script>
 ```
 
+If `data-page` is missing, `core.js` picks the page from the URL path (`/contact-us` → `contact`, and so on), so a cloned GHL page still loads the right content.
+
 `loader.js` is a small stub that loads `core.js` with a cache key that changes every minute. `core.js` fetches `pages/<data-page>.html` and the shared partials, puts them on the page, and runs the page's scripts (nav, savings calculator, FAQ, the GHL form and the GHL calendar). It also strips GHL's section padding so pages run edge to edge.
 
 The `ai-` prefixes on ids and classes (`ai-root`, `ai-shell`, `ai-nap`) are internal names carried over from the template. Leave them as they are; renaming them breaks the loader.
@@ -22,7 +24,7 @@ The `ai-` prefixes on ids and classes (`ai-root`, `ai-shell`, `ai-nap`) are inte
 | Live URL | `data-page` | File |
 |---|---|---|
 | `/` | `home` | `pages/home.html` |
-| `/contact-us` | `contact` | `pages/contact.html` (GHL form `[[GHL_CONTACT_FORM_ID]]`) |
+| `/contact-us` | `contact` | `pages/contact.html` (GHL form `l9dHbUA0Lhn3K0IDt1Gz`, "Contact Us Form - General") |
 | `/message-received` | `message-received` | `pages/message-received.html` (GHL calendar `[[GHL_BOOKING_CALENDAR_ID]]`) |
 | `/specialty-peptide-payment-processing` | `peptides` | `pages/peptides.html` |
 | `/privacy-policy` | `privacy` | `pages/privacy.html` |
