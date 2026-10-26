@@ -73,7 +73,7 @@ Create the website (Sites → Websites), named **StarFi Pay**, and add these pag
 
 | Page | URL path | `data-page` | SEO title | Meta description |
 |---|---|---|---|---|
-| Home | `/` | `home` | StarFi Pay \| Owner Samantha Martinez | StarFi Pay is an Arizona company owned by Samantha Martinez, offering payment processing, payroll and business insurance nationwide. |
+| Home | `/` | `home` | Merchant Services & Payment Processing \| StarFi Pay | Interchange-plus payment processing, payroll and business insurance from an Arizona-owned company. See every fee on your statement. Get a free review. |
 | Contact | `/contact-us` | `contact` | Contact StarFi Pay | Talk to StarFi Pay about payment processing, payroll or business insurance. Send a message and a specialist will follow up. |
 | Message received | `/message-received` | `message-received` | Message Received \| StarFi Pay | Thanks for reaching out to StarFi Pay. Book a call with our team at a time that works for you. |
 | Peptides | `/specialty-peptide-payment-processing` | `peptides` | RUO Peptide Payment Processing \| StarFi Pay | Specialized payment processing for Research Use Only peptide eCommerce: individual underwriting, fraud protection, chargeback management, and long-term stability. |
@@ -82,6 +82,8 @@ Create the website (Sites → Websites), named **StarFi Pay**, and add these pag
 | About | `/about` | `about` | About StarFi Pay \| Samantha Martinez, Owner | StarFi Pay is an Arizona company owned by Samantha Martinez, offering payment processing, payroll and business insurance nationwide. |
 | Ownership | `/ownership` | `ownership` | Ownership \| StarFi Pay | StarFi Pay is owned by Samantha Martinez. Legal entity: Starfighter Financial LLC, an Arizona LLC (ACC Business ID [[ACC_BUSINESS_ID]]). |
 | Author | `/samantha-martinez` | `samantha-martinez` | Samantha Martinez, President & CEO \| StarFi Pay | Samantha Martinez is the President and CEO of StarFi Pay, an Arizona payment processing, payroll and business insurance company. |
+
+Home page extras (set Oct 26, 2026): keywords are merchant services, payment processing, credit card processing, interchange-plus pricing, merchant account, POS systems, small business payment processing, Arizona merchant services, Phoenix payment processing, payroll services, business insurance, StarFi Pay. Social image: `https://mylaunchpartner.github.io/starfi-pay/assets/starfi-pay-og-home.jpg` (1200×630).
 
 ### Head tracking code
 
