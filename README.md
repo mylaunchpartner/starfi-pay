@@ -70,7 +70,7 @@ The site follows the logo kit: Midnight `#0B1026`, Cobalt `#2D5BFF` (buttons and
 ## Assets
 
 - `assets/starfi-pay-logo.png`: wordmark PNG (used in the schema)
-- `assets/hero-merchant-checkout.jpg`, `assets/merchant-counter-tap.jpg`: home page photos, licensed from Envato ("Friendly Saleswoman Processes Mobile Payment at Store" by stockscar; "Happy Woman Paying with Phone at Zero Waste Store" by DC_Studio). 
+- `assets/hero-merchant-tablet.jpg`, `assets/merchant-counter-tap.jpg`: home page photos, licensed from Envato ("Smiling Woman Using Tablet at Boutique Checkout" by Zinkevych_D; "Happy Woman Paying with Phone at Zero Waste Store" by DC_Studio). The earlier hero, "Friendly Saleswoman Processes Mobile Payment at Store" (stockscar), is also licensed but no longer used. 
 - `assets/ruo-vials-lab.jpg`, `assets/ruo-ecommerce-fulfillment.jpg`, `assets/ruo-researcher-pipette.jpg`: peptides page photos, licensed from Envato ("Vaccine Vial Preparation in Laboratory Setting" by erika8213; "Scanning Package Barcode in Brightly Lit Workplace" by amenic181; "Scientist Using Pipette to Fill Test Tubes" by oakdull406).
 - Full-size originals of all Envato photos are in Samantha's StarFi Pay folder under "Website photos (Envato)".
 - `assets/samantha-martinez-starfi-pay.jpg`: owner headshot (home, about, author and blog pages). Pages show "SM" initials if it fails to load.
