@@ -1,6 +1,5 @@
 /* StarFi Pay shared shell: header, footer, wordmark. Brand tokens follow the logo kit
    (Midnight #0B1026, Cobalt #2D5BFF, Gold #F5B83D; Sora + Public Sans). */
-@import url('https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Public+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap');
 
 .ai-shell{--midnight:#0B1026;--cobalt:#2D5BFF;--cobalt-deep:#1E44D6;--cobalt-tint:#E9EEFF;--gold:#F5B83D;--mist:#F3F5FA;--line:#DEE2EC;--slate:#474E68;--quiet:#7A8199;--white:#FFFFFF;
   /* legacy names still used by some page styles */
