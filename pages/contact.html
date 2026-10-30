@@ -86,6 +86,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
   .container{padding:0 20px}
   .contact-wrap{padding:0 20px}
   .contact-body{padding:40px 0 0}
+  .ai-ghl-form{padding:0 20px!important}
 }
 
 .contact-meta{padding:40px 0 0}
@@ -155,79 +156,13 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 })();
 </script>
 
-<!-- Coded contact form. Posts to the GHL Inbound Webhook of workflow
-     "StarFi Pay - Contact Page Webhook", which creates/updates the contact
-     (Company Name -> organization, message -> custom field CCYSSR4kL4XaQGdCbjZO)
-     and emails the notification. Field set mirrors "Contact Us Form - General". -->
-<style>
-.sf-form-wrap{max-width:680px;margin:0 auto;padding:0 32px}
-.sf-card{background:var(--white);border:1px solid var(--border);border-radius:16px;box-shadow:var(--sh-md);padding:28px}
-.sf-form .field{margin-bottom:14px}
-.sf-form .two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.sf-form label{display:block;font-size:11px;font-weight:700;color:var(--muted);margin-bottom:6px;letter-spacing:.05em;text-transform:uppercase}
-.sf-form input[type=text],.sf-form input[type=tel],.sf-form input[type=email],.sf-form textarea{width:100%;font:inherit;font-size:15px;padding:12px 14px;border:1px solid var(--border);border-radius:var(--r-sm);background:var(--paper);color:var(--ink)}
-.sf-form textarea{min-height:130px;resize:vertical;line-height:1.55}
-.sf-form input:focus,.sf-form textarea:focus{outline:none;border-color:var(--indigo);background:var(--white);box-shadow:0 0 0 3px rgba(45,91,255,.14)}
-.sf-form .consent{margin:18px 0 6px;display:grid;gap:12px}
-.sf-form label.cons{display:flex;align-items:flex-start;gap:10px;margin:0;font-size:12px;font-weight:500;line-height:1.5;color:var(--body-c);text-transform:none;letter-spacing:0;cursor:pointer}
-.sf-form label.cons input{flex:none;width:16px;height:16px;margin:2px 0 0;accent-color:var(--indigo)}
-.sf-form .sf-submit{width:100%;margin-top:14px;background:var(--indigo);color:var(--white);font-family:'Sora',sans-serif;font-size:15px;font-weight:600;padding:15px 22px;border-radius:999px;transition:background .2s}
-.sf-form .sf-submit:hover{background:var(--indigo-mid)}
-.sf-form .sf-submit[disabled]{opacity:.65;cursor:default}
-.sf-form .sf-err{display:none;margin-top:12px;font-size:13.5px;color:#B42318}
-.sf-form .sf-err.show{display:block}
-@media(max-width:640px){.sf-form-wrap{padding:0 20px}.sf-card{padding:22px 18px}.sf-form .two{grid-template-columns:1fr}}
-</style>
-
-<iframe name="sfsink" id="sfsink" style="display:none" aria-hidden="true" tabindex="-1" title="Form submission"></iframe>
-
-<div class="sf-form-wrap">
-  <div class="sf-card">
-    <form class="sf-form" id="sfContactForm" action="https://services.leadconnectorhq.com/hooks/xgUha7otQsBN4UtH7JXQ/webhook-trigger/[[CONTACT_WEBHOOK_ID]]" method="POST" target="sfsink" novalidate>
-      <div class="field two">
-        <div><label for="sf-first">First name *</label><input id="sf-first" name="first" type="text" autocomplete="given-name" placeholder="Enter your first name" required></div>
-        <div><label for="sf-last">Last name *</label><input id="sf-last" name="last" type="text" autocomplete="family-name" placeholder="Enter your last name" required></div>
-      </div>
-      <div class="field two">
-        <div><label for="sf-phone">Phone *</label><input id="sf-phone" name="phone" type="tel" autocomplete="tel" placeholder="+1 (555) 000-0000" required></div>
-        <div><label for="sf-company">Company name *</label><input id="sf-company" name="company" type="text" autocomplete="organization" placeholder="Enter your company name" required></div>
-      </div>
-      <div class="field"><label for="sf-email">Email *</label><input id="sf-email" name="email" type="email" autocomplete="email" placeholder="your@email.com" required></div>
-      <div class="field"><label for="sf-message">Write your message to our team *</label><textarea id="sf-message" name="message" placeholder="Type your message here" required></textarea></div>
-
-      <div class="consent">
-        <label class="cons"><input type="checkbox" name="sms_consent_nonmarketing" value="yes">By checking this box, I consent to receive non-marketing text messages from StarFi Pay. Message frequency varies, message &amp; data rates may apply. Text HELP for assistance, reply STOP to opt out.</label>
-        <label class="cons"><input type="checkbox" name="sms_consent_marketing" value="yes">By checking this box, I consent to receive marketing and promotional messages including special offers, discounts, new product updates among others, from StarFi Pay at the phone number provided. Frequency may vary. Message &amp; data rates may apply. Text HELP for assistance, reply STOP to opt out.</label>
-      </div>
-
-      <input type="hidden" name="source" value="StarFi Pay Contact Page">
-      <input type="hidden" name="page_url" value="">
-      <button class="sf-submit" type="submit">Send message &rarr;</button>
-      <p class="sf-err" id="sfErr" role="alert">Sorry, something went wrong. Please call us or try again in a moment.</p>
-    </form>
-  </div>
+<!-- GHL contact form: Contact Us Form - General (l9dHbUA0Lhn3K0IDt1Gz).
+     Its card, field and button styling lives in the form's own Custom CSS in GHL;
+     the source copy is ghl/contact-form.css in this repo. -->
+<div class="ai-ghl-form" style="max-width:744px;margin:0 auto;padding:0 32px">
+<iframe src="https://api.leadconnectorhq.com/widget/form/l9dHbUA0Lhn3K0IDt1Gz" style="width:100%;height:100%;border:none;border-radius:16px" id="inline-l9dHbUA0Lhn3K0IDt1Gz" data-layout="{'id':'INLINE'}" data-trigger-type="alwaysShow" data-trigger-value="" data-activation-type="alwaysActivated" data-activation-value="" data-deactivation-type="neverDeactivate" data-deactivation-value="" data-form-name="Contact Us Form - General" data-height="700" data-layout-iframe-id="inline-l9dHbUA0Lhn3K0IDt1Gz" data-form-id="l9dHbUA0Lhn3K0IDt1Gz" data-cookie-consent="true" data-cookie-consent-provider="auto" title="Contact Us Form - General"></iframe>
+<script src="https://link.msgsndr.com/js/form_embed.js"></script>
 </div>
-
-<script>
-(function(){
-  var form=document.getElementById('sfContactForm'); if(!form)return;
-  var sink=document.getElementById('sfsink'), btn=form.querySelector('.sf-submit'), err=document.getElementById('sfErr');
-  var NEXT='/message-received', sent=false, done=false;
-  form.page_url.value=location.href.split('?')[0];
-  function go(){ if(done)return; done=true; location.href=NEXT; }
-  sink.addEventListener('load',function(){ if(sent) go(); });
-  form.addEventListener('submit',function(e){
-    // Never post a partial lead: stop here if anything required is missing.
-    if(!form.checkValidity()){ e.preventDefault(); form.reportValidity(); return; }
-    if(/\[\[/.test(form.action)){ e.preventDefault(); err.classList.add('show'); return; }
-    Array.prototype.forEach.call(form.querySelectorAll('input[type=text],input[type=tel],input[type=email],textarea'),function(el){ el.value=el.value.trim(); });
-    sent=true; btn.disabled=true; btn.textContent='Sending…';
-    if(window.fbq){ fbq('track','Lead',{content_name:'StarFi Pay Contact Page'}); }
-    setTimeout(go,4000); // fallback if the sink iframe's load event never fires
-    // No preventDefault on success: the browser posts to the webhook through the hidden sfsink iframe.
-  });
-})();
-</script>
 
 
 <!-- Compact contact details + portal login, at the bottom above the footer -->
