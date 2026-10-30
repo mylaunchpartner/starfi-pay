@@ -154,9 +154,40 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 <!-- GHL contact form: Contact Us Form - General (l9dHbUA0Lhn3K0IDt1Gz).
      Its card, field and button styling lives in the form's own Custom CSS in GHL;
      the source copy is ghl/contact-form.css in this repo. -->
-<div class="ai-ghl-form" style="max-width:744px;margin:0 auto;padding:0 32px">
-<iframe src="https://api.leadconnectorhq.com/widget/form/l9dHbUA0Lhn3K0IDt1Gz" style="width:100%;height:100%;border:none;border-radius:16px" id="inline-l9dHbUA0Lhn3K0IDt1Gz" data-layout="{'id':'INLINE'}" data-trigger-type="alwaysShow" data-trigger-value="" data-activation-type="alwaysActivated" data-activation-value="" data-deactivation-type="neverDeactivate" data-deactivation-value="" data-form-name="Contact Us Form - General" data-height="700" data-layout-iframe-id="inline-l9dHbUA0Lhn3K0IDt1Gz" data-form-id="l9dHbUA0Lhn3K0IDt1Gz" data-cookie-consent="true" data-cookie-consent-provider="auto" title="Contact Us Form - General"></iframe>
+<style>
+/* Placeholder card shown behind the form iframe until GHL's form has drawn itself */
+.ai-ghl-form{position:relative;max-width:744px;margin:0 auto;padding:0 32px}
+.sf-skel{position:absolute;top:0;left:32px;right:32px;height:711px;background:#fff;border:1px solid var(--border);border-radius:16px;box-shadow:var(--sh-md);padding:28px;display:grid;grid-template-columns:1fr 1fr;gap:14px 12px;align-content:start;transition:opacity .25s}
+.sf-skel i{display:block;height:11px;width:40%;background:#E7EAF2;border-radius:4px;margin-bottom:8px}
+.sf-skel b{display:block;height:46px;background:#F3F5FA;border:1px solid #E5E8F0;border-radius:10px}
+.sf-skel .w{grid-column:1/-1}.sf-skel .msg b{height:130px}
+.sf-skel .btn{grid-column:1/-1;height:50px;border-radius:999px;background:#C8D4FF;margin-top:70px}
+.sf-skel b,.sf-skel i,.sf-skel .btn{animation:sfPulse 1.2s ease-in-out infinite}
+@keyframes sfPulse{50%{opacity:.55}}
+.ai-ghl-form.ready .sf-skel{opacity:0;pointer-events:none}
+@media(max-width:640px){.sf-skel{left:20px;right:20px;grid-template-columns:1fr;padding:22px 18px}}
+@media(prefers-reduced-motion:reduce){.sf-skel b,.sf-skel i,.sf-skel .btn{animation:none}}
+</style>
+<div class="ai-ghl-form" id="sfFormWrap">
+<div class="sf-skel" aria-hidden="true">
+  <div><i></i><b></b></div><div><i></i><b></b></div>
+  <div><i></i><b></b></div><div><i></i><b></b></div>
+  <div class="w"><i></i><b></b></div>
+  <div class="w msg"><i></i><b></b></div>
+  <div class="btn"></div>
+</div>
+<iframe src="https://api.leadconnectorhq.com/widget/form/l9dHbUA0Lhn3K0IDt1Gz" style="width:100%;height:711px;border:none;border-radius:16px;position:relative;z-index:1;background:transparent" id="inline-l9dHbUA0Lhn3K0IDt1Gz" data-layout="{'id':'INLINE'}" data-trigger-type="alwaysShow" data-trigger-value="" data-activation-type="alwaysActivated" data-activation-value="" data-deactivation-type="neverDeactivate" data-deactivation-value="" data-form-name="Contact Us Form - General" data-height="711" data-layout-iframe-id="inline-l9dHbUA0Lhn3K0IDt1Gz" data-form-id="l9dHbUA0Lhn3K0IDt1Gz" data-cookie-consent="true" data-cookie-consent-provider="auto" title="Contact Us Form - General"></iframe>
 <script src="https://link.msgsndr.com/js/form_embed.js"></script>
+<script>
+(function(){
+  var wrap=document.getElementById('sfFormWrap'); if(!wrap)return;
+  var done=false; function ready(){ if(done)return; done=true; setTimeout(function(){wrap.classList.add('ready');},150); }
+  // The form signals the page (for auto-height) once it has rendered.
+  window.addEventListener('message',function(e){ if(/leadconnectorhq\.com$/.test(String(e.origin).replace(/^https?:\/\//,'')))ready(); });
+  var f=wrap.querySelector('iframe'); if(f) f.addEventListener('load',function(){ setTimeout(ready,600); });
+  setTimeout(ready,6000); // never leave the placeholder up
+})();
+</script>
 </div>
 
 

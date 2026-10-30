@@ -31,6 +31,18 @@
   function reveal() { mount.style.visibility = ''; }
   var revealTimer = setTimeout(reveal, 4000); // never leave the page hidden
 
+  // Pages with a GHL form or calendar: open connections to GHL's hosts now, while the
+  // page files are still loading, so the embedded widget starts faster when it's added.
+  if (page === 'contact' || page === 'message-received') {
+    ['https://api.leadconnectorhq.com', 'https://stcdn.leadconnectorhq.com', 'https://backend.leadconnectorhq.com',
+     'https://link.msgsndr.com', 'https://challenges.cloudflare.com'].forEach(function (h) {
+      var l = document.createElement('link'); l.rel = 'preconnect'; l.href = h; l.crossOrigin = '';
+      document.head.appendChild(l);
+      var d = document.createElement('link'); d.rel = 'dns-prefetch'; d.href = h;
+      document.head.appendChild(d);
+    });
+  }
+
   // Fonts load from <head>, not via @import inside the shell CSS (Safari holds back every
   // rule in a stylesheet until its @import finishes, which showed the header unstyled).
   if (!document.getElementById('sf-fonts')) {
