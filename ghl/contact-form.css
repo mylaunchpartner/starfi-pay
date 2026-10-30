@@ -35,14 +35,18 @@
 #_builder-form label.field-label span, #_builder-form label.label-alignment span { color: #7A8199 !important; }
 
 /* Inputs */
-#_builder-form .form-control {
+#_builder-form .form-control,
+#_builder-form .form-builder--item input.form-control,
+#_builder-form .form-builder--item textarea.form-control {
   width: 100% !important; font-size: 15px !important; color: #0B1026 !important;
   padding: 12px 14px !important; min-height: 46px !important;
   background: #F3F5FA !important; border: 1px solid #DEE2EC !important; border-radius: 10px !important;
   box-shadow: none !important; transition: border-color .15s, box-shadow .15s, background .15s;
 }
 #_builder-form .form-control::placeholder { color: #9AA0B4 !important; }
-#_builder-form .form-control:focus {
+#_builder-form .form-control:focus,
+#_builder-form .form-builder--item input.form-control:focus,
+#_builder-form .form-builder--item textarea.form-control:focus {
   outline: none !important; background: #FFFFFF !important; border-color: #2D5BFF !important;
   box-shadow: 0 0 0 3px rgba(45,91,255,.14) !important;
 }
