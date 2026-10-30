@@ -1,0 +1,78 @@
+/* StarFi Pay — Custom CSS for GHL form "Contact Us Form - General" (l9dHbUA0Lhn3K0IDt1Gz)
+   Paste into: Sites → Forms → Builder → Styles → Custom CSS. Keep this file as the source of truth.
+   Matches the site: Midnight #0B1026, Cobalt #2D5BFF, Public Sans / Sora. */
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@600&family=Public+Sans:wght@400;500;600;700&display=swap');
+
+#_builder-form, #_builder-form * { font-family: 'Public Sans', sans-serif !important; box-sizing: border-box; }
+.ghl-form-wrap { background: transparent !important; }
+
+/* Card */
+#_builder-form.form-builder--wrap {
+  background: #FFFFFF !important;
+  border: 1px solid #DEE2EC !important;
+  border-radius: 16px !important;
+  box-shadow: 0 8px 24px rgba(15,18,34,.08) !important;
+  padding: 28px !important;
+  max-width: 100% !important;
+}
+#_builder-form .form-side, #_builder-form .fields-container { width: 100%; }
+
+/* Two-column rows: first/last, phone/company */
+#_builder-form .fields-container { display: flex !important; flex-wrap: wrap !important; flex-direction: row !important; margin: 0 -6px !important; }
+#_builder-form .form-field-wrapper { flex: 0 0 100% !important; max-width: 100% !important; padding: 0 6px !important; margin-bottom: 14px !important; }
+#_builder-form .form-field-wrapper[id*="_first_name_"],
+#_builder-form .form-field-wrapper[id*="_last_name_"],
+#_builder-form .form-field-wrapper[id*="_phone_"],
+#_builder-form .form-field-wrapper[id*="_organization_"] { flex: 0 0 50% !important; max-width: 50% !important; }
+#_builder-form .form-field-container, #_builder-form .form-builder--item { padding: 0 !important; margin: 0 !important; }
+
+/* Labels */
+#_builder-form label.field-label, #_builder-form .form-builder--item > label.label-alignment {
+  display: block !important; font-size: 11px !important; font-weight: 700 !important;
+  letter-spacing: .05em !important; text-transform: uppercase !important;
+  color: #7A8199 !important; margin: 0 0 6px !important; padding: 0 !important;
+}
+#_builder-form label.field-label span, #_builder-form label.label-alignment span { color: #7A8199 !important; }
+
+/* Inputs */
+#_builder-form .form-control {
+  width: 100% !important; font-size: 15px !important; color: #0B1026 !important;
+  padding: 12px 14px !important; min-height: 46px !important;
+  background: #F3F5FA !important; border: 1px solid #DEE2EC !important; border-radius: 10px !important;
+  box-shadow: none !important; transition: border-color .15s, box-shadow .15s, background .15s;
+}
+#_builder-form .form-control::placeholder { color: #9AA0B4 !important; }
+#_builder-form .form-control:focus {
+  outline: none !important; background: #FFFFFF !important; border-color: #2D5BFF !important;
+  box-shadow: 0 0 0 3px rgba(45,91,255,.14) !important;
+}
+#_builder-form textarea.form-control { min-height: 130px !important; line-height: 1.55 !important; resize: vertical; }
+
+/* SMS consent */
+#_builder-form .terms-and-conditions { display: grid !important; gap: 12px !important; margin-top: 4px !important; }
+#_builder-form .checkbox-container { display: flex !important; align-items: flex-start !important; gap: 10px !important; margin: 0 !important; }
+#_builder-form .checkbox-container input[type="checkbox"] { flex: none; width: 16px !important; height: 16px !important; margin: 2px 0 0 !important; accent-color: #2D5BFF; }
+#_builder-form .checkbox-container label, #_builder-form .terms-text-container, #_builder-form .terms-text-container p {
+  font-size: 12px !important; font-weight: 500 !important; line-height: 1.5 !important;
+  color: #474E68 !important; text-transform: none !important; letter-spacing: 0 !important; margin: 0 !important;
+}
+
+/* Submit button */
+#_builder-form .form-builder--btn-submit .button-element {
+  width: 100% !important; background: #2D5BFF !important; border: none !important;
+  border-radius: 999px !important; padding: 15px 22px !important; min-height: 50px !important;
+  box-shadow: none !important; transition: background .2s;
+}
+#_builder-form .form-builder--btn-submit .button-element:hover { background: #1E44D6 !important; }
+#_builder-form .form-builder--btn-submit .button-element, #_builder-form .button-text, #_builder-form .button-text * {
+  color: #FFFFFF !important; font-family: 'Sora', sans-serif !important; font-size: 15px !important; font-weight: 600 !important;
+}
+
+/* Phones */
+@media (max-width: 560px) {
+  #_builder-form.form-builder--wrap { padding: 22px 18px !important; }
+  #_builder-form .form-field-wrapper[id*="_first_name_"],
+  #_builder-form .form-field-wrapper[id*="_last_name_"],
+  #_builder-form .form-field-wrapper[id*="_phone_"],
+  #_builder-form .form-field-wrapper[id*="_organization_"] { flex: 0 0 100% !important; max-width: 100% !important; }
+}
