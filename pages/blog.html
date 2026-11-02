@@ -35,7 +35,7 @@ body{-webkit-font-smoothing:antialiased}
 .hl-blog-post-home .blog-box:hover{transform:translateY(-3px);box-shadow:0 18px 40px rgba(15,18,34,.10);border-color:#D9DAF0}
 .hl-blog-post-home .blog-box>a{display:block;text-decoration:none}
 .hl-blog-post-home .blog-image-standard-wrapper{width:100%!important;height:auto!important;margin:0!important;padding:0!important}
-.hl-blog-post-home .blog-image-dap,.hl-blog-post-home .blog-image{height:auto!important;width:100%!important;aspect-ratio:3/2;overflow:hidden;background:var(--indigo-tint);border-radius:0!important;margin:0!important}
+.hl-blog-post-home .blog-image-dap,.hl-blog-post-home .blog-image{height:auto!important;width:100%!important;aspect-ratio:1200/630;overflow:hidden;background:#0B1026;border-radius:0!important;margin:0!important}
 .hl-blog-post-home .blog-image img,.hl-blog-post-home .blog-image-corner{width:100%!important;height:100%!important;max-height:none!important;object-fit:cover;object-position:center;border-radius:0!important;display:block;transition:transform .5s ease}
 .hl-blog-post-home .blog-box:hover .blog-image img{transform:scale(1.035)}
 .hl-blog-post-home .standard-blog-content{width:auto!important;padding:22px 24px 24px!important;margin:0!important;display:flex;flex-direction:column;flex:1}
@@ -57,9 +57,15 @@ body{-webkit-font-smoothing:antialiased}
 
 /* Featured (newest) post spans the full row */
 .hl-blog-post-home .blog-post-wrapper>.blog-post-wrapper-list:first-of-type{grid-column:1/-1}
-.hl-blog-post-home .blog-post-wrapper>.blog-post-wrapper-list:first-of-type .blog-box{display:grid!important;grid-template-columns:1.15fr 1fr}
-.hl-blog-post-home .blog-post-wrapper>.blog-post-wrapper-list:first-of-type .blog-image{aspect-ratio:3/2}
-.hl-blog-post-home .blog-post-wrapper>.blog-post-wrapper-list:first-of-type .blog-box{align-items:center}
+.hl-blog-post-home .blog-post-wrapper>.blog-post-wrapper-list:first-of-type .blog-box{display:grid!important;grid-template-columns:1.45fr 1fr}
+/* Featured cover: whole 1200x630 image, never cropped. The image column fills the card's height
+   and the cover sits centred on Midnight, which matches the covers' own dark background. */
+.hl-blog-post-home .blog-post-wrapper>.blog-post-wrapper-list:first-of-type .blog-box{align-items:stretch}
+.hl-blog-post-home .blog-post-wrapper>.blog-post-wrapper-list:first-of-type .blog-box>a,
+.hl-blog-post-home .blog-post-wrapper>.blog-post-wrapper-list:first-of-type .blog-image-standard-wrapper{height:100%!important;background:#0B1026}
+.hl-blog-post-home .blog-post-wrapper>.blog-post-wrapper-list:first-of-type .blog-image{aspect-ratio:auto;height:100%!important;min-height:0;display:flex;align-items:center}
+.hl-blog-post-home .blog-post-wrapper>.blog-post-wrapper-list:first-of-type .blog-image picture{height:auto!important;width:100%}
+.hl-blog-post-home .blog-post-wrapper>.blog-post-wrapper-list:first-of-type .blog-image img{height:auto!important;aspect-ratio:1200/630;object-fit:cover}
 .hl-blog-post-home .blog-post-wrapper>.blog-post-wrapper-list:first-of-type .standard-blog-content{padding:44px 44px 40px!important;justify-content:center}
 .hl-blog-post-home .blog-post-wrapper>.blog-post-wrapper-list:first-of-type .blog-title{font-size:clamp(26px,2.6vw,34px)!important;line-height:1.15!important;margin-top:14px!important}
 .hl-blog-post-home .blog-post-wrapper>.blog-post-wrapper-list:first-of-type .blog-description{font-size:16.5px!important;-webkit-line-clamp:4;margin-top:14px!important}
@@ -90,7 +96,7 @@ body{-webkit-font-smoothing:antialiased}
   .c-blog-post .hl-blog-post-home{padding:32px 20px 64px!important}
   .hl-blog-post-home .blog-post-wrapper{grid-template-columns:1fr;gap:20px}
   .hl-blog-post-home .blog-post-wrapper>.blog-post-wrapper-list:first-of-type .blog-box{display:flex!important}
-  .hl-blog-post-home .blog-post-wrapper>.blog-post-wrapper-list:first-of-type .blog-image{aspect-ratio:3/2}
+  .hl-blog-post-home .blog-post-wrapper>.blog-post-wrapper-list:first-of-type .blog-image{aspect-ratio:1200/630;height:auto!important}
   .hl-blog-post-home .blog-post-wrapper>.blog-post-wrapper-list:first-of-type .standard-blog-content{padding:24px!important}
   .bl-cta{padding-bottom:64px}
   .bl-cta-card{padding:28px 24px}
