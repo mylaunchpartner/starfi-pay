@@ -83,3 +83,6 @@
 #ai-root .eyebrow,#ai-root .eyebrow-label,#ai-root .co-eyebrow,#ai-root .bl-eyebrow,#ai-root .contact-tag,#ai-root .legal-tag,#ai-root .kicker{display:none!important}
 #ai-root .reveal{opacity:1!important;transform:none!important;transition:none!important}
 #ai-root h1,#ai-root h2{letter-spacing:-.03em}
+.footer-credit{white-space:nowrap;margin-left:6px}
+.footer-credit a{color:rgba(255,255,255,.45);text-decoration:underline;text-underline-offset:2px;transition:color .2s}
+.footer-credit a:hover{color:rgba(255,255,255,.8)}
